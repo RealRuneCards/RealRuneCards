@@ -8,7 +8,7 @@
     :root {
       --orange: #ff7a00;
       --orange-light: #ff9c3d;
-      --black: #000000;
+      --black: #000;
       --highlight: #ffd86b;
       --radius: 14px;
       font-family: Arial, Helvetica, sans-serif;
@@ -67,11 +67,11 @@
       justify-content: center;
       width: 210px;
       height: 140px;
-      background: var(--black);
+      background: var(--orange);          /* << ORANGE BUTTONS */
       border-radius: var(--radius);
       border: 2px solid var(--highlight);
       text-decoration: none;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
       transition: transform 0.15s ease, box-shadow 0.15s ease,
                   border-color 0.15s ease;
       padding: 10px;
@@ -79,7 +79,7 @@
 
     .game-button:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
       border-color: #ffffff;
     }
 
