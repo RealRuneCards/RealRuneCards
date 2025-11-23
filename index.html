@@ -1,56 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real Rune Cards</title>
-    <style>
-        body {
-            background: #0f0f10;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        img.logo {
-            width: 250px;
-            max-width: 80%;
-            margin-bottom: 40px;
-        }
-        a.button {
-            display: block;
-            background: #222;
-            border: 2px solid #f5a623;
-            color: #f5a623;
-            text-decoration: none;
-            padding: 15px;
-            margin: 20px 0;
-            font-size: 1.2rem;
-            border-radius: 12px;
-            transition: 0.2s;
-        }
-        a.button:hover {
-            background: #f5a623;
-            color: #000;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Rune Cards</title>
+  <style>
+    :root {
+      --orange: #ff7a00;
+      --orange-light: #ff9c3d;
+      --black: #000000;
+      --highlight: #ffd86b;
+      --radius: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, var(--orange), var(--orange-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 800px;
+      padding: 32px 20px;
+    }
+
+    .logo-main {
+      max-width: 220px;
+      width: 60%;
+      height: auto;
+      display: block;
+      margin: 0 auto 16px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 2.2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    .tagline {
+      margin: 0 0 28px;
+      color: #2b1500;
+      font-weight: 600;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .game-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 210px;
+      height: 140px;
+      background: var(--black);
+      border-radius: var(--radius);
+      border: 2px solid var(--highlight);
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+                  border-color 0.15s ease;
+      padding: 10px;
+    }
+
+    .game-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.6);
+      border-color: #ffffff;
+    }
+
+    .game-button img {
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+      display: block;
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 0.8rem;
+      color: #3b1b00;
+    }
+
+    @media (max-width: 600px) {
+      .game-button {
+        width: 80%;
+        max-width: 260px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAQAElEQVR4Aey9B6BdR3ktvL6Z2e3026UrXXVZsuQi995tjKmBYEKP0kvpLGN2tZmThr+bTKMCF4zNDK2tnZQZBQliqLcMxexmJyYwtmz59Cot3D3XfdiH... alt="Real Rune Cards Logo" />
+  <div class="wrap">
+    <!-- Top logo -->
+    <img src="realrunecards-logo.png"
+         alt="Real Rune Cards Logo"
+         class="logo-main" />
 
-        <a class="button" href="https://www.cardmarket.com/en/YuGiOh/Users/CallinV/Offers" target="_blank">Yu‑Gi‑Oh! Cardmarket Store</a>
+    <h1>Real Rune Cards</h1>
+    <p class="tagline">Find my Cardmarket stores for Pokémon, Yu-Gi-Oh! and Riftbound.</p>
 
-        <a class="button" href="https://www.cardmarket.com/en/Riftbound/Users/CallinV/Offers" target="_blank">Riftbound Cardmarket Store</a>
+    <div class="buttons">
+      <!-- Pokémon -->
+      <a class="game-button"
+         href="https://www.cardmarket.com/en/Pokemon/Users/CallinV/Offers"
+         target="_blank" rel="noopener">
+        <img src="pokemon-logo.png" alt="Pokémon Trading Card Game">
+      </a>
 
-        <a class="button" href="https://www.cardmarket.com/en/Pokemon/Users/CallinV/Offers" target="_blank">Pokémon Cardmarket Store</a>
+      <!-- Yu-Gi-Oh! -->
+      <a class="game-button"
+         href="https://www.cardmarket.com/en/YuGiOh/Users/CallinV/Offers"
+         target="_blank" rel="noopener">
+        <img src="yugioh-logo.png" alt="Yu-Gi-Oh! Trading Card Game">
+      </a>
+
+      <!-- Riftbound -->
+      <a class="game-button"
+         href="https://www.cardmarket.com/en/Riftbound/Users/CallinV/Offers"
+         target="_blank" rel="noopener">
+        <img src="riftbound-logo.png" alt="Riftbound Trading Card Game">
+      </a>
     </div>
+
+    <footer>
+      © <span id="year"></span> Real Rune Cards
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
