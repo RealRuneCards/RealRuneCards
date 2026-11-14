@@ -1,6 +1,6 @@
-/* ===== REAL RUNE CARDS SHARED NEWS FEED (PREVIEW, NOT PUBLISHED) =====
+/* ===== REAL RUNE CARDS SHARED NEWS FEED =====
  One file feeds the homepage section and news/index.html.
- It is a .js file (not .json) so the preview also works when opened straight from disk.
+ It is a .js file (not .json) so the pages also work when opened straight from disk.
  A future generator only needs to rewrite this file after a person has reviewed each post.
 
  Item fields:
@@ -36,7 +36,7 @@ window.RRC_NEWS_FEED = {
         "name": "Riftbound (Riot Games)",
         "url": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026/"
       },
-      "reviewed": { "by": "PREVIEW: facts checked against the source on 2026-11-14, awaiting Cal's sign-off", "on": "2026-11-14" }
+      "reviewed": { "by": "Real Rune Cards (facts checked against the official source; approved for publication by Cal)", "on": "2026-11-14" }
     }
   ]
 };

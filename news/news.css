@@ -1,4 +1,4 @@
-/* ===== REAL RUNE CARDS NEWS (PREVIEW) =====
+/* ===== REAL RUNE CARDS NEWS =====
  Shared by the homepage section, news/index.html and article pages.
  Text on white is dark brown (#2b1500); orange #ff7a00 is only used for bars and borders (contrast). */
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -67,6 +67,5 @@
 .news-article .news-source{margin-top:18px;font-size:.95rem}
 .news-article .news-updated{font-size:.82rem;color:#6b3a00;margin-top:14px}
 .news-crumb{max-width:760px;margin:0 auto 14px;font-size:.92rem}
-.news-preview-flag{max-width:760px;margin:0 auto 14px;padding:10px 14px;border:1px dashed #ff7a00;border-radius:10px;color:#f5efe8;font-size:.88rem;background:#211b15}
 
 @media (prefers-reduced-motion:reduce){.news-card,.news-filter button{transition:none}}

@@ -1,4 +1,4 @@
-/* ===== REAL RUNE CARDS NEWS RENDERER (PREVIEW) =====
+/* ===== REAL RUNE CARDS NEWS RENDERER =====
  Used by the homepage and news/index.html. Reads window.RRC_NEWS_FEED from news-feed.js.
  Markup it looks for:
   <div data-news-filter> with <button data-game="all|magic|lorcana|riftbound|pokemon" aria-pressed>
