@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real Rune Cards">
+<meta property="og:title" content="Learn to Play Lorcana, Magic &amp; Riftbound | Real Rune Cards Blackpool">
+<meta property="og:description" content="New to Disney Lorcana, Magic: The Gathering or Riftbound? A free beginner's guide from Real Rune Cards, Blackpool: learn the basics, copy a proven deck, test it free online and buy the cards for less.">
+<meta property="og:url" content="https://realrunecards.com/start-playing.html">
+<meta property="og:image" content="https://realrunecards.com/og-start-playing.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="realrunecards-logo.png">
+<title>Learn to Play Lorcana, Magic &amp; Riftbound | Real Rune Cards Blackpool</title>
+<meta name="description" content="New to Disney Lorcana, Magic: The Gathering or Riftbound? A free beginner's guide from Real Rune Cards, Blackpool: learn the basics, copy a proven deck, test it free online and buy the cards for less.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* All styles are scoped to .rrc so this can be dropped into an existing site */
+.rrc{
+  --bg:#0b0b0b; --panel:#161412; --panel-2:#211b15; --line:#3a2e22;
+  --text:#f5efe8; --muted:#c4b6a4; --gold:#ff7a00; --gold-soft:rgba(255,122,0,.12);
+  --accent:#ff7a00; --ok:#4fbf8b; --warn:#e2895a;
+  --radius:14px;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--text); background:var(--bg); line-height:1.6; font-size:16px;
+}
+.rrc[data-game="lorcana"]{--accent:#ffb366}
+.rrc[data-game="mtg"]{--accent:#ff7a00}
+.rrc[data-game="riftbound"]{--accent:#ff9c3d}
+.rrc *{box-sizing:border-box}
+.rrc a{color:var(--accent); text-underline-offset:3px}
+.rrc a:hover{color:var(--text)}
+.rrc .wrap{max-width:980px; margin:0 auto; padding:0 16px}
+.rrc h1,.rrc h2,.rrc h3{line-height:1.2; margin:0}
+.rrc h1,.rrc h2{font-family:Cinzel,Georgia,serif; letter-spacing:.02em}
+
+/* Hero */
+.rrc .hero{padding:56px 0 32px; text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%, var(--gold-soft), transparent 70%)}
+.rrc .eyebrow{display:inline-block; font-size:.78rem; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:14px}
+.rrc .hero h1{font-size:clamp(2rem,6vw,3.2rem); margin-bottom:14px}
+.rrc .hero p{color:var(--muted); max-width:640px; margin:0 auto; font-size:1.08rem}
+
+/* Path overview */
+.rrc .path{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:32px 0 8px; padding:0; list-style:none}
+.rrc .path li{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+  padding:14px; font-size:.92rem; color:var(--muted)}
+.rrc .path b{display:block; color:var(--text); font-size:.98rem; margin-bottom:2px}
+.rrc .path span{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%;
+  background:var(--gold); color:#140a00; font-weight:700; font-size:.85rem; margin-bottom:8px}
+
+/* Game picker */
+.rrc .picker{position:sticky; top:0; z-index:5; background:rgba(11,11,11,.92);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:12px 0}
+.rrc .picker .label{font-size:.8rem; color:var(--muted); margin-bottom:8px; text-align:center}
+.rrc .tabs{display:flex; gap:8px; justify-content:center; flex-wrap:wrap}
+.rrc .tab{appearance:none; border:1px solid var(--line); background:var(--panel); color:var(--text);
+  font:inherit; font-weight:600; padding:10px 18px; border-radius:999px; cursor:pointer; transition:.15s}
+.rrc .tab:hover{border-color:var(--muted)}
+.rrc .tab[aria-selected="true"]{background:var(--accent); border-color:var(--accent); color:#121212}
+.rrc .tab:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+
+/* Game panels */
+.rrc .game{padding:36px 0 8px; scroll-margin-top:130px}
+.rrc .game[hidden]{display:none}
+.rrc .game-head{display:flex; gap:16px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; margin-bottom:24px}
+.rrc .game-head h2{font-size:clamp(1.6rem,4.5vw,2.2rem)}
+.rrc .game-head p{color:var(--muted); margin:6px 0 0; max-width:620px}
+.rrc .facts{display:flex; flex-wrap:wrap; gap:8px}
+.rrc .fact{background:var(--panel-2); border:1px solid var(--line); border-radius:999px; padding:6px 12px; font-size:.85rem}
+.rrc .fact b{color:var(--accent)}
+
+.rrc .step{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px; margin-bottom:16px; position:relative}
+.rrc .step-head{display:flex; gap:14px; align-items:center; margin-bottom:14px}
+.rrc .num{flex:0 0 auto; width:38px; height:38px; border-radius:10px; display:grid; place-items:center;
+  background:var(--gold-soft); color:var(--gold); font-weight:700; border:1px solid rgba(255,122,0,.35)}
+.rrc .step h3{font-size:1.2rem}
+.rrc .step p{margin:0 0 12px}
+.rrc .step ol,.rrc .step ul{margin:0 0 12px; padding-left:20px}
+.rrc .step li{margin-bottom:6px}
+.rrc .muted{color:var(--muted)}
+
+.rrc .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin:6px 0 4px}
+.rrc .res{display:block; text-decoration:none; color:var(--text); background:var(--panel-2);
+  border:1px solid var(--line); border-radius:12px; padding:14px; transition:.15s}
+.rrc .res:hover{border-color:var(--accent); color:var(--text); transform:translateY(-1px)}
+.rrc .res b{display:flex; justify-content:space-between; gap:8px; align-items:center}
+.rrc .res b::after{content:"↗"; color:var(--accent); font-weight:400}
+.rrc .res span{display:block; color:var(--muted); font-size:.9rem; margin-top:4px}
+.rrc .tag{display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  padding:2px 8px; border-radius:999px; background:rgba(79,191,139,.14); color:var(--ok); margin-top:8px}
+.rrc .tag.paid{background:rgba(226,137,90,.14); color:var(--warn)}
+
+.rrc .rules{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-bottom:12px}
+.rrc .rule{background:var(--panel-2); border-radius:12px; padding:14px; border-left:3px solid var(--accent)}
+.rrc .rule b{display:block; margin-bottom:4px}
+.rrc .rule span{color:var(--muted); font-size:.93rem}
+
+.rrc .tip{background:var(--gold-soft); border:1px solid rgba(255,122,0,.3); border-radius:12px;
+  padding:12px 14px; font-size:.95rem; margin-top:12px}
+.rrc .tip b{color:var(--gold)}
+
+.rrc pre{background:#050505; border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+  overflow-x:auto; font-size:.88rem; margin:8px 0 12px; color:#f5efe8}
+
+/* Shared Cardmarket detail */
+.rrc details{background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:0 14px; margin-top:8px}
+.rrc summary{cursor:pointer; padding:12px 0; font-weight:600}
+.rrc details[open] summary{border-bottom:1px solid var(--line); margin-bottom:12px}
+
+/* Recommended first buy */
+.rrc .first-buy{margin-top:14px; border:1px solid var(--accent); border-radius:12px; padding:16px;
+  background:linear-gradient(135deg, rgba(255,255,255,.04), transparent)}
+.rrc .first-buy .fb-label{font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:4px}
+.rrc .first-buy h4{margin:0 0 6px; font-size:1.08rem}
+.rrc .first-buy p{margin:0 0 8px; color:var(--muted); font-size:.95rem}
+.rrc .first-buy a{font-weight:600}
+
+/* Shop first */
+.rrc .shop-first{background:var(--gold-soft); border:1px solid rgba(255,122,0,.4); border-radius:12px; padding:14px; margin-bottom:14px; font-size:.97rem}
+.rrc .shop-first b{color:var(--gold)}
+.rrc .shop-first a{font-weight:600; white-space:nowrap}
+
+/* Cardmarket picture guide */
+.rrc .cm-guide{padding:28px 0 8px; scroll-margin-top:130px}
+.rrc .cm-guide h2{font-size:clamp(1.4rem,4vw,1.8rem); margin-bottom:6px}
+.rrc .cm-guide > p{color:var(--muted); margin:0 0 16px}
+.rrc .screens{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.rrc .screen{margin:0; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:12px}
+.rrc .screen figcaption{font-size:.92rem; color:var(--muted); margin-top:10px}
+.rrc .screen figcaption b{color:var(--text)}
+.rrc .mock{background:#f4f4f6; color:#2b2f3a; border-radius:8px; overflow:hidden; font-size:.78rem; min-height:170px}
+.rrc .mock-bar{background:#dfe1e7; padding:6px 10px; display:flex; gap:12px; font-weight:600}
+.rrc .mock-body{padding:10px}
+.rrc .mock-label{font-size:.7rem; color:#6b7080; margin-bottom:3px}
+.rrc .mock-input,.rrc .mock-paste{background:#fff; border:1px solid #c9ccd6; border-radius:4px; padding:6px 8px; margin-bottom:8px; line-height:1.5}
+.rrc .mock-paste{font-family:ui-monospace,Menlo,monospace; font-size:.72rem}
+.rrc .mock-btn{display:inline-block; background:#c9ccd6; border-radius:4px; padding:5px 10px; font-weight:700; margin-bottom:8px}
+.rrc .mock-btn.hl,.rrc .hl-text{outline:3px solid var(--gold); outline-offset:2px; border-radius:4px}
+.rrc .mock-btn.hl{background:#3f9c74; color:#fff}
+.rrc .mock-msg{border-radius:4px; padding:4px 8px; margin-bottom:4px; font-size:.72rem}
+.rrc .mock-msg.ok{background:#dcf2e6; color:#1f6b46}
+.rrc .mock-msg.bad{background:#fbe0dd; color:#9b2d20}
+.rrc .mock-row{display:flex; justify-content:space-between; gap:8px; border-bottom:1px solid #e1e3e9; padding:4px 0}
+.rrc .mock-result{background:#fff; border:1px solid #c9ccd6; border-radius:4px; padding:5px 8px; font-weight:700}
+@media (max-width:720px){ .rrc .screens{grid-template-columns:1fr} }
+
+/* Pricing */
+.rrc .pricing{padding:20px 0 4px}
+.rrc .pricing h2{font-size:clamp(1.4rem,4vw,1.8rem); margin-bottom:6px}
+.rrc .pricing > p{color:var(--muted); margin:0 0 16px}
+.rrc .pricing details{margin-top:10px}
+.rrc .pricing details p,.rrc .pricing details ul{margin:0 0 12px; font-size:.95rem}
+.rrc .pricing details li{margin-bottom:6px}
+.rrc .compare{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px}
+.rrc .src{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px}
+.rrc .src h3{font-size:1.05rem; margin-bottom:4px}
+.rrc .src .what{color:var(--gold); font-weight:600; font-size:.9rem; margin-bottom:10px}
+.rrc .src ul{margin:0; padding-left:18px; font-size:.94rem}
+.rrc .src li{margin-bottom:6px}
+@media (max-width:640px){ .rrc .compare{grid-template-columns:1fr} }
+
+/* CTA */
+.rrc .cta{margin:28px 0 56px; background:linear-gradient(135deg,var(--panel-2),var(--panel));
+  border:1px solid rgba(255,122,0,.35); border-radius:var(--radius); padding:28px; text-align:center}
+.rrc .cta h2{font-size:1.6rem; margin-bottom:8px}
+.rrc .cta p{color:var(--muted); max-width:600px; margin:0 auto 18px}
+.rrc .btns{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.rrc .btn{display:inline-block; padding:12px 20px; border-radius:999px; font-weight:600; text-decoration:none;
+  border:1px solid var(--gold); color:var(--gold)}
+.rrc .btn.primary{background:var(--gold); color:#140a00}
+.rrc .btn:hover{filter:brightness(1.1); color:inherit}
+.rrc .btn.primary:hover{color:#140a00}
+.rrc .cta .community-head{font-size:1.1rem; margin:24px 0 4px; padding-top:20px; border-top:1px solid var(--line)}
+.rrc .cta .community-sub{margin-bottom:14px; font-size:.95rem}
+.rrc .rrc-form{max-width:620px; margin:0 auto; text-align:left}
+.rrc .rrc-form .fields{display:grid; grid-template-columns:1fr 1.4fr auto; gap:8px}
+.rrc .rrc-form input[type=text],.rrc .rrc-form input[type=email]{font:inherit; padding:11px 12px; border-radius:10px; border:1px solid var(--line); background:var(--bg); color:var(--text); min-width:0}
+.rrc .rrc-form input:focus{outline:2px solid var(--gold); outline-offset:1px}
+.rrc .rrc-form .btn{cursor:pointer; font:inherit; font-weight:600}
+.rrc .rrc-form .consent{display:flex; gap:10px; align-items:flex-start; font-size:.85rem; color:var(--muted); margin-top:10px}
+.rrc .rrc-form .consent input{width:18px; height:18px; margin-top:2px; flex:0 0 auto; accent-color:var(--gold)}
+.rrc .rrc-form .consent a{color:var(--gold)}
+.rrc .form-msg{margin:8px 0 0; font-weight:600; min-height:1.2em; text-align:center}
+.rrc .form-msg.ok{color:var(--ok)} .rrc .form-msg.err{color:var(--warn)}
+.rrc .rrc-form.sent .fields,.rrc .rrc-form.sent .consent{display:none}
+@media (max-width:640px){ .rrc .rrc-form .fields{grid-template-columns:1fr} }
+.rrc .small{font-size:.8rem; color:var(--muted); text-align:center; margin:-36px 0 40px}
+
+@media (max-width:720px){
+  .rrc .path{grid-template-columns:1fr 1fr}
+  .rrc .step{padding:18px}
+  .rrc .tab{padding:9px 14px; font-size:.93rem}
+}
+</style>
+
+<!-- ================= SETTINGS: fill these in when your accounts are ready =================
+  1. Umami (visits + clicks, free Hobby plan): sign up at umami.is, add your website, then
+     paste your Website ID into the script tag below and remove the comment markers before and after it.
+     Until then, nothing is tracked and nothing breaks.
+  2. Sender (emails): in Sender, build and publish one embedded form per group ("Same Side course" and "New players"),
+     with double opt-in and a consent checkbox turned on. Paste Sender's site script where it says SENDER SITE SCRIPT
+     (just above the closing head tag), then paste each form's embed code into its SENDER FORM box further down the page.
+     Our placeholder form hides itself once Sender's form is in place.
+========================================================================================== -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160" onload="ctcFlush()"></script>
+<script>
+// Umami click tracking: events wait in a queue until the Umami script has loaded
+window.ctcQueue = [];
+window.ctcTrack = function(name, props){
+  try {
+    if (window.umami && window.umami.track) window.umami.track(name, props);
+    else window.ctcQueue.push([name, props]);
+  } catch(e){}
+};
+window.ctcFlush = function(){
+  try { while (window.ctcQueue.length) { var ev = window.ctcQueue.shift(); window.umami.track(ev[0], ev[1]); } } catch(e){}
+};
+</script>
+<style>
+/* Shared site menu: same on every page */
+.site-nav{background:#14110d; border-bottom:3px solid #ff7a00; font-family:Arial,Helvetica,sans-serif}
+.site-nav .in{max-width:980px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.site-nav .brand{display:flex; align-items:center; gap:8px; color:#fff; text-decoration:none; font-weight:bold; letter-spacing:.04em; text-transform:uppercase; font-size:.95rem}
+.site-nav .brand img{width:30px; height:30px; object-fit:contain}
+.site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:4px; flex-wrap:wrap}
+.site-nav a.lnk{display:block; color:#f3e7d6; text-decoration:none; font-size:.9rem; padding:6px 10px; border-radius:999px}
+.site-nav a.lnk:hover,.site-nav a.lnk[aria-current=page]{background:#ff7a00; color:#fff}
+@media print{ .site-nav{display:none !important} }
+@media (max-width:520px){ .site-nav .in{justify-content:center} .site-nav a.lnk{font-size:.85rem; padding:6px 8px} }
+@media (max-width:420px){ .site-nav ul{gap:0} .site-nav a.lnk{font-size:.78rem; padding:5px 6px} }
+</style>
+<!-- SENDER SITE SCRIPT: paste Sender's script here (Sender → Forms → your form → Publishing settings) -->
+
+<!-- end of SENDER SITE SCRIPT -->
+</head>
+<body style="margin:0;background:#0b0b0b">
+<nav class="site-nav" aria-label="Site menu"><div class="in">
+  <a class="brand" href="index.html"><img src="realrunecards-logo.png" alt="" onerror="this.remove()">Real Rune Cards</a>
+  <ul><li><a class="lnk" href="index.html">Home</a></li><li><a class="lnk" href="start-playing.html" aria-current="page">Learn to Play</a></li><li><a class="lnk" href="events.html">Events</a></li><li><a class="lnk" href="same-side.html">Same Side</a></li><li><a class="lnk" href="skill-tree.html">Skill Tree</a></li><li><a class="lnk" href="news/index.html">News</a></li></ul>
+</div></nav>
+
+<div class="rrc" data-game="lorcana" id="rrc-start">
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Real Rune Cards · New Player Guide</span>
+      <h1>Start Playing Today</h1>
+      <p>Never played before? Here's the shortcut every good player uses: learn the basics, copy a proven deck, try it free online, then buy exactly the cards you need.</p>
+      <ol class="path">
+        <li><span>1</span><b>Learn the basics</b>How a turn works and how you win</li>
+        <li><span>2</span><b>Find a deck to copy</b>Proven lists from real tournaments</li>
+        <li><span>3</span><b>Test it for free</b>Play it online before spending a penny</li>
+        <li><span>4</span><b>Buy the cards</b>Check our singles first, then Cardmarket</li>
+      </ol>
+    </div>
+  </header>
+
+  <nav class="picker" aria-label="Choose your game">
+    <div class="wrap">
+      <div class="label">Choose your game</div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-lorcana" aria-controls="lorcana" aria-selected="true">Disney Lorcana</button>
+        <button class="tab" role="tab" id="tab-mtg" aria-controls="mtg" aria-selected="false">Magic: The Gathering</button>
+        <button class="tab" role="tab" id="tab-riftbound" aria-controls="riftbound" aria-selected="false">Riftbound</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- ===================== LORCANA ===================== -->
+    <section class="game" id="lorcana" role="tabpanel" aria-labelledby="tab-lorcana">
+      <div class="game-head">
+        <div>
+          <h2>Disney Lorcana</h2>
+          <p>Race to collect lore with Disney characters. Easy to pick up, great for families, and deeper than it looks.</p>
+        </div>
+        <div class="facts">
+          <span class="fact"><b>60</b> card deck</span>
+          <span class="fact">Max <b>4</b> copies</span>
+          <span class="fact">Up to <b>2</b> inks</span>
+          <span class="fact">First to <b>20</b> lore</span>
+        </div>
+      </div>
+
+      <article class="step">
+        <div class="step-head"><div class="num">1</div><h3>Learn how a game works</h3></div>
+        <div class="rules">
+          <div class="rule"><b>Ink is your energy</b><span>Once per turn, put one card with the ink symbol face down into your inkwell. Each ink card pays for 1 cost.</span></div>
+          <div class="rule"><b>Play characters</b><span>New characters are "drying" — they can't quest or challenge until your next turn.</span></div>
+          <div class="rule"><b>Quest for lore</b><span>Exert (turn sideways) a character to gain its lore value. First to 20 lore wins.</span></div>
+          <div class="rule"><b>Challenge</b><span>Attack your opponent's exerted characters to banish them and slow their lore.</span></div>
+        </div>
+        <p><b>Each turn:</b> ready your cards, draw a card (the first player skips this on turn one), then ink, play, quest and challenge in any order.</p>
+        <div class="cards">
+          <a class="res" href="https://www.disneylorcana.com" target="_blank" rel="noopener"><b>Official Lorcana site</b><span>Quick-start rules and how-to-play videos from Ravensburger.</span></a>
+        </div>
+        <div class="first-buy">
+          <div class="fb-label">Our recommended first buy</div>
+          <h4>Disney Lorcana Gateway</h4>
+          <p>A two-player box with everything you need to learn together: two ready-to-play decks and a guided way into the rules. Once you've outgrown it, come back to step 2 and find your next deck.</p>
+          <a href="#SHOP-LORCANA-LINK" data-track="Product click" data-track-item="Lorcana Gateway">Ask us about Gateway →</a>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">2</div><h3>Find a deck to copy</h3></div>
+        <p>"Netdecking" just means copying a list that's already winning. It's how most players learn what good decks look like.</p>
+        <div class="cards">
+          <a class="res" href="https://inkdecks.com" target="_blank" rel="noopener"><b>Inkdecks</b><span>Tournament results, meta tier lists and the price of each deck. Sort by price to find budget lists.</span></a>
+          <a class="res" href="https://dreamborn.ink" target="_blank" rel="noopener"><b>Dreamborn.ink</b><span>The most popular community deckbuilder. Exports straight into the simulators below.</span></a>
+          <a class="res" href="https://lorcana.gg" target="_blank" rel="noopener"><b>Lorcana.gg</b><span>Beginner guides, deck guides and set news.</span></a>
+        </div>
+        <div class="tip"><b>Check the format:</b> most events use <i>Core Constructed</i>, which only allows recent sets. Make sure the list you copy is marked Core, not Infinity.</div>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">3</div><h3>Test it free online</h3></div>
+        <p>Paste the deck list in, play ten or so games, and see if you actually enjoy it before you buy.</p>
+        <div class="cards">
+          <a class="res" href="https://duels.ink" target="_blank" rel="noopener"><b>Duels.ink</b><span>Free fan-made simulator in your browser. Test decks and play friends online.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://lorcanito.com" target="_blank" rel="noopener"><b>Lorcanito</b><span>Free browser simulator. Sign in with an account or Discord.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://store.steampowered.com/app/286160/Tabletop_Simulator/" target="_blank" rel="noopener"><b>Tabletop Simulator</b><span>Search the Workshop for the "Lorcana TCG – Scripted 1v1 Table". Imports deck lists.</span><em class="tag paid">Paid · Steam</em></a>
+        </div>
+        <p class="muted" style="margin-top:12px">These are unofficial fan projects. Ravensburger has announced an official online client, so expect more options soon.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">4</div><h3>Buy the cards</h3></div>
+        <div class="shop-first"><b>Check with us first.</b> Send your list to us on Discord or Facebook, or bring it into the shop. We'll fill what we can from our singles and tell you what's left — then use Cardmarket for the rest. <a href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener" data-track="Send list click">Send us your list →</a></div>
+        <p><b>For anything we don't have, use Cardmarket</b> (<a href="#cm-guide">see the picture guide</a>):</p>
+        <ol>
+          <li>Log in to <a href="https://www.cardmarket.com/en/Lorcana" target="_blank" rel="noopener">Cardmarket Lorcana</a>, then go to <b>Buying → My Wants</b>.</li>
+          <li>Type a name for the list (e.g. "Amber/Emerald deck") and press <b>Add List</b>.</li>
+          <li>Open the list, paste your deck list into the box (one card per line) and press <b>Add</b>.</li>
+          <li>Run the <b>Shopping Wizard</b> to find the cheapest mix of sellers.</li>
+        </ol>
+        <p class="muted">Lorcana cards are entered as quantity, then "Name – Version":</p>
+<pre>4 Mickey Mouse – Brave Little Tailor
+4 Elsa – Snow Queen
+2 Fire the Cannons!</pre>
+        <details>
+          <summary>Shopping Wizard tips (all games)</summary>
+          <ul>
+            <li><b>Read the colour-coded message</b> after pasting. Green = added, red = not found. Fix red lines by checking the spelling and the dash between name and version.</li>
+            <li><b>Set your filters:</b> English language and a minimum condition of Excellent is a good default for playing.</li>
+            <li><b>Fewer sellers = less postage.</b> Check "Sellers with the most cards" at the bottom of the list — one seller with 90% of your cards often beats ten cheaper ones.</li>
+            <li>You get <b>10 Shopping Wizard runs per day</b>, so set filters before you run it.</li>
+            <li>Each wants list holds up to 150 entries — plenty for any deck.</li>
+          </ul>
+        </details>
+      </article>
+      <article class="step" id="lorcana-account">
+        <div class="step-head"><div class="num">5</div><h3>Make your free player account</h3></div>
+        <p>Official Disney Lorcana events, including ours, are run through Ravensburger's free player account. Set it up once and use it at every event.</p>
+        <div class="cards">
+          <a class="res" href="https://tcg.ravensburgerplay.com/" target="_blank" rel="noopener" data-track="Player account click" data-track-item="Lorcana"><b>Ravensburger Play Hub</b><span>Create a free account on your first visit, then search for events near you and register.</span><em class="tag">Free · Browser</em></a>
+        </div>
+        <ol>
+          <li>Open the <b>Play Hub</b> and create your free account.</li>
+          <li>Search for <b>Blackpool</b> to find our events and register.</li>
+          <li>Not sure which event to pick? Message us and we'll point you to the right one.</li>
+        </ol>
+        <p class="muted">Signing up a child? Each company sets its own age rules, so younger players may need a parent or carer to create or approve the account.</p>
+      </article>
+    </section>
+
+    <!-- ===================== MTG ===================== -->
+    <section class="game" id="mtg" role="tabpanel" aria-labelledby="tab-mtg" hidden>
+      <div class="game-head">
+        <div>
+          <h2>Magic: The Gathering</h2>
+          <p>The original trading card game. Huge card pool, lots of formats, and the biggest community out there.</p>
+        </div>
+        <div class="facts">
+          <span class="fact"><b>20</b> life</span>
+          <span class="fact"><b>60</b> card deck</span>
+          <span class="fact">Max <b>4</b> copies</span>
+          <span class="fact">Commander: <b>100</b> singleton</span>
+        </div>
+      </div>
+
+      <article class="step">
+        <div class="step-head"><div class="num">1</div><h3>Learn how a game works</h3></div>
+        <div class="rules">
+          <div class="rule"><b>Lands make mana</b><span>Play one land per turn. Tap lands for mana in the five colours to cast your spells.</span></div>
+          <div class="rule"><b>Creatures fight</b><span>Creatures can attack from your next turn. Your opponent chooses which creatures block.</span></div>
+          <div class="rule"><b>Spells do the rest</b><span>Instants can be cast any time — even on your opponent's turn. Sorceries only on your own.</span></div>
+          <div class="rule"><b>Win the game</b><span>Reduce your opponent from 20 life to 0 (or they run out of cards to draw).</span></div>
+        </div>
+        <p><b>Each turn:</b> untap, upkeep, draw, main phase, combat, second main phase, end.</p>
+        <p><b>Pick a format:</b> <i>Commander</i> (100 different cards, 40 life, 3–4 players) is the most popular casual format. <i>Standard</i> and <i>Pioneer</i> are the classic 1v1 60-card formats.</p>
+        <div class="cards">
+          <a class="res" href="https://magic.wizards.com/en/how-to-play" target="_blank" rel="noopener"><b>Official How to Play</b><span>Wizards of the Coast's beginner rules and videos.</span></a>
+          <a class="res" href="https://magic.wizards.com/en/mtgarena" target="_blank" rel="noopener"><b>MTG Arena tutorial</b><span>The official free app has a great interactive tutorial for learning the basics.</span></a>
+        </div>
+        <div class="first-buy">
+          <div class="fb-label">Our recommended first buy</div>
+          <h4>Magic: The Gathering Foundations Beginner Box</h4>
+          <p>Built for two brand-new players: ready-made decks and a guided first game that teaches you as you play. Already know the basics and want to join a Commander table? A Commander precon deck is the next step.</p>
+          <a href="#SHOP-MTG-LINK" data-track="Product click" data-track-item="MTG Beginner Box">Ask us about the Beginner Box →</a>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">2</div><h3>Find a deck to copy</h3></div>
+        <div class="cards">
+          <a class="res" href="https://www.mtggoldfish.com/metagame" target="_blank" rel="noopener"><b>MTGGoldfish</b><span>Meta decks for every format with prices — check the "Budget" section.</span></a>
+          <a class="res" href="https://edhrec.com" target="_blank" rel="noopener"><b>EDHREC</b><span>The go-to for Commander. Pick a commander and see the most-played cards and average decks.</span></a>
+          <a class="res" href="https://www.moxfield.com" target="_blank" rel="noopener"><b>Moxfield</b><span>Browse community decks of every format and copy them to your own account.</span></a>
+          <a class="res" href="https://www.mtgtop8.com" target="_blank" rel="noopener"><b>MTGTop8</b><span>Recent tournament top 8 decklists.</span></a>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">3</div><h3>Test it free online</h3></div>
+        <div class="cards">
+          <a class="res" href="https://www.moxfield.com" target="_blank" rel="noopener"><b>Moxfield Playtest</b><span>Open any deck and hit Playtest to draw sample hands and goldfish a few turns.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://untap.in" target="_blank" rel="noopener"><b>Untap.in</b><span>Play full games in your browser with any card. Least setup of any option.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://cockatrice.github.io" target="_blank" rel="noopener"><b>Cockatrice</b><span>Free download with every card available. Big community for finding games.</span><em class="tag">Free · Download</em></a>
+          <a class="res" href="https://github.com/Card-Forge/forge" target="_blank" rel="noopener"><b>Forge</b><span>Play against a computer opponent that enforces the rules. Great for nervous beginners.</span><em class="tag">Free · Download</em></a>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">4</div><h3>Buy the cards</h3></div>
+        <div class="shop-first"><b>Check with us first.</b> Send your list to us on Discord or Facebook, or bring it into the shop. We'll fill what we can from our singles and tell you what's left — then use Cardmarket for the rest. <a href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener" data-track="Send list click">Send us your list →</a></div>
+        <p><b>For anything we don't have, use Cardmarket</b> (<a href="#cm-guide">see the picture guide</a>):</p>
+        <ol>
+          <li>Log in to <a href="https://www.cardmarket.com/en/Magic" target="_blank" rel="noopener">Cardmarket Magic</a>, then go to <b>Buying → My Wants</b>.</li>
+          <li>Name a new list and press <b>Add List</b>.</li>
+          <li>Paste the deck list (one card per line) and press <b>Add</b>.</li>
+          <li>Run the <b>Shopping Wizard</b>.</li>
+        </ol>
+<pre>4 Lightning Bolt
+4 Llanowar Elves
+20 Mountain</pre>
+        <div class="tip"><b>Save money:</b> leave the set name off and Cardmarket will accept any printing — usually the cheapest. Basic lands cost pennies, so pick those up locally rather than paying postage on them.</div>
+        <details>
+          <summary>Shopping Wizard tips (all games)</summary>
+          <ul>
+            <li><b>Read the colour-coded message</b> after pasting. Green = added, red = not found. Fix red lines by checking spelling.</li>
+            <li><b>Set your filters:</b> English language and a minimum condition of Excellent is a good default for playing.</li>
+            <li><b>Fewer sellers = less postage.</b> Check "Sellers with the most cards" at the bottom of the list.</li>
+            <li>You get <b>10 Shopping Wizard runs per day</b>, so set filters before you run it.</li>
+            <li>Each wants list holds up to 150 entries — a Commander deck fits in one list.</li>
+          </ul>
+        </details>
+      </article>
+      <article class="step" id="mtg-account">
+        <div class="step-head"><div class="num">5</div><h3>Make your free player account</h3></div>
+        <p>You need a free Wizards Account to play in official Magic events in a shop. The Companion app uses it to show your pairings, keep score and report results.</p>
+        <div class="cards">
+          <a class="res" href="https://myaccounts.wizards.com/" target="_blank" rel="noopener" data-track="Player account click" data-track-item="Magic"><b>Wizards Account</b><span>Your free Magic player account. Needed for in-store events.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://magic.wizards.com/en/products/companion-app" target="_blank" rel="noopener" data-track="Player account click" data-track-item="Magic Companion"><b>Magic: The Gathering Companion</b><span>The official app for in-store events: join, see pairings, track life and get round alerts.</span><em class="tag">Free · App</em></a>
+        </div>
+        <ol>
+          <li>Create your <b>Wizards Account</b>.</li>
+          <li>Download <b>Companion</b> and sign in with the same account.</li>
+          <li>At the event, join from Companion when we give you the event code.</li>
+        </ol>
+        <p class="muted">Signing up a child? Each company sets its own age rules, so younger players may need a parent or carer to create or approve the account.</p>
+      </article>
+    </section>
+
+    <!-- ===================== RIFTBOUND ===================== -->
+    <section class="game" id="riftbound" role="tabpanel" aria-labelledby="tab-riftbound" hidden>
+      <div class="game-head">
+        <div>
+          <h2>Riftbound</h2>
+          <p>The League of Legends TCG from Riot Games. Fight for control of battlefields with your favourite champions.</p>
+        </div>
+        <div class="facts">
+          <span class="fact"><b>1</b> Legend</span>
+          <span class="fact"><b>40</b> card main deck</span>
+          <span class="fact"><b>12</b> runes</span>
+          <span class="fact">First to <b>8</b> points</span>
+        </div>
+      </div>
+
+      <article class="step">
+        <div class="step-head"><div class="num">1</div><h3>Learn how a game works</h3></div>
+        <div class="rules">
+          <div class="rule"><b>Your Legend</b><span>Your champion Legend sets your deck's two domains (colours) and gives you a special ability.</span></div>
+          <div class="rule"><b>Runes pay for cards</b><span>Your runes come from a separate rune deck. Exhaust runes for energy, recycle them for power.</span></div>
+          <div class="rule"><b>Move to battlefields</b><span>Play units to your base, then move them to the battlefields to fight for control.</span></div>
+          <div class="rule"><b>Score points</b><span>Conquer and hold battlefields to score. First to 8 points wins.</span></div>
+        </div>
+        <p><b>Each turn:</b> ready your cards, score battlefields you hold, channel two runes, draw, then play and move.</p>
+        <div class="cards">
+          <a class="res" href="https://riftbound.leagueoflegends.com" target="_blank" rel="noopener"><b>Official Riftbound site</b><span>Rules, learn-to-play videos and set info from Riot.</span></a>
+        </div>
+        <div class="first-buy">
+          <div class="fb-label">Our recommended first buy</div>
+          <h4>Riftbound: Radiance Showdown Deck</h4>
+          <p>The newest two-player box (Evelynn vs Seraphine), made so two people can play straight out of the box with nothing else needed. Want one deck to take to events instead? A Champion Deck is a full, legal deck on its own.</p>
+          <a href="#SHOP-RIFTBOUND-LINK" data-track="Product click" data-track-item="Riftbound Showdown Deck">Ask us about the Showdown Deck →</a>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">2</div><h3>Find a deck to copy</h3></div>
+        <div class="cards">
+          <a class="res" href="https://riftdecks.com" target="_blank" rel="noopener"><b>RiftDecks</b><span>Huge database of tournament decks, with the meta's most-played Legends and deck prices.</span></a>
+          <a class="res" href="https://piltoverarchive.com" target="_blank" rel="noopener"><b>Piltover Archive</b><span>Free deckbuilder and card library. Exports to Tabletop Simulator.</span></a>
+          <a class="res" href="https://mobalytics.gg/riftbound" target="_blank" rel="noopener"><b>Mobalytics</b><span>Beginner guides, tier lists and tournament-winning decks.</span></a>
+        </div>
+        <div class="tip"><b>Watch for bans:</b> RiftDecks marks lists with a "Banned" tag if they include a card that's no longer legal. Pick a recent list.</div>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">3</div><h3>Test it free online</h3></div>
+        <div class="cards">
+          <a class="res" href="https://tcg-arena.fr" target="_blank" rel="noopener"><b>TCG Arena</b><span>No download — build your deck in the browser and share a game ID with a friend.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://play.riftatlas.com" target="_blank" rel="noopener"><b>Rift Atlas</b><span>Fan simulator in open testing, with auto-pay and a rewind button for misclicks.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://store.steampowered.com/app/286160/Tabletop_Simulator/" target="_blank" rel="noopener"><b>Tabletop Simulator</b><span>Search the Workshop for "Riftbound". Imports decks and has matchmaking.</span><em class="tag paid">Paid · Steam</em></a>
+        </div>
+        <p class="muted" style="margin-top:12px">These are unofficial fan projects — Riot hasn't released an official online version.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-head"><div class="num">4</div><h3>Buy the cards</h3></div>
+        <div class="shop-first"><b>Check with us first.</b> Send your list to us on Discord or Facebook, or bring it into the shop. We'll fill what we can from our singles and tell you what's left — then use Cardmarket for the rest. <a href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener" data-track="Send list click">Send us your list →</a></div>
+        <p><b>For anything we don't have, use Cardmarket</b> (<a href="#cm-guide">see the picture guide</a>):</p>
+        <ol>
+          <li>Log in to <a href="https://www.cardmarket.com/en/Riftbound" target="_blank" rel="noopener">Cardmarket Riftbound</a>, then go to <b>Buying → My Wants</b>.</li>
+          <li>Name a new list and press <b>Add List</b>.</li>
+          <li>Paste the deck list (quantity then card name, one per line) and press <b>Add</b>. The box shows examples of the format it accepts.</li>
+          <li>Run the <b>Shopping Wizard</b>.</li>
+        </ol>
+        <div class="tip"><b>Don't forget the extras:</b> your Legend, your Chosen Champion, 12 runes and 3 battlefields all need to be on the list too — some sites list them separately from the main deck.</div>
+        <details>
+          <summary>Shopping Wizard tips (all games)</summary>
+          <ul>
+            <li><b>Read the colour-coded message</b> after pasting. Green = added, red = not found. Fix red lines by checking spelling.</li>
+            <li><b>Set your filters:</b> English language and a minimum condition of Excellent is a good default for playing.</li>
+            <li><b>Fewer sellers = less postage.</b> Check "Sellers with the most cards" at the bottom of the list.</li>
+            <li>You get <b>10 Shopping Wizard runs per day</b>, so set filters before you run it.</li>
+          </ul>
+        </details>
+      </article>
+      <article class="step" id="riftbound-account">
+        <div class="step-head"><div class="num">5</div><h3>Make your free player account</h3></div>
+        <p>Official Riftbound events run on the free Riftbound Play Network, linked to a Riot account. If you play League of Legends, you already have the Riot part.</p>
+        <div class="cards">
+          <a class="res" href="https://account.riotgames.com/" target="_blank" rel="noopener" data-track="Player account click" data-track-item="Riot"><b>Riot account</b><span>Create one if you don't have it, and set your Game Name and Tagline.</span><em class="tag">Free · Browser</em></a>
+          <a class="res" href="https://locator.riftbound.uvsgames.com/events" target="_blank" rel="noopener" data-track="Player account click" data-track-item="Riftbound"><b>Riftbound Play Network</b><span>Sign up, link your Riot account, then find events and press Join Event.</span><em class="tag">Free · Browser</em></a>
+        </div>
+        <ol>
+          <li>Create a <b>Riot account</b> and set your <b>Game Name and Tagline</b> in its settings. Without them, linking fails.</li>
+          <li>On the <b>Riftbound Play Network</b>, press <b>Login</b>, then <b>Sign Up</b>.</li>
+          <li>When asked, sign in with Riot and press <b>Authorize</b> to link the two.</li>
+          <li>Find our event under <b>Events</b> and press <b>Join Event</b>, or ask us to add you.</li>
+        </ol>
+        <p class="muted">Signing up a child? Each company sets its own age rules, so younger players may need a parent or carer to create or approve the account.</p>
+      </article>
+    </section>
+
+    <!-- ===================== CARDMARKET PICTURE GUIDE ===================== -->
+    <section class="cm-guide" id="cm-guide">
+      <span class="eyebrow">Picture guide</span>
+      <h2>Cardmarket in three screens</h2>
+      <p>The same steps for every game. These are simplified drawings, so the real site will look a little different, but the buttons are in the same places.</p>
+      <div class="screens">
+        <figure class="screen">
+          <div class="mock">
+            <div class="mock-bar"><span>Buying ▾</span><span class="hl-text">My Wants</span></div>
+            <div class="mock-body">
+              <div class="mock-label">New list name</div>
+              <div class="mock-input">My first deck</div>
+              <div class="mock-btn hl">+ Add List</div>
+            </div>
+          </div>
+          <figcaption><b>1. Make a list.</b> Go to Buying → My Wants, give your list a name and press Add List.</figcaption>
+        </figure>
+        <figure class="screen">
+          <div class="mock">
+            <div class="mock-bar"><span>My first deck</span></div>
+            <div class="mock-body">
+              <div class="mock-paste">4 Card Name<br>4 Another Card<br>2 Third Card</div>
+              <div class="mock-btn hl">Add</div>
+              <div class="mock-msg ok">✓ The following were added</div>
+              <div class="mock-msg bad">✕ No matches: check spelling</div>
+            </div>
+          </div>
+          <figcaption><b>2. Paste your deck.</b> Open the list, paste one card per line and press Add. Fix anything in red.</figcaption>
+        </figure>
+        <figure class="screen">
+          <div class="mock">
+            <div class="mock-bar"><span>Shopping Wizard</span></div>
+            <div class="mock-body">
+              <div class="mock-row"><span>Language</span><b>English</b></div>
+              <div class="mock-row"><span>Min. condition</span><b>Excellent</b></div>
+              <div class="mock-row"><span>Seller location</span><b>United Kingdom</b></div>
+              <div class="mock-btn hl">Find cheapest</div>
+              <div class="mock-result">All cards found · 3 sellers</div>
+            </div>
+          </div>
+          <figcaption><b>3. Run the Shopping Wizard.</b> Set your filters first (you get 10 runs a day), then check the result and add it to your basket.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section class="pricing" id="pricing">
+      <span class="eyebrow">Once you're hooked</span>
+      <h2>What's a card actually worth?</h2>
+      <p>You don't need this for your first deck — but it'll save you money on your second. Cardmarket and eBay often show different prices for the same card. That's normal: they measure different things.</p>
+      <div class="compare">
+        <div class="src">
+          <h3>Cardmarket</h3>
+          <div class="what">Shows the lowest listed price</div>
+          <ul>
+            <li>The "From" price is the cheapest copy for sale right now, so it's usually the lowest number you'll see.</li>
+            <li>Prices are in euros, and each seller charges their own postage — a cheap card from a far-off seller can cost more once it arrives.</li>
+            <li>Before you trust a price, filter to English and the condition you want. The cheapest copy is often played or in another language.</li>
+          </ul>
+        </div>
+        <div class="src">
+          <h3>eBay</h3>
+          <div class="what">Use the last sold "Buy it now" price</div>
+          <ul>
+            <li>Asking prices on eBay mean nothing — anyone can list a card for anything. What matters is what people actually paid.</li>
+            <li>Search the card, then tick <b>Sold items</b>, filter to <b>Buy it now</b> and set <b>Item location</b> to <b>UK only</b>. Auctions can end unusually low or high, and overseas sales can skew the picture.</li>
+            <li>Sold prices are usually higher than Cardmarket, because sellers build in eBay's fees and buyers pay for convenience.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip"><b>Quick rule:</b> Cardmarket's lowest listing is roughly the floor; eBay's recent sold "Buy it now" prices are roughly the ceiling. A fair price for a trade or sale sits somewhere between the two — and compare three or four recent sales, not just one.</div>
+
+      <details>
+        <summary>🇬🇧 Buying in the UK: filter to UK sellers</summary>
+        <p>Card prices vary by region. The same card can sell for noticeably different amounts in the UK, Europe and the US, so a price from another country isn't a fair guide to what it's worth here.</p>
+        <ul>
+          <li><b>eBay:</b> on the left-hand filters, set <b>Item location</b> to <b>UK only</b>. Do this when checking sold prices too, or overseas sales will skew the number.</li>
+          <li><b>Cardmarket:</b> on a card's page, filter <b>Seller location</b> to the United Kingdom. Remember most of Cardmarket's sellers are in Europe and prices are shown in euros, so convert to pounds and add postage before comparing.</li>
+          <li>Buying from UK sellers usually means quicker delivery and simpler postage, even if the card itself is a few pence dearer.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🌍 Cards in other languages: cheaper, but check the rules</summary>
+        <p>Many games let you play official cards printed in other languages, and some languages sell for a lot less than English. Whether that's allowed — and whether it's cheaper — depends on the game:</p>
+        <ul>
+          <li><b>Magic: The Gathering:</b> the official tournament rules allow non-English cards, and the official Oracle text is what counts, not the printed wording. At an event you can ask for a card's official wording, or ask a judge to help translate. Sleeves are optional, but if you use them they must all match. Some languages are much cheaper than English on Cardmarket, though Japanese is often pricier.</li>
+          <li><b>Disney Lorcana:</b> cards in every official language can be mixed in one deck outside Japan and China, as long as they're sleeved so you can't tell them apart.</li>
+          <li><b>Riftbound:</b> the official tournament rules allow official cards in any language, and Chinese cards often sell for less than English. If you sleeve your cards, the sleeves must all match and have opaque backs (sleeves are required at bigger events). At an event you can ask a judge for any card's official wording in your preferred language.</li>
+        </ul>
+        <p><b>The catch:</b> you need to know what your cards do, and your opponent is entitled to know too. Bring a printout or app with the English text, and use matching opaque sleeves. While you're still learning the game, English cards make life a lot easier.</p>
+      </details>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="cta">
+      <h2>Rather learn at the table?</h2>
+      <p>Come down to Real Rune Cards on Coronation Street, Blackpool. We'll teach you the basics, help you pick a deck, and you can bring your list in — we stock singles, sealed product and accessories.</p>
+      <div class="btns">
+        <a class="btn primary" href="events.html">See our events</a>
+      </div>
+      <h3 class="community-head">Join our free community</h3>
+      <p class="community-sub">Ask questions, find people to play with and hear about events first.</p>
+      <div class="btns">
+        <a class="btn" href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener">Join our Discord</a>
+        <a class="btn" href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener">Find us on Facebook</a>
+      </div>
+      <h3 class="community-head">Get beginner tips by email</h3>
+      <p class="community-sub">New-player nights, set releases and the odd money-saving tip. No spam, unsubscribe any time.</p>
+      <div class="sender-slot" data-list="new-players">
+      <!-- SENDER FORM: paste the embed code for the "New players" form below this line -->
+
+      <!-- end of SENDER FORM -->
+      </div>
+      <form class="rrc-form" data-list="new-players" novalidate>
+        <div class="fields">
+          <input type="text" name="name" autocomplete="given-name" placeholder="First name" aria-label="First name">
+          <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
+          <button class="btn primary" type="submit">Sign me up</button>
+        </div>
+        <label class="consent"><input type="checkbox" name="consent" required><span>Yes, email me tips and event news from Real Rune Cards. See our <a href="privacy.html" target="_blank">privacy policy</a>.</span></label>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <p class="small">Links, products and rules last checked: October 2026. Real Rune Cards isn't affiliated with Cardmarket or with any of the fan-made sites linked above.</p>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('rrc-start');
+  var tabs = root.querySelectorAll('.tab');
+  var ids = ['lorcana','mtg','riftbound'];
+  function show(id, scroll){
+    if (ids.indexOf(id) === -1) id = 'lorcana';
+    root.setAttribute('data-game', id);
+    tabs.forEach(function(t){
+      var on = t.getAttribute('aria-controls') === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    ids.forEach(function(g){ document.getElementById(g).hidden = (g !== id); });
+    if (scroll) root.querySelector('.picker').scrollIntoView({behavior:'smooth'});
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){
+      var id = t.getAttribute('aria-controls');
+      show(id, false);
+      try { history.replaceState(null, '', '#' + id); } catch(e){}
+      window.ctcTrack('Game tab', { game: t.textContent.trim() });
+    });
+    t.addEventListener('keydown', function(e){
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var n = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+      tabs[n].focus(); tabs[n].click();
+    });
+  });
+  // Label simulator and deck-site links so their clicks show up by name in Umami
+  root.querySelectorAll('.step .res').forEach(function(a){
+    var step = a.closest('.step').querySelector('h3').textContent;
+    var game = a.closest('.game').id;
+    if (/Test it free/.test(step)) a.setAttribute('data-track', 'Simulator click');
+    else if (/Find a deck/.test(step)) a.setAttribute('data-track', 'Deck site click');
+    else return;
+    a.dataset.trackItem = game + ': ' + a.querySelector('b').textContent.trim();
+  });
+
+  // Link straight to a game: yoursite.com/start-playing#mtg
+  show((location.hash || '').replace('#',''), false);
+})();
+</script>
+
+<script>
+/* ===== Email sign-up forms (Sender) ===== */
+(function(){
+  // Once Sender's embed code is pasted into a SENDER FORM box, hide our placeholder form
+  document.querySelectorAll('.sender-slot').forEach(function(slot){
+    var form = slot.parentNode.querySelector('form[data-list="' + slot.getAttribute('data-list') + '"]');
+    if (slot.children.length && form) { form.hidden = true; form.style.display = 'none'; }
+    slot.addEventListener('submit', function(){ window.ctcTrack('Email signup', { list: slot.getAttribute('data-list') }); }, true);
+  });
+  // Placeholder form, shown only until Sender is connected
+  document.querySelectorAll('form[data-list]').forEach(function(form){
+    var msg = form.querySelector('.form-msg');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      msg.textContent = 'Sign-up opens very soon. In the meantime, say hello on our Discord or Facebook group.';
+      msg.className = 'form-msg err';
+    });
+  });
+})();
+</script>
+<style>@media print{.legal-foot{display:none!important}}</style><p class="legal-foot" style="max-width:980px;margin:0 auto;padding:18px 16px 28px;font:12px/1.5 Arial,Helvetica,sans-serif;color:#9a8f82;text-align:center;background:#0b0b0b">Real Rune Cards Ltd · Registered in England and Wales, company number 16969346 · Registered office: 74 Coronation Street, Blackpool FY1 4PD · <a href="privacy.html" style="color:#ff7a00">Privacy policy</a></p>
+</body>
+</html>

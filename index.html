@@ -1,190 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real Rune Cards</title>
-
-  <style>
-    :root {
-      --orange: #ff7a00;
-      --orange-light: #ff9c3d;
-      --pale-orange: rgba(255, 236, 208, 0.8);
-      --highlight: #ffd86b;
-      --radius: 14px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(180deg, var(--orange), var(--orange-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-    }
-
-    .wrap {
-      width: 100%;
-      max-width: 800px;
-      padding: 32px 20px;
-    }
-
-    .logo-main {
-      max-width: 220px;
-      width: 60%;
-      height: auto;
-      display: block;
-      margin: 0 auto 16px;
-    }
-
-    h1 {
-      margin: 0 0 6px;
-      font-size: 2.2rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
-    }
-
-    .tagline {
-      margin: 0 0 28px;
-      color: #2b1500;
-      font-weight: 600;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .button-text {
-  color: #ff7a00;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-align: center;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real Rune Cards">
+<meta property="og:title" content="Real Rune Cards | Card Games &amp; Events in Blackpool">
+<meta property="og:description" content="Card games, events and friendly faces on Coronation Street, Blackpool. New players always welcome.">
+<meta property="og:url" content="https://realrunecards.com/">
+<meta property="og:image" content="https://realrunecards.com/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="realrunecards-logo.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Store", "name": "Real Rune Cards", "legalName": "Real Rune Cards Ltd", "url": "https://realrunecards.com/", "image": "https://realrunecards.com/og-home.png", "description": "Trading card shop and play space in Blackpool for Disney Lorcana, Magic: The Gathering, Riftbound, Pokémon and Yu-Gi-Oh!, with monthly events for new and experienced players.", "address": {"@type": "PostalAddress", "streetAddress": "74 Coronation Street", "postalCode": "FY1 4PD", "addressLocality": "Blackpool", "addressCountry": "GB"}, "sameAs": ["https://discord.gg/Q7mbwSXSdW", "https://www.facebook.com/share/g/1YcmRjop4f/"]}</script>
+<title>Real Rune Cards | Card Games & Events in Blackpool</title>
+<meta name="description" content="Card games, events and friendly faces on Coronation Street, Blackpool. New players always welcome.">
+<style>
+:root {
+--orange: #ff7a00;
+--orange-light: #ff9c3d;
+--pale-orange: rgba(255, 236, 208, 0.8);
+--highlight: #ffd86b;
+--radius: 14px;
+font-family: Arial, Helvetica, sans-serif;
+}
+body {
+margin: 0;
+padding: 0;
+min-height: 100vh;
+background: linear-gradient(180deg, var(--orange), var(--orange-light));
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+color: #fff;
+}
+.wrap {
+width: 100%;
+max-width: 800px;
+padding: 32px 20px;
+}
+.logo-main {
+max-width: 220px;
+width: 60%;
+height: auto;
+display: block;
+margin: 0 auto 16px;
+}
+h1 {
+margin: 0 0 6px;
+font-size: 2.2rem;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+.tagline {
+margin: 0 0 28px;
+color: #2b1500;
+font-weight: 600;
+}
+.buttons {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+}
+.button-text {
+color: #ff7a00;
+font-size: 1.4rem;
+font-weight: bold;
+text-align: center;
+}
+.button-sub {
+display: block;
+margin-top: 6px;
+color: #6b3a00;
+font-size: 0.9rem;
+font-weight: normal;
 }
 .event-title {
-  margin-top: 40px;
-  font-size: 1.8rem;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+margin-top: 40px;
+font-size: 1.8rem;
+color: white;
+text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
-
 .calendar-image {
-  max-width: 95%;
-  height: auto;
-  margin-top: 20px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+max-width: 95%;
+height: auto;
+margin-top: 20px;
+border-radius: 12px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
-    .game-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 210px;
-      height: 140px;
-      background: white;
-      border-radius: var(--radius);
-      border: 2px solid var(--highlight);
-      text-decoration: none;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-      padding: 10px;
-    }
-
-    .game-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
-      border-color: #ffffff;
-    }
-
-    /* MAXIMUM SIZE LOGOS */
-    .game-button img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;  /* ensures max possible size */
-      padding: 4px;         /* prevents touching edges */
-      display: block;
-    }
-
-    footer {
-      margin-top: 28px;
-      font-size: 0.8rem;
-      color: #3b1b00;
-    }
-  </style>
+.event-link {
+display: inline-block;
+margin-top: 16px;
+color: #2b1500;
+font-weight: bold;
+}
+.game-button {
+display: inline-flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 210px;
+height: 140px;
+background: white;
+border-radius: var(--radius);
+border: 2px solid var(--highlight);
+text-decoration: none;
+backdrop-filter: blur(6px);
+box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+padding: 10px;
+box-sizing: border-box;
+}
+.game-button:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
+border-color: #ffffff;
+}
+/* MAXIMUM SIZE LOGOS */
+.game-button img {
+width: 100%;
+height: 100%;
+object-fit: contain; /* ensures max possible size */
+padding: 4px; /* prevents touching edges */
+display: block;
+box-sizing: border-box;
+}
+footer {
+margin-top: 28px;
+font-size: 0.8rem;
+color: #3b1b00;
+}
+footer a {
+color: #3b1b00;
+}
+/* PREVIEW: visible keyboard focus + reduced motion */
+.game-button:focus-visible, .event-link:focus-visible, footer a:focus-visible {
+outline: 3px solid #2b1500;
+outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+.game-button { transition: none; }
+.game-button:hover { transform: none; }
+}
+</style>
+<link rel="stylesheet" href="news/news.css">
+<!-- SETTINGS: Umami tracking. Paste your Website ID below and remove the comment markers before and after the script line. -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160"></script>
 </head>
-
 <body>
-  <div class="wrap">
-    
-    <!-- Top Logo -->
-    <img src="realrunecards-logo.png"
-         alt="Real Rune Cards Logo"
-         class="logo-main" />
-
-    <h1>Real Rune Cards</h1>
-    <p class="tagline">Find my Cardmarket stores for Pokémon, Yu-Gi-Oh! and Riftbound.</p>
-
-    <div class="buttons">
-
-        <!-- Riftbound -->
-      <a class="game-button"
-         href="https://www.cardmarket.com/en/Riftbound/Users/CallinV/Offers"
-         target="_blank" rel="noopener">
-        <img src="riftbound-logo.png" alt="Riftbound Trading Card Game">
-      </a>
-
-       <!-- Yu-Gi-Oh -->
-      <a class="game-button"
-         href="https://www.cardmarket.com/en/YuGiOh/Users/CallinV/Offers"
-         target="_blank" rel="noopener">
-        <img src="yugioh-logo.png" alt="Yu-Gi-Oh Trading Card Game">
-      </a>
-      
-      <!-- Pokémon -->
-      <a class="game-button"
-         href="https://www.cardmarket.com/en/Pokemon/Users/CallinV/Offers"
-         target="_blank" rel="noopener">
-        <img src="pokemon-logo.png" alt="Pokémon Trading Card Game">
-      </a>
-
-     <!-- Accessories -->
+<div class="wrap">
+<!-- Top Logo -->
+<img src="realrunecards-logo.png"
+alt="Real Rune Cards Logo"
+class="logo-main" />
+<h1>Real Rune Cards</h1>
+<p class="tagline">Card games, events and friendly faces on Coronation Street, Blackpool. New players always welcome.</p>
+<div class="buttons">
+<!-- Learn to Play -->
 <a class="game-button"
-   href="https://realrunecards.square.site"
-   target="_blank" rel="noopener">
-   <span class="button-text">Sealed & Accessories</span>
+href="start-playing.html">
+<span class="button-text">Learn to Play</span>
+<span class="button-sub">Lorcana, Magic &amp; Riftbound</span>
 </a>
+<!-- Events -->
 <a class="game-button"
-   href="https://www.vinted.co.uk/member/151357207-cccollects/"
-   target="_blank" rel="noopener">
-  <img src="vinted-logo.png" alt="Vinted">
+href="events.html">
+<span class="button-text">Events</span>
+<span class="button-sub">What's on &amp; first-timer guide</span>
 </a>
+<!-- 7 Days on the Same Side -->
+<a class="game-button"
+href="same-side.html">
+<span class="button-text">7 Days on the Same Side</span>
+<span class="button-sub">Free parenting course</span>
+</a>
+<!-- Accessories -->
+<a class="game-button"
+href="https://realrunecards.square.site"
+target="_blank" rel="noopener">
+<span class="button-text">Sealed &amp; Accessories</span>
+</a>
+<!-- Vinted -->
+<a class="game-button"
+href="https://www.vinted.co.uk/member/151357207-cccollects/"
+target="_blank" rel="noopener">
+<img src="vinted-logo.png" alt="Vinted">
 </a>
 <!-- Contact Us -->
 <a class="game-button"
-   href="contact.html">
-   <span class="button-text">Contact Us</span>
+href="contact.html">
+<span class="button-text">Contact Us</span>
 </a>
-
-    </div>
+<!-- Player News (PREVIEW) -->
+<a class="game-button"
+href="news/index.html">
+<span class="button-text">Player News</span>
+<span class="button-sub">Rules, bans, releases &amp; events</span>
+</a>
+</div>
 <!-- Event Days Section -->
 <h2 class="event-title">Event Days</h2>
-
-<img src="calendar.png" class="calendar-image" alt="Event Calendar">
-    <footer>
-      © <span id="year"></span> Real Rune Cards
-    </footer>
-
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<img src="calendar.png" class="calendar-image" alt="November 2026 event calendar: Lorcana on Mondays, Magic on Tuesdays from 10 November, Riftbound on Thursdays, Crafts Club on Fridays, and Board Game Night every other Sunday.">
+<br>
+<a class="event-link" href="calendar/november-2026.html">Text version of the November calendar</a>
+<br>
+<a class="event-link" href="events.html">First time coming to an event? Here's what to expect →</a>
+<!-- ===== Player News (PREVIEW, shared feed: news/news-feed.js) ===== -->
+<section class="news-home" id="news" aria-labelledby="news-heading">
+<h2 class="event-title" id="news-heading">Player News</h2>
+<p class="news-intro">The latest from Magic, Disney Lorcana, Riftbound and Pokémon TCG, explained in plain English for new and returning players.</p>
+<div class="news-filter" data-news-filter role="group" aria-label="Filter news by game" hidden>
+<button type="button" data-game="all" aria-pressed="true">All games</button>
+<button type="button" data-game="magic" aria-pressed="false">Magic</button>
+<button type="button" data-game="lorcana" aria-pressed="false">Disney Lorcana</button>
+<button type="button" data-game="riftbound" aria-pressed="false">Riftbound</button>
+<button type="button" data-game="pokemon" aria-pressed="false">Pokémon TCG</button>
+</div>
+<p class="news-count" data-news-count role="status" aria-live="polite"></p>
+<ul class="news-list" data-news-list data-base="" data-limit="3" hidden></ul>
+<div class="news-empty" data-news-empty hidden>
+<p><strong>No updates for this game yet.</strong></p>
+<p>For news in the meantime, join us on <a href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener">Discord<span class="sr-only"> (opens in a new tab)</span></a> or <a href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener">Facebook<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+</div>
+<noscript><p class="news-intro"><a href="news/riftbound/radiance-ban-list/index.html">Riftbound: 8 cards and 2 battlefields banned from 23 November</a></p></noscript>
+<a class="news-all" href="news/index.html">See all player news →</a>
+</section>
+<footer>
+© <span id="year"></span> Real Rune Cards Ltd · <a href="privacy.html">Privacy policy</a><br>Registered in England and Wales, company number 16969346 · Registered office: 74 Coronation Street, Blackpool FY1 4PD
+</footer>
+</div>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+<script src="news/news-feed.js"></script>
+<script src="news/news.js"></script>
 </body>
 </html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Real Rune Cards">
+<meta property="og:title" content="The Skill Tree | Level Up Together">
+<meta property="og:description" content="A 20-module course for parents whose child loves card games. Turn the hobby into real time together and real life skills, from the kitchen table to their first tournament.">
+<meta property="og:url" content="https://realrunecards.com/skill-tree.html">
+<meta property="og:image" content="https://realrunecards.com/og-skill-tree.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="realrunecards-logo.png">
+<title>The Skill Tree: A Course for Parents of Card Game Kids | Level Up Together, Blackpool</title>
+<meta name="description" content="The Skill Tree is a 20-module course for parents whose child loves card games. Turn the hobby into real time together and real life skills, from the kitchen table to their first tournament.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- SETTINGS: Umami tracking (same as the other pages). Paste your Website ID below and remove the comment markers before and after the script line. -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160" onload="ctcFlush()"></script>
+<script>
+window.ctcQueue = [];
+window.ctcTrack = function(name, props){
+  try {
+    if (window.umami && window.umami.track) window.umami.track(name, props);
+    else window.ctcQueue.push([name, props]);
+  } catch(e){}
+};
+window.ctcFlush = function(){
+  try { while (window.ctcQueue.length) { var ev = window.ctcQueue.shift(); window.umami.track(ev[0], ev[1]); } } catch(e){}
+};
+</script>
+
+<style>
+.rrc{
+  --bg:#0b0b0b; --panel:#161412; --panel-2:#211b15; --line:#3a2e22;
+  --text:#f5efe8; --muted:#c4b6a4; --orange:#ff7a00; --orange-2:#ff9c3d; --orange-soft:rgba(255,122,0,.12);
+  --radius:14px;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--text); background:var(--bg); line-height:1.6; font-size:16px;
+}
+.rrc *{box-sizing:border-box}
+.rrc a{color:var(--orange-2); text-underline-offset:3px}
+.rrc .wrap{max-width:980px; margin:0 auto; padding:0 16px}
+.rrc h1,.rrc h2,.rrc h3{line-height:1.2; margin:0}
+.rrc h1,.rrc h2{font-family:Cinzel,Georgia,serif; letter-spacing:.02em}
+.rrc .eyebrow{display:inline-block; font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:12px}
+.rrc section{padding:44px 0 0}
+.rrc .sec-head{max-width:680px; margin-bottom:22px}
+.rrc .sec-head h2{font-size:clamp(1.6rem,4.5vw,2.2rem); margin-bottom:8px}
+.rrc .sec-head p{color:var(--muted); margin:0; font-size:1.05rem}
+
+/* Buttons */
+.rrc .btn{display:inline-block; padding:13px 22px; border-radius:999px; font-weight:700; text-decoration:none; border:2px solid var(--orange); color:var(--orange); background:transparent; font-size:1rem}
+.rrc .btn.primary{background:var(--orange); color:#111}
+.rrc .btn:hover{filter:brightness(1.1)}
+.rrc .btns{display:flex; gap:10px; flex-wrap:wrap}
+
+/* Hero */
+.rrc .hero{padding:56px 0 8px; background:radial-gradient(1100px 420px at 20% -10%, rgba(255,122,0,.18), transparent 70%)}
+.rrc .hero-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:28px; align-items:center}
+.rrc .hero h1{font-size:clamp(2.2rem,7vw,3.6rem); margin-bottom:14px}
+.rrc .hero h1 em{font-style:normal; color:var(--orange)}
+.rrc .hero .lede{font-size:1.15rem; color:var(--muted); margin:0 0 22px; max-width:560px}
+.rrc .hero .note{font-size:.9rem; color:var(--muted); margin:14px 0 0}
+.rrc .stats{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.rrc .stat{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px}
+.rrc .stat b{display:block; font-family:Cinzel,Georgia,serif; font-size:2.1rem; color:var(--orange); line-height:1}
+.rrc .stat span{color:var(--muted); font-size:.92rem}
+
+/* Who it's for */
+.rrc .two{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.rrc .box{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px}
+.rrc .box h3{font-size:1.15rem; margin-bottom:12px}
+.rrc .ticks{list-style:none; margin:0; padding:0}
+.rrc .ticks li{padding-left:28px; position:relative; margin-bottom:10px; color:var(--muted)}
+.rrc .ticks li b{color:var(--text)}
+.rrc .ticks li::before{content:"✓"; position:absolute; left:0; top:0; width:20px; height:20px; border-radius:50%; background:var(--orange); color:#111; font-size:.75rem; font-weight:800; display:grid; place-items:center; margin-top:2px}
+.rrc .ticks.no li::before{content:"✕"; background:#3a2e22; color:var(--muted)}
+
+/* How it works */
+.rrc .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.rrc .step{background:var(--panel); border:1px solid var(--line); border-top:4px solid var(--orange); border-radius:var(--radius); padding:20px}
+.rrc .step .n{font-family:Cinzel,Georgia,serif; font-size:1.6rem; color:var(--orange); line-height:1; margin-bottom:8px}
+.rrc .step h3{font-size:1.08rem; margin-bottom:6px}
+.rrc .step p{margin:0; color:var(--muted); font-size:.95rem}
+
+/* Curriculum */
+.rrc .phase{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); margin-bottom:12px; overflow:hidden}
+.rrc .phase summary{list-style:none; cursor:pointer; padding:18px 20px; display:flex; gap:14px; align-items:center}
+.rrc .phase summary::-webkit-details-marker{display:none}
+.rrc .phase .pn{flex:0 0 auto; width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--orange); color:#111; font-weight:800; font-size:1.1rem}
+.rrc .phase .pt{flex:1}
+.rrc .phase .pt b{display:block; font-size:1.1rem}
+.rrc .phase .pt span{color:var(--muted); font-size:.92rem}
+.rrc .phase .chev{color:var(--orange); font-size:1.2rem; transition:transform .2s}
+.rrc .phase[open] .chev{transform:rotate(180deg)}
+.rrc .mods{list-style:none; margin:0; padding:0 20px 16px; display:grid; gap:8px}
+.rrc .mods li{display:flex; gap:12px; align-items:center; background:var(--panel-2); border-radius:10px; padding:10px 14px}
+.rrc .mods .mn{flex:0 0 auto; width:30px; color:var(--orange); font-weight:800; font-size:.9rem}
+.rrc .mods .mt{flex:1; font-weight:600}
+.rrc .mods .where{font-size:.78rem; color:var(--muted)}
+.rrc .free{font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:var(--orange); color:#111; border-radius:999px; padding:3px 9px}
+.rrc .bonus{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:4px}
+.rrc .bonus div{background:var(--orange-soft); border:1px solid rgba(255,122,0,.4); border-radius:var(--radius); padding:16px 18px}
+.rrc .bonus b{display:block; margin-bottom:4px}
+.rrc .bonus span{color:var(--muted); font-size:.93rem}
+.rrc .tiny{font-size:.85rem; color:var(--muted); margin:12px 0 0}
+
+/* Offer */
+.rrc .offer{display:grid; grid-template-columns:1.2fr 1fr; gap:14px}
+.rrc .buy{background:linear-gradient(160deg,#ff7a00,#ff9c3d); color:#111; border-radius:var(--radius); padding:26px; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center}
+.rrc .buy h3{font-family:Cinzel,Georgia,serif; font-size:1.4rem; margin-bottom:6px}
+.rrc .buy .price{font-family:Cinzel,Georgia,serif; font-size:2.6rem; font-weight:700; margin:4px 0 0}
+.rrc .buy .price-note{margin:0 0 16px; font-weight:600}
+.rrc .buy .btn{background:#111; color:#fff; border-color:#111; width:100%; max-width:280px}
+.rrc .buy .assure{list-style:none; padding:0; margin:16px 0 0; font-size:.92rem; font-weight:600}
+.rrc .buy .assure li{margin-bottom:4px}
+.rrc .fill{background:rgba(255,255,255,.35); border-radius:4px; padding:0 5px}
+.rrc .box .fill{background:rgba(255,122,0,.25)}
+
+/* FAQ */
+.rrc .faq details{border-bottom:1px solid var(--line)}
+.rrc .faq summary{cursor:pointer; list-style:none; padding:16px 0; font-weight:700; display:flex; justify-content:space-between; gap:12px}
+.rrc .faq summary::-webkit-details-marker{display:none}
+.rrc .faq summary::after{content:"+"; color:var(--orange); font-size:1.3rem; line-height:1}
+.rrc .faq details[open] summary::after{content:"–"}
+.rrc .faq p{margin:0 0 16px; color:var(--muted)}
+
+/* Closing */
+.rrc .closing{margin:48px 0 56px; background:var(--panel); border:2px solid var(--orange); border-radius:var(--radius); padding:30px; text-align:center}
+.rrc .closing h2{font-size:clamp(1.5rem,4.5vw,2rem); margin-bottom:10px}
+.rrc .closing p{color:var(--muted); max-width:580px; margin:0 auto 18px}
+.rrc .closing .btns{justify-content:center}
+.rrc .small{font-size:.82rem; color:var(--muted); text-align:center; margin:-36px 0 40px}
+
+@media (max-width:760px){
+  .rrc .hero-grid,.rrc .two,.rrc .offer,.rrc .bonus{grid-template-columns:1fr}
+  .rrc .steps{grid-template-columns:1fr}
+  .rrc .btns .btn{flex:1 1 100%; text-align:center}
+}
+
+/* Shared site menu: same on every page */
+.site-nav{background:#14110d; border-bottom:3px solid #ff7a00; font-family:Arial,Helvetica,sans-serif}
+.site-nav .in{max-width:980px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.site-nav .brand{display:flex; align-items:center; gap:8px; color:#fff; text-decoration:none; font-weight:bold; letter-spacing:.04em; text-transform:uppercase; font-size:.95rem}
+.site-nav .brand img{width:30px; height:30px; object-fit:contain}
+.site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:4px; flex-wrap:wrap}
+.site-nav a.lnk{display:block; color:#f3e7d6; text-decoration:none; font-size:.9rem; padding:6px 10px; border-radius:999px}
+.site-nav a.lnk:hover,.site-nav a.lnk[aria-current=page]{background:#ff7a00; color:#fff}
+@media print{ .site-nav{display:none !important} }
+@media (max-width:520px){ .site-nav .in{justify-content:center} .site-nav a.lnk{font-size:.85rem; padding:6px 8px} }
+@media (max-width:420px){ .site-nav ul{gap:0} .site-nav a.lnk{font-size:.78rem; padding:5px 6px} }
+</style>
+</head>
+<body style="margin:0;background:#0b0b0b">
+<nav class="site-nav" aria-label="Site menu"><div class="in">
+  <a class="brand" href="index.html"><img src="realrunecards-logo.png" alt="" onerror="this.remove()">Real Rune Cards</a>
+  <ul><li><a class="lnk" href="index.html">Home</a></li><li><a class="lnk" href="start-playing.html">Learn to Play</a></li><li><a class="lnk" href="events.html">Events</a></li><li><a class="lnk" href="same-side.html">Same Side</a></li><li><a class="lnk" href="skill-tree.html" aria-current="page">Skill Tree</a></li><li><a class="lnk" href="news/index.html">News</a></li></ul>
+</div></nav>
+<div class="rrc">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Level Up Together presents</span>
+        <h1>The Skill <em>Tree</em></h1>
+        <p class="lede">Your child loves card games. The Skill Tree shows you how to turn that into real time together and real life skills, from the kitchen table to their first tournament.</p>
+        <div class="btns">
+          <a class="btn primary" href="#SKOOL-LINK" target="_blank" rel="noopener" data-track="Skill Tree join click" data-track-item="Hero">Join The Skill Tree</a>
+          <a class="btn" href="#SKOOL-LINK" target="_blank" rel="noopener" data-track="Skill Tree free module click">Try Module 1 free</a>
+        </div>
+        <p class="note">No card game experience needed. Hosted on Skool, on your phone or computer.</p>
+      </div>
+      <div class="stats" aria-label="Course at a glance">
+        <div class="stat"><b>20</b><span>modules, each built around one real situation</span></div>
+        <div class="stat"><b>4</b><span>stages, from home to their first tournament</span></div>
+        <div class="stat"><b>57</b><span>parenting and psychology books behind the course</span></div>
+        <div class="stat"><b>2</b><span>bonus modules on connection and trust</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ================= WHO IT'S FOR ================= -->
+    <section id="for">
+      <div class="sec-head">
+        <span class="eyebrow">Who it's for</span>
+        <h2>For parents who'd rather join in than switch off</h2>
+        <p>Card games can be just another hobby you pay for and watch from the sidelines. Or they can be the thing you and your child do together, and learn from.</p>
+      </div>
+      <div class="two">
+        <div class="box">
+          <h3>The Skill Tree is for you if…</h3>
+          <ul class="ticks">
+            <li><b>Your child is into card games</b> like Pokémon, Lorcana, Magic or Riftbound, and you don't really get it yet</li>
+            <li><b>You want more time together</b> that isn't another screen</li>
+            <li><b>You're unsure about the money side</b>: spending, trading, card shows and what things are worth</li>
+            <li><b>You want to handle the hard moments</b>: losing, arguments over rules, wanting everything</li>
+            <li><b>Your child is roughly 6 to 12</b>, though plenty applies to teens too</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>It isn't…</h3>
+          <ul class="ticks no">
+            <li><b>A guide to winning tournaments.</b> It's about your relationship and their life skills, not deck tech.</li>
+            <li><b>A sales pitch for more cards.</b> Whole modules cover budgeting, value and knowing when to say no.</li>
+            <li><b>Therapy.</b> It's practical parenting guidance. If you're worried about your child's wellbeing, speak to your GP.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section id="how">
+      <div class="sec-head">
+        <span class="eyebrow">How it works</span>
+        <h2>One real situation per module</h2>
+        <p>Every module takes a moment you'll recognise, like a tantrum after a loss or a bad trade, and gives you the words and the plan.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Learn it</h3><p>A short guide explains the idea in plain English, built on research from respected parenting and psychology books. Video lessons are being added module by module.</p></div>
+        <div class="step"><div class="n">2</div><h3>Try it</h3><p>Real conversations you can copy word for word, plus what to look for in your child and in yourself.</p></div>
+        <div class="step"><div class="n">3</div><h3>Keep it</h3><p>A printable card for each module goes on the fridge, so the lesson is there when the moment comes.</p></div>
+      </div>
+    </section>
+
+    <!-- ================= CURRICULUM ================= -->
+    <section id="curriculum">
+      <div class="sec-head">
+        <span class="eyebrow">The curriculum</span>
+        <h2>20 modules in four stages</h2>
+        <p>The course follows a family as the hobby grows, from the kitchen table, to the local game store, to card shows, to playing online. Work through in order, or jump to the stage your family is at.</p>
+      </div>
+
+      <details class="phase" open>
+        <summary><span class="pn">1</span><span class="pt"><b>At home</b><span>Getting started, and the life skills hiding in every game</span></span><span class="chev">▾</span></summary>
+        <ol class="mods">
+          <li><span class="mn">01</span><span class="mt">Probability &amp; Risk</span><span class="free">Free</span></li>
+          <li><span class="mn">02</span><span class="mt">Emotional Regulation</span></li>
+          <li><span class="mn">03</span><span class="mt">Focus, Memory &amp; Attention</span></li>
+          <li><span class="mn">04</span><span class="mt">Resilience</span></li>
+          <li><span class="mn">05</span><span class="mt">Social Skills, Turn-Taking &amp; Cooperation</span></li>
+        </ol>
+      </details>
+
+      <details class="phase">
+        <summary><span class="pn">2</span><span class="pt"><b>At the local game store</b><span>First events, new friends, winning and losing in public</span></span><span class="chev">▾</span></summary>
+        <ol class="mods">
+          <li><span class="mn">06</span><span class="mt">Sportsmanship, Ethics &amp; Integrity</span></li>
+          <li><span class="mn">07</span><span class="mt">Communication &amp; Self-Advocacy</span></li>
+          <li><span class="mn">08</span><span class="mt">Negotiation &amp; Fair Trading</span></li>
+          <li><span class="mn">09</span><span class="mt">Self-Discipline &amp; Habits</span></li>
+          <li><span class="mn">10</span><span class="mt">Leadership, Teaching &amp; Mentorship</span></li>
+          <li><span class="mn">11</span><span class="mt">Strategic Thinking &amp; Decision-Making</span></li>
+        </ol>
+      </details>
+
+      <details class="phase">
+        <summary><span class="pn">3</span><span class="pt"><b>Card shows and bigger stakes</b><span>Value, money, and staying safe when real cash is involved</span></span><span class="chev">▾</span></summary>
+        <ol class="mods">
+          <li><span class="mn">12</span><span class="mt">Collecting Psychology</span></li>
+          <li><span class="mn">13</span><span class="mt">Financial Literacy &amp; Budgeting</span></li>
+          <li><span class="mn">14</span><span class="mt">Creativity &amp; Deck-Building</span></li>
+          <li><span class="mn">15</span><span class="mt">Systems Thinking &amp; Rules Comprehension</span></li>
+          <li><span class="mn">16</span><span class="mt">Patience &amp; Delayed Gratification</span></li>
+        </ol>
+      </details>
+
+      <details class="phase">
+        <summary><span class="pn">4</span><span class="pt"><b>Online, and back home</b><span>Playing safely online, and the maths and reading behind every game</span></span><span class="chev">▾</span></summary>
+        <ol class="mods">
+          <li><span class="mn">17</span><span class="mt">Digital Literacy &amp; Online Play</span></li>
+          <li><span class="mn">18</span><span class="mt">Maths, Probability &amp; Numeracy</span></li>
+          <li><span class="mn">19</span><span class="mt">Maths &amp; Mental Arithmetic</span></li>
+          <li><span class="mn">20</span><span class="mt">Reading &amp; Literacy</span><span class="where">The finale</span></li>
+        </ol>
+      </details>
+
+      <div class="bonus">
+        <div><b>Bonus: Connection</b><span>Why playing together matters more than what you're playing.</span></div>
+        <div><b>Bonus: Trust</b><span>Earning it through the hobby: money, honesty and boundaries.</span></div>
+      </div>
+      <p class="tiny">Module 1 is free for everyone who joins our Skool community, so you can see exactly what the course is like before you buy.</p>
+    </section>
+
+    <!-- ================= WHAT YOU GET + PRICE ================= -->
+    <section id="join">
+      <div class="sec-head">
+        <span class="eyebrow">What you get</span>
+        <h2>Everything in one place</h2>
+      </div>
+      <div class="offer">
+        <div class="box">
+          <ul class="ticks">
+            <li><b>All 20 modules</b> across the four stages</li>
+            <li><b>Two bonus modules</b> on connection and trust</li>
+            <li><b>A Parent's Guide to Trading Card Games</b>, our handbook: game comparisons, what to buy first, a jargon glossary and more</li>
+            <li><b>Printable cards and templates</b> for family rules, routines and every module</li>
+            <li><b>A private community</b> of parents doing the same thing</li>
+            <li><b>A monthly live Q&amp;A</b> where you can ask us anything <span class="fill">[if offered]</span></li>
+          </ul>
+        </div>
+        <div class="buy">
+          <h3>Join The Skill Tree</h3>
+          <p class="price">£59</p>
+          <p class="price-note">One-off payment, no subscription.<br>Founding price for the first 25 families, then £97.</p>
+          <a class="btn" href="#SKOOL-LINK" target="_blank" rel="noopener" data-track="Skill Tree join click" data-track-item="Offer">Join on Skool</a>
+          <ul class="assure">
+            <li>✓ Try Module 1 free first</li>
+            <li>✓ <span class="fill">[30-day money-back guarantee]</span></li>
+            <li>✓ Secure payment through Skool</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS =================
+         Add real parent quotes here once you have them (with permission), then delete the comment markers.
+    <section id="reviews">
+      <div class="sec-head"><span class="eyebrow">From parents</span><h2>What families say</h2></div>
+      <div class="two">
+        <div class="box"><p>"[QUOTE]"</p><b>[First name], parent of a [age]-year-old</b></div>
+        <div class="box"><p>"[QUOTE]"</p><b>[First name], parent of a [age]-year-old</b></div>
+      </div>
+    </section>
+    -->
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq" class="faq">
+      <div class="sec-head">
+        <span class="eyebrow">Questions</span>
+        <h2>Before you join</h2>
+      </div>
+      <details><summary>I don't play card games. Is this still for me?</summary><p>Yes. The course follows a family who start with no card game experience at all. You'll learn enough of the hobby to join in, and the parenting skills work whatever game your child plays.</p></details>
+      <details><summary>Which games does it cover?</summary><p>The ideas work with any trading card game, including Pokémon, Disney Lorcana, Magic: The Gathering, Riftbound and Yu-Gi-Oh!. Examples draw on the games families play most.</p></details>
+      <details><summary>What age is it for?</summary><p>It's written with 6 to 12-year-olds in mind, the age most children get into card games. Much of it, especially the money and online modules, applies to teenagers too.</p></details>
+      <details><summary>How much time does it take?</summary><p>Each module is designed to fit into an evening, and then into the games you're already playing. There's no deadline, so go at your own pace.</p></details>
+      <details><summary>What's Skool?</summary><p>Skool is the website where the course and our parent community live. It works in any web browser and has a free phone app. You'll create a free account when you join.</p></details>
+      <details><summary>What if it's not right for us?</summary><p>Start with Module 1, which is free. <span class="fill">[If you offer a guarantee: if you join and it's not right for your family, tell us within 30 days for a full refund.]</span></p></details>
+      <details><summary>Is there a free way to start?</summary><p>Yes, two. Module 1 is free on Skool, and our free <a href="same-side.html">7 Days on the Same Side</a> course gives you seven quick skills you can use tonight.</p></details>
+    </section>
+
+    <!-- ================= CLOSING ================= -->
+    <section class="closing">
+      <h2>The hobby's already in your house. Make it count.</h2>
+      <p>Start with the free module, see how your family gets on, and join when you're ready.</p>
+      <div class="btns">
+        <a class="btn primary" href="#SKOOL-LINK" target="_blank" rel="noopener" data-track="Skill Tree join click" data-track-item="Closing">Join The Skill Tree</a>
+        <a class="btn" href="same-side.html">Start with the free 7-day course</a>
+      </div>
+    </section>
+    <p class="small">The Skill Tree is a course by Level Up Together, a trading name of Real Rune Cards Ltd. Registered in England and Wales, company number 16969346. Registered office: 74 Coronation Street, Blackpool FY1 4PD. It's general guidance for parents, not therapy or medical advice. <a href="privacy.html">Privacy policy</a></p>
+  </main>
+</div>
+
+<script>
+document.addEventListener('click', function(e){
+  var el = e.target.closest('a'); if (!el) return;
+  if (el.hasAttribute('data-track')) { window.ctcTrack(el.getAttribute('data-track'), el.getAttribute('data-track-item') ? { item: el.getAttribute('data-track-item') } : undefined); return; }
+});
+document.querySelectorAll('.phase').forEach(function(d){
+  d.addEventListener('toggle', function(){ if (d.open) window.ctcTrack('Skill Tree stage opened', { stage: d.querySelector('.pt b').textContent }); });
+});
+</script>
+</body>
+</html>
