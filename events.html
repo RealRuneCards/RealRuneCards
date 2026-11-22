@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="calendar/calendar.css">
+<link rel="stylesheet" href="events/major-events.css">
 
 <!-- ================= SETTINGS: Umami tracking (same as the other pages) =================
      Paste your Website ID into the script tag below and remove the comment markers before and after it.
@@ -124,6 +125,23 @@ window.ctcFlush = function(){
     </div>
     <script src="calendar/calendar-data.js" defer></script>
     <script src="calendar/calendar.js" defer></script>
+
+    <!-- Upcoming Major Events: data from events/major-events-data.js, refreshed by .github/workflows/major-events.yml -->
+    <section class="mj-major" id="major-events" data-major-events aria-labelledby="major-h">
+      <h2 id="major-h">Upcoming Major Events</h2>
+      <p class="mj-intro">The next big official tournaments and conventions around the world, with dates, cities and venues where the organiser has announced them.</p>
+      <div class="mj-tabs" role="tablist" aria-label="Choose a game" data-major-tabs hidden>
+        <button type="button" role="tab" id="major-tab-riftbound" data-game="riftbound" aria-selected="true" aria-controls="major-panel">Riftbound</button>
+        <button type="button" role="tab" id="major-tab-lorcana" data-game="lorcana" aria-selected="false" aria-controls="major-panel" tabindex="-1">Disney Lorcana</button>
+        <button type="button" role="tab" id="major-tab-magic" data-game="magic" aria-selected="false" aria-controls="major-panel" tabindex="-1">Magic</button>
+      </div>
+      <div id="major-panel" role="tabpanel" data-major-panel aria-live="polite">
+        <noscript><p>See the official event schedules for <a href="https://playriftbound.com/en-us/news/organizedplay/riftbound-2027-premier-play/">Riftbound</a>, <a href="https://disneylorcana.com/en/play/lorcana-challenge/">Disney Lorcana</a> and <a href="https://magic.gg/schedule">Magic</a>.</p></noscript>
+      </div>
+      <p class="mj-meta" data-major-meta></p>
+    </section>
+    <script src="events/major-events-data.js" defer></script>
+    <script src="events/major-events.js" defer></script>
 
     <div class="info">
       <section>
