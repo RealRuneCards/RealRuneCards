@@ -51,7 +51,8 @@ color: var(--text);
 .wrap {
 width: 100%;
 max-width: 800px;
-padding: 32px 20px;
+padding: 32px 16px;
+box-sizing: border-box;
 }
 .logo-main {
 max-width: 220px;
@@ -185,6 +186,13 @@ color: var(--muted);
 }
 footer a {
 color: var(--orange-light);
+}
+/* Phones: smaller logo so the main actions show on the first screen */
+@media (max-width: 640px) {
+.wrap { padding-top: 20px; }
+.logo-main { max-width: 120px; margin-bottom: 8px; }
+.tagline { margin-bottom: 18px; }
+.cta { min-height: 76px; font-size: 1.15rem; }
 }
 /* Player News on the dark homepage (news.css defaults are for light backgrounds) */
 .news-home .news-intro { color: var(--text); }
