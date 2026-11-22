@@ -357,11 +357,9 @@ function articleHtml(n) {
         </dl>
         ${(n.details || []).length ? `<h2>What changed</h2>\n        ${n.details.map(d => `<h3>${esc(d.heading)}</h3>\n        <ul>${d.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`).join("\n        ")}` : ""}
         ${n.registration ? `<p><a href="${esc(n.registration)}" target="_blank" rel="noopener noreferrer">Register on the official site<span class="sr-only"> (opens in a new tab)</span></a></p>` : ""}
-        <h2>Where to read the full announcement</h2>
-        <p>This is a short summary of an official ${esc(g.publisher)} announcement. The official page has the complete details, including any card lists, wording and exceptions, so please check it before an event.</p>
         <p class="news-beginner"><strong>Not sure how this affects you?</strong> Bring your deck into the shop and we'll go through it with you. See <a href="../../../events.html">this month's events at Real Rune Cards in Blackpool</a>, or start with our <a href="../../../start-playing.html">learn-to-play guides</a>.</p>
         <p class="news-source"><a href="${esc(n.source.url)}" target="_blank" rel="noopener noreferrer"><span class="kind">Official source</span>${esc(g.publisher)}: ${esc(n.source.headline)}<span class="sr-only"> (opens in a new tab)</span></a></p>
-        <p class="news-updated">Summary written automatically by Real Rune Cards from facts stated in the official announcement (card names, formats, dates, venue) on <time datetime="${n.updated}">${fmtLong(n.updated)}</time>. No publisher text or images are reproduced.</p>
+        <p class="news-updated">Updated <time datetime="${n.updated}">${fmtLong(n.updated)}</time>.</p>
       </div>
     </article>
   </main>
