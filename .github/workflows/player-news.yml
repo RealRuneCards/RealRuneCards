@@ -32,8 +32,14 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Check newest-first ordering
+        run: node tools/news-updater/test-order.mjs
+
       - name: Collect official announcements
         run: node tools/news-updater/update-news.mjs
+
+      - name: Re-check ordering of the updated feed
+        run: node tools/news-updater/test-order.mjs
 
       - name: Publish changes
         run: |

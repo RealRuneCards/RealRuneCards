@@ -11,6 +11,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { USER_AGENT, MAX_AGE_DAYS, MAX_FETCHES_PER_SOURCE, GAMES, SOURCES, EXCLUDE, CATEGORY_RULES, FORMATS } from "./sources.mjs";
 import { blocks, banChanges, statedEffectiveDate, ygoListChanges, eventFacts } from "./facts.mjs";
+import { newsOrder } from "./order.mjs";
+const RUN_STAMP = new Date().toISOString();
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const FEED_PATH = path.join(ROOT, "news", "news-feed.js");
@@ -169,7 +171,7 @@ async function readSitemap(src) {
 }
 async function readWpApi(src) {
   const { body } = await get(src.url);
-  return JSON.parse(body).map(p => ({ url: normalizeUrl(p.link), hint: isoDate(p.date_gmt), title: decode(p.title?.rendered), description: decode(p.excerpt?.rendered), published: isoDate(p.date_gmt) }));
+  return JSON.parse(body).map(p => ({ url: normalizeUrl(p.link), hint: isoDate(p.date_gmt), title: decode(p.title?.rendered), description: decode(p.excerpt?.rendered), published: isoDate(p.date_gmt), publishedAt: p.date_gmt || "" }));
 }
 async function readHtmlList(src) {
   const { body } = await get(src.url);
@@ -189,17 +191,24 @@ async function readArticle(c) {
   const art = ld.find(o => typeIs(o, "NewsArticle") || typeIs(o, "Article") || typeIs(o, "BlogPosting")) || {};
   const ev = ld.find(o => typeIs(o, "Event") || typeIs(o, "SportsEvent"));
   const headline = decode(art.headline) || meta(body, "og:title") || decode((body.match(/<title>([^<]*)<\/title>/i) || [])[1]);
-  let published = c.published || isoDate(art.datePublished) || isoDate(meta(body, "article:published_time"));
-  if (!published) {
-    const t = body.match(/<time[^>]+datetime=["']([^"']+)["']/i); if (t) published = isoDate(t[1]);
-  }
+  const timeTag = (body.match(/<time[^>]+datetime=["']([^"']+)["']/i) || [])[1] || "";
+  const stamp = c.publishedAt || art.datePublished || meta(body, "article:published_time") || timeTag;
+  const published = c.published || isoDate(art.datePublished) || isoDate(meta(body, "article:published_time")) || isoDate(timeTag);
+  const publishedAt = isoStamp(stamp);
   const event = ev ? {
     start: isoDate(ev.startDate), end: isoDate(ev.endDate),
     venue: decode(ev.location?.name),
     city: decode(ev.location?.address?.addressLocality),
     country: decode(typeof ev.location?.address?.addressCountry === "object" ? ev.location.address.addressCountry.name : ev.location?.address?.addressCountry)
   } : null;
-  return { ...c, url: canonicalOf(body, finalUrl), title: c.title || headline, description: c.description || meta(body, "og:description") || meta(body, "description"), published, event, html: body, ld };
+  return { ...c, url: canonicalOf(body, finalUrl), title: c.title || headline, description: c.description || meta(body, "og:description") || meta(body, "description"), published, publishedAt, event, html: body, ld };
+}
+// Full publisher timestamp (UTC ISO) when the source gives a time, else "". Used only to order same-day posts.
+function isoStamp(s) {
+  const m = String(s || "").match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?)(Z|[+-]\d{2}:?\d{2})?$/);
+  if (!m) return "";
+  const d = new Date(m[1] + (m[2] || "Z"));
+  return isNaN(d) ? "" : d.toISOString();
 }
 
 /* ---------------- Original summary writer (leads with verified facts; null = skip) ---------------- */
@@ -218,7 +227,7 @@ function baseItem(game, type, slug, a, headline) {
   return {
     id: `${game}-${slug}`, game, type, status: "announced",
     url: `news/${game}/${slug}/index.html`,
-    announced: a.published, updated: TODAY,
+    announced: a.published, ...(a.publishedAt ? { announced_at: a.publishedAt } : {}), added_at: RUN_STAMP, updated: TODAY,
     source: { kind: "article", name: g.sourceName, url: a.url, headline },
     media: { type: "image", src: `news-media/rrc-${game}.svg`, alt: `Real Rune Cards ${g.label} news graphic`, rights: "store-owned" },
     auto: true, reviewed: { by: AUTO_BY, on: TODAY }
@@ -452,7 +461,7 @@ async function main() {
           title: `Yu-Gi-Oh!: ${rows.length} Forbidden & Limited List changes from ${fmtLong(eff)}`,
           summary: `From ${fmtLong(eff)} in the Advanced Format. ` + groups.map(([s, names]) => `${s}: ${nameList(names)}.`).join(" "),
           url: `news/yugioh/forbidden-limited-${eff}/index.html`, format: "Advanced Format",
-          announced: TODAY, effective: eff, updated: TODAY,
+          announced: TODAY, added_at: RUN_STAMP, effective: eff, updated: TODAY,
           source: { kind: "article", name: g.sourceName, url: listUrl, headline: `Forbidden & Limited List (effective ${fmtLong(eff)})` },
           media: { type: "image", src: "news-media/rrc-yugioh.svg", alt: "Real Rune Cards Yu-Gi-Oh! news graphic", rights: "store-owned" },
           details: groups.map(([s, names]) => ({ heading: s, items: names })),
@@ -507,8 +516,8 @@ async function main() {
   let changed = false;
   if (added.length) {
     const manual = feed.items.filter(i => !i.auto);
-    const auto = [...added, ...feed.items.filter(i => i.auto)].sort((a, b) => b.announced.localeCompare(a.announced)).slice(0, MAX_AUTO_ITEMS);
-    feed.items = [...manual, ...auto];
+    const auto = [...added, ...feed.items.filter(i => i.auto)].sort(newsOrder).slice(0, MAX_AUTO_ITEMS);
+    feed.items = [...manual, ...auto].sort(newsOrder);
     feed.generated = TODAY;
     changed = true;
   }
@@ -530,7 +539,7 @@ async function main() {
   if (changed) await writeFile(FEED_PATH, `${header}window.RRC_NEWS_FEED = ${JSON.stringify(feed, null, 2)};\n`, "utf8");
   await writeIfChanged(STATE_PATH, JSON.stringify(state, null, 2) + "\n");
   // Static, crawlable links to every post (newest first) and a sitemap that lists them.
-  const listed = [...feed.items].sort((a, b) => (b.announced || "").localeCompare(a.announced || ""));
+  const listed = [...feed.items].sort(newsOrder);
   await updateArchive(listed);
   await updateSitemap(listed);
   // Exit non-zero only if every source failed, so a single publisher outage never blocks the rest.

@@ -73,6 +73,15 @@
       sourceOk(n) && mediaOk(n));
   }
 
+  /* Newest official announcement first; same-day ties: publisher timestamp, then the most recently added.
+     Keep in sync with tools/news-updater/order.mjs. */
+  function newsOrder(a, b) {
+    var k = function (n) { return [n.announced || n.updated || "", n.announced_at || "", n.added_at || ""]; };
+    var x = k(a), y = k(b);
+    for (var i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] < y[i] ? 1 : -1;
+    return String(a.id || "").localeCompare(String(b.id || ""));
+  }
+
   function addRow(dl, label, value, isDate) {
     if (!value) return;
     var dd = el("dd");
@@ -159,7 +168,7 @@
         feed = window.RRC_NEWS_FEED || {},
         items = (feed.schema_version === "2" && Array.isArray(feed.items) ? feed.items : [])
           .filter(valid)
-          .sort(function (x, y) { return (y.announced || "").localeCompare(x.announced || ""); }),
+          .sort(newsOrder),
         current = "all";
 
     function render() {
