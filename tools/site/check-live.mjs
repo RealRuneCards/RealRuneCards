@@ -28,8 +28,8 @@ async function get(url) {
 const PAGES = [
   { path: "", must: ["Visit the shop", "See upcoming events", "Shop cards and accessories", "74 Coronation Street", "data-rrc-calendar", "news/news-feed.js"] },
   { path: "events.html", must: ["Message us to book", "Upcoming Major Events", "events/major-events-data.js"] },
-  { path: "start-playing.html", must: ["Choose your game", "Message us to book"] },
-  { path: "skill-tree.html", must: ["How to join", "Enquire for a school or youth group"] },
+  { path: "start-playing.html", must: ["Choose your game", "Message us to book", "cdn.sender.net/accounts_resources/universal.js", 'data-sender-form-id="epYN4y"'] },
+  { path: "skill-tree.html", must: ["How to join", "Enquire for a school or youth group", "cdn.sender.net/accounts_resources/universal.js", 'data-sender-form-id="bmZK13"'] },
   { path: "same-side.html", must: ["cdn.sender.net/accounts_resources/universal.js", 'data-sender-form-id="aQWog0"'] },
   { path: "contact.html", must: ["Visit the shop", "Get directions", "RealRuneCards@outlook.com"] },
   { path: "news/", must: ["Player News"] },

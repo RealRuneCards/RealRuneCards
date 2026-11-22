@@ -241,6 +241,25 @@ window.ctcFlush = function(){
 <!-- SENDER SITE SCRIPT: paste Sender's script here (Sender → Forms → your form → Publishing settings) -->
 
 <!-- end of SENDER SITE SCRIPT -->
+<!-- Sender site script (account 9ad6e5e5bd6256): draws the embedded sign-up form below -->
+<script>
+  (function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+    s[er].on = function(event, callback) {
+      s[er].listeners = s[er].listeners || {};
+      (s[er].listeners[event] = s[er].listeners[event] || []).push(callback);
+    };
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+  sender('9ad6e5e5bd6256')
+</script>
 <!-- SITE-CHROME:CSS --><link rel="stylesheet" href="site-chrome.css"><!-- /SITE-CHROME:CSS -->
 </head>
 <body style="margin:0;background:#0b0b0b">
@@ -673,6 +692,8 @@ window.ctcFlush = function(){
       <p class="community-sub">New-player nights, set releases and the odd money-saving tip. No spam, unsubscribe any time.</p>
       <div class="sender-slot" data-list="new-players">
       <!-- SENDER FORM: the "New players" form's placeholder div goes below this line -->
+<!-- Sender form "New players: beginner tips" (id epYN4y), double opt-in on. Only appears while the form is published in Sender. -->
+<div style="text-align: left" class="sender-form-field" data-sender-form-id="epYN4y"></div>
 
       <!-- end of SENDER FORM -->
       </div>
