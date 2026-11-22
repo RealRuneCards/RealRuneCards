@@ -3,14 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Source of calendar.png. To refresh the image, screenshot this page with #poster at 1600x1000.
+<!-- Static (no-JavaScript) November calendar. Home and Events show the shared live calendar (calendar.js); keep this page in step with it.
+     #poster mode is kept for rendering a poster image at 1600x1000 if wanted; calendar.png in the site root is the older November image.
      Schedule confirmed by Cal, 14 Nov 2026: Lorcana every Monday, Magic every Tuesday, Riftbound every Thursday,
      Craft Night every Friday evening, Board Game Night every other Sunday.
-     Left out on purpose because they are not confirmed: event times, prices, and which Sundays Board Game Night falls on. -->
+     Confirmed by Cal, 15 Nov 2026: Board Game Night on Sunday 8 and 22 November.
+     Left out on purpose because they are not confirmed: event times and prices. -->
 <link rel="icon" href="../realrunecards-logo.png">
 <title>November 2026 Events Calendar | Real Rune Cards Blackpool</title>
 <meta name="description" content="Weekly card game and club nights at Real Rune Cards, Coronation Street, Blackpool, for November 2026.">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160"></script>
+<script defer src="../site-analytics.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,34 +21,36 @@
 body{margin:0;background:#0b0b0b;color:#f5efe8;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
 .page{max-width:1100px;margin:0 auto;padding:28px 16px 48px}
 .back{color:#ff7a00;font-weight:600;text-underline-offset:3px}
-.poster{margin:18px 0 0;background:#14110d;border:3px solid #ff7a00;border-radius:16px;padding:26px 28px 22px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-bottom:2px solid #3a2e22;padding-bottom:14px;margin-bottom:16px}
-.head h1{margin:0;font-family:Cinzel,Georgia,serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1;color:#ff7a00;letter-spacing:.03em}
-.head h1 span{display:block;font-size:.5em;color:#f5efe8;letter-spacing:.2em;margin-top:6px}
+/* Matches calendar/calendar.css (the live calendar on Home and Events) */
+.poster{margin:18px 0 0;overflow:hidden;background:linear-gradient(180deg,#1d130a 0,#100c08 160px);border:3px solid #ff7a00;border-radius:18px;padding:0 28px 22px;box-shadow:0 0 0 1px rgba(255,122,0,.25),0 14px 36px rgba(0,0,0,.55)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:0 -28px 16px;padding:18px 28px;background:linear-gradient(100deg,#ff7a00 0,#ff9c3d 60%,#ffb347 100%);color:#140a00}
+.head h1{margin:0;font-family:Cinzel,Georgia,serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1;color:#140a00;letter-spacing:.03em}
+.head h1 span{display:block;font-size:.45em;color:#140a00;letter-spacing:.24em;margin-top:6px}
 .head .brand{font-family:Cinzel,Georgia,serif;font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;letter-spacing:.06em;text-align:right}
-.head .brand small{display:block;font-family:Inter,sans-serif;font-size:.5em;letter-spacing:.18em;color:#c4b6a4;font-weight:600}
+.head .brand small{display:block;font-family:Inter,sans-serif;font-size:.5em;letter-spacing:.18em;color:#3a1d00;font-weight:700}
 table{width:100%;border-collapse:separate;border-spacing:6px;table-layout:fixed}
-caption{text-align:left;color:#c4b6a4;font-size:.9rem;padding:0 6px 6px}
-th{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#ff7a00;padding:4px 0;font-weight:700}
-td{vertical-align:top;background:#211b15;border:1px solid #3a2e22;border-radius:8px;height:92px;padding:6px 7px}
-td.empty{background:transparent;border-color:transparent}
-td.past{opacity:.55}
-.d{display:block;font-weight:700;font-size:.95rem;color:#f5efe8}
-.ev{display:block;margin-top:5px;padding:4px 6px;border-radius:6px;font-size:.8rem;font-weight:700;line-height:1.2;color:#140a00}
-.lorcana{background:#9cc3ff}.magic{background:#ffb27a}.riftbound{background:#7fe0d0}.crafts{background:#ffd86b}
-.foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 24px;margin-top:14px;padding-top:12px;border-top:2px solid #3a2e22;font-size:.92rem;color:#c4b6a4}
-.foot b{color:#f5efe8}
-.key{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.key li{display:flex;align-items:center;gap:6px}
-.key i{display:inline-block;width:14px;height:14px;border-radius:4px}
+caption{text-align:left;color:#d9cbb8;font-size:.9rem;font-weight:600;padding:0 6px 6px}
+th{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#ffd86b;padding:6px 0;font-weight:800;border-bottom:2px solid #ff7a00}
+td{vertical-align:top;background:#241c15;border:1px solid #5a4532;border-radius:10px;height:92px;padding:6px 7px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+td.empty{background:transparent;border-color:transparent;box-shadow:none}
+td.past{opacity:.45}
+.d{display:inline-block;min-width:1.7em;padding:0 4px;border-radius:6px;background:#0e0a07;text-align:center;font-weight:800;font-size:.95rem;color:#fff8f0}
+.ev{display:block;margin-top:6px;padding:4px 7px 4px 9px;border-radius:6px;font-size:.82rem;font-weight:800;line-height:1.2;color:#140a00;border:1px solid rgba(255,255,255,.55);box-shadow:inset 4px 0 0 rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.45)}
+.lorcana{background-color:#6fa8ff}.magic{background-color:#ff8a3d}.riftbound{background-color:#2fd6bf}.crafts{background-color:#ffd23f}.boardgames{background-color:#c39bff}
+.foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 24px;margin-top:14px;padding-top:14px;border-top:2px solid #ff7a00;font-size:.92rem;color:#d9cbb8}
+.foot b{color:#ffd86b}
+.key{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 14px;color:#fff8f0;font-weight:600}
+.key li{display:flex;align-items:center;gap:7px}
+.key i{display:inline-block;width:16px;height:16px;border-radius:4px;border:1px solid rgba(255,255,255,.7)}
+@media (forced-colors:active){ .ev,.key i{border:1px solid CanvasText} }
 .weekly{margin-top:28px;background:#161412;border:1px solid #3a2e22;border-radius:14px;padding:20px}
 .weekly h2{font-family:Cinzel,Georgia,serif;margin:0 0 8px;font-size:1.3rem}
 .weekly ul{margin:0;padding-left:20px}
 .weekly p{color:#c4b6a4;margin:10px 0 0;font-size:.92rem}
 .weekly a{color:#ff7a00}
 a:focus-visible{outline:3px solid #ff7a00;outline-offset:3px}
-@media (max-width:700px){ td{height:auto;min-height:60px;padding:4px} .ev{font-size:.68rem;padding:3px 4px} th{font-size:.65rem;letter-spacing:.04em} }
-/* Poster mode: used only to render calendar.png */
+@media (max-width:700px){ .poster{padding:0 10px 16px} .head{margin:0 -10px 12px;padding:14px} table{border-spacing:3px} td{height:auto;min-height:60px;padding:3px} .ev{font-size:.72rem;padding:3px 3px 3px 6px;word-break:break-word;hyphens:auto} th{font-size:.65rem;letter-spacing:.04em} }
+/* Poster mode: used only to render a poster image */
 .poster-mode .page{max-width:none;padding:0}
 .poster-mode .back,.poster-mode .weekly,.poster-mode .site-nav{display:none}
 /* Shared site menu: same on every page */
@@ -82,9 +87,9 @@ a:focus-visible{outline:3px solid #ff7a00;outline-offset:3px}
       <thead><tr><th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th><th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th><th scope="col">Sun</th></tr></thead>
       <tbody>
         <tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><span class="d">1</span></td></tr>
-        <tr><td><span class="d">2</span><span class="ev lorcana">Lorcana</span></td><td><span class="d">3</span><span class="ev magic">Magic</span></td><td><span class="d">4</span></td><td><span class="d">5</span><span class="ev riftbound">Riftbound</span></td><td><span class="d">6</span><span class="ev crafts">Craft Night</span></td><td><span class="d">7</span></td><td><span class="d">8</span></td></tr>
+        <tr><td><span class="d">2</span><span class="ev lorcana">Lorcana</span></td><td><span class="d">3</span><span class="ev magic">Magic</span></td><td><span class="d">4</span></td><td><span class="d">5</span><span class="ev riftbound">Riftbound</span></td><td><span class="d">6</span><span class="ev crafts">Craft Night</span></td><td><span class="d">7</span></td><td><span class="d">8</span><span class="ev boardgames">Board Games</span></td></tr>
         <tr><td><span class="d">9</span><span class="ev lorcana">Lorcana</span></td><td><span class="d">10</span><span class="ev magic">Magic</span></td><td><span class="d">11</span></td><td><span class="d">12</span><span class="ev riftbound">Riftbound</span></td><td><span class="d">13</span><span class="ev crafts">Craft Night</span></td><td><span class="d">14</span></td><td><span class="d">15</span></td></tr>
-        <tr><td><span class="d">16</span><span class="ev lorcana">Lorcana</span></td><td><span class="d">17</span><span class="ev magic">Magic</span></td><td><span class="d">18</span></td><td><span class="d">19</span><span class="ev riftbound">Riftbound</span></td><td><span class="d">20</span><span class="ev crafts">Craft Night</span></td><td><span class="d">21</span></td><td><span class="d">22</span></td></tr>
+        <tr><td><span class="d">16</span><span class="ev lorcana">Lorcana</span></td><td><span class="d">17</span><span class="ev magic">Magic</span></td><td><span class="d">18</span></td><td><span class="d">19</span><span class="ev riftbound">Riftbound</span></td><td><span class="d">20</span><span class="ev crafts">Craft Night</span></td><td><span class="d">21</span></td><td><span class="d">22</span><span class="ev boardgames">Board Games</span></td></tr>
         <tr><td><span class="d">23</span><span class="ev lorcana">Lorcana</span></td><td><span class="d">24</span><span class="ev magic">Magic</span></td><td><span class="d">25</span></td><td><span class="d">26</span><span class="ev riftbound">Riftbound</span></td><td><span class="d">27</span><span class="ev crafts">Craft Night</span></td><td><span class="d">28</span></td><td><span class="d">29</span></td></tr>
         <tr><td><span class="d">30</span><span class="ev lorcana">Lorcana</span></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
       </tbody>
@@ -95,30 +100,33 @@ a:focus-visible{outline:3px solid #ff7a00;outline-offset:3px}
         <li><i class="magic"></i>Magic · Tuesdays</li>
         <li><i class="riftbound"></i>Riftbound · Thursdays</li>
         <li><i class="crafts"></i>Craft Night · Friday evenings</li>
+        <li><i class="boardgames"></i>Board Game Night · every other Sunday</li>
       </ul>
-      <div><b>Board Game Night</b> runs every other Sunday. Sunday dates to be confirmed, so ask us before you come.</div>
+      <div><b>Board Game Night</b> this month: Sunday 8 and 22 November.</div>
       <div><b>Times and booking:</b> message us on Discord or Facebook. New players always welcome.</div>
     </div>
   </figure>
 
   <section class="weekly" aria-labelledby="weekly-h">
-    <h2 id="weekly-h">Text version</h2>
+    <h2 id="weekly-h">Event dates</h2>
     <ul>
       <li><b>Mondays</b> (2, 9, 16, 23 and 30 November): Disney Lorcana</li>
       <li><b>Tuesdays</b> (3, 10, 17 and 24 November): Magic: The Gathering</li>
       <li><b>Thursdays</b> (5, 12, 19 and 26 November): Riftbound</li>
       <li><b>Friday evenings</b> (6, 13, 20 and 27 November): Craft Night</li>
-      <li><b>Every other Sunday:</b> Board Game Night. Sunday dates to be confirmed, so ask us before you come.</li>
+      <li><b>Every other Sunday</b> (8 and 22 November): Board Game Night</li>
     </ul>
+    <p>Next month: <a href="december-2026.html">December 2026 calendar</a>.</p>
     <p>For times, entry fees and booking, message us on <a href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener">Discord</a> or <a href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener">Facebook</a>.</p>
   </section>
 </div>
+<script src="calendar.js"></script>
 <script>
-/* Fade days that have passed (text page only) */
+/* Fade days that have passed, in London time (text page only) */
 (function () {
-  if (document.documentElement.className === "poster-mode") return;
-  var n = new Date(); if (n.getFullYear() !== 2026 || n.getMonth() !== 10) return;
-  document.querySelectorAll("td .d").forEach(function (d) { if (+d.textContent < n.getDate()) d.parentNode.classList.add("past"); });
+  if (document.documentElement.className === "poster-mode" || !window.RRCCalendar) return;
+  var n = window.RRCCalendar.londonToday(); if (n.y !== 2026 || n.m !== 10) return;
+  document.querySelectorAll("td .d").forEach(function (d) { if (+d.textContent < n.d) d.parentNode.classList.add("past"); });
 })();
 </script>
 </body>

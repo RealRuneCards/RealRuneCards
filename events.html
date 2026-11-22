@@ -19,11 +19,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="calendar/calendar.css">
 
 <!-- ================= SETTINGS: Umami tracking (same as the other pages) =================
      Paste your Website ID into the script tag below and remove the comment markers before and after it.
 ========================================================================================== -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160" onload="ctcFlush()"></script>
+<script defer src="site-analytics.js"></script>
 <script>
 window.ctcQueue = [];
 window.ctcTrack = function(name, props){
@@ -110,14 +112,17 @@ window.ctcFlush = function(){
   </header>
 
   <main class="wrap">
-    <!-- This shows the same calendar image as your homepage, so updating calendar.png on your site updates this page too. -->
-    <figure class="calendar" style="margin:0 0 10px">
-      <a href="calendar.png" target="_blank" rel="noopener" data-track="Calendar opened">
-        <img src="calendar.png" alt="November 2026 event calendar: Lorcana every Monday, Magic every Tuesday, Riftbound every Thursday, Craft Night every Friday evening, and Board Game Night every other Sunday (dates to be confirmed)."
-             onerror="this.parentNode.outerHTML='<div class=&quot;fallback&quot;>The calendar isn\'t loading right now. Ask us on Discord or Facebook for this month\'s dates.</div>'">
-      </a>
-    </figure>
-    <div class="cal-tools">Tap the calendar to see it full size, or read the <a href="calendar/november-2026.html">text version</a>.</div>
+    <!-- Same shared calendar as the homepage (calendar/calendar.js): shows this month in London time and switches month at midnight.
+         The text below is the no-JavaScript version. -->
+    <div class="rrc-cal" data-rrc-calendar data-base="calendar/" style="margin:0 0 28px">
+      <div class="rrc-cal-fallback">
+        <p><b>Usual weekly schedule:</b> Disney Lorcana on Mondays, Magic: The Gathering on Tuesdays, Riftbound on Thursdays and Craft Night on Friday evenings.</p>
+        <p><b>Board Game Night</b> runs every other Sunday: 8 and 22 November 2026, 6 and 20 December 2026, then every two weeks.</p>
+        <p>Dates can change, so check with us before you come. Month by month: <a href="calendar/november-2026.html">November 2026</a> · <a href="calendar/december-2026.html">December 2026</a></p>
+      </div>
+    </div>
+    <script src="calendar/calendar-data.js" defer></script>
+    <script src="calendar/calendar.js" defer></script>
 
     <div class="info">
       <section>
@@ -159,15 +164,7 @@ window.ctcFlush = function(){
   </main>
 </div>
 
-<script>
-document.addEventListener('click', function(e){
-  var el = e.target.closest('a'); if (!el) return;
-  if (el.hasAttribute('data-track')) { window.ctcTrack(el.getAttribute('data-track')); return; }
-  var href = (el.getAttribute('href') || '').toLowerCase();
-  if (href.indexOf('discord') !== -1) window.ctcTrack('Discord click');
-  else if (href.indexOf('facebook') !== -1) window.ctcTrack('Facebook click');
-});
-</script>
+<!-- Link clicks (Discord, Facebook, calendar, Square, data-track) are tracked by site-analytics.js -->
 <style>@media print{.legal-foot{display:none!important}}</style><p class="legal-foot" style="max-width:980px;margin:0 auto;padding:18px 16px 28px;font:12px/1.5 Arial,Helvetica,sans-serif;color:#9a8f82;text-align:center;background:#0b0b0b">Real Rune Cards Ltd · Registered in England and Wales, company number 16969346 · Registered office: 74 Coronation Street, Blackpool FY1 4PD · <a href="privacy.html" style="color:#ff7a00">Privacy policy</a></p>
 </body>
 </html>

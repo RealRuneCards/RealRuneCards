@@ -21,6 +21,7 @@
 
 <!-- SETTINGS: Umami tracking (same as the other pages). Paste your Website ID below and remove the comment markers before and after the script line. -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160" onload="ctcFlush()"></script>
+<script defer src="site-analytics.js"></script>
 <script>
 window.ctcQueue = [];
 window.ctcTrack = function(name, props){
@@ -357,10 +358,7 @@ window.ctcFlush = function(){
 </div>
 
 <script>
-document.addEventListener('click', function(e){
-  var el = e.target.closest('a'); if (!el) return;
-  if (el.hasAttribute('data-track')) { window.ctcTrack(el.getAttribute('data-track'), el.getAttribute('data-track-item') ? { item: el.getAttribute('data-track-item') } : undefined); return; }
-});
+// Link clicks (including data-track links) are tracked by site-analytics.js
 document.querySelectorAll('.phase').forEach(function(d){
   d.addEventListener('toggle', function(){ if (d.open) window.ctcTrack('Skill Tree stage opened', { stage: d.querySelector('.pt b').textContent }); });
 });

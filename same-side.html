@@ -118,6 +118,10 @@
 .ctc .ctc-form .consent a{color:var(--gold)}
 .ctc .form-msg{margin:10px 0 0; font-weight:700; min-height:1.2em}
 .ctc .form-msg.ok{color:#8fe0b6} .ctc .form-msg.err{color:#ffb4a6}
+.ctc .signup-pending .form-msg{font-weight:600; color:#efe9dc; margin:0}
+.ctc .signup-pending .form-msg b{color:var(--gold)}
+.ctc .email-note{background:#fff; border:2px solid var(--gold); border-radius:var(--radius); padding:14px 18px; margin:24px 0 0; font-weight:700}
+.ctc .email-note[hidden]{display:none}
 .ctc .ctc-form.sent .fields,.ctc .ctc-form.sent .consent,.ctc .ctc-form.sent button{display:none}
 
 /* Gift, certificate, share */
@@ -272,9 +276,12 @@
   2. Sender (emails): in Sender, build and publish one embedded form per group ("Same Side course" and "New players"),
      with double opt-in and a consent checkbox turned on. Paste Sender's site script where it says SENDER SITE SCRIPT
      (just above the closing head tag), then paste each form's embed code into its SENDER FORM box further down the page.
-     Our placeholder form hides itself once Sender's form is in place.
+     The "Same Side course" form sends Days 2 to 7 only. Course consent is required; marketing (tips, offers,
+     event news) must be a separate, optional, unticked checkbox, or a separate form/group.
+     Until then the page shows a "sign-up isn't open yet" notice with no form, which hides itself once Sender's form is in place.
 ========================================================================================== -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160" onload="ctcFlush()"></script>
+<script defer src="site-analytics.js"></script>
 <script>
 // Umami click tracking: events wait in a queue until the Umami script has loaded
 window.ctcQueue = [];
@@ -302,7 +309,24 @@ window.ctcFlush = function(){
 @media (max-width:420px){ .site-nav ul{gap:0} .site-nav a.lnk{font-size:.78rem; padding:5px 6px} }
 </style>
 <!-- SENDER SITE SCRIPT: paste Sender's script here (Sender → Forms → your form → Publishing settings) -->
-
+<script>
+  (function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+    s[er].on = function(event, callback) {
+      s[er].listeners = s[er].listeners || {};
+      (s[er].listeners[event] = s[er].listeners[event] || []).push(callback);
+    };
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+  sender('9ad6e5e5bd6256')
+</script>
 <!-- end of SENDER SITE SCRIPT -->
 </head>
 <body style="margin:0;background:#fff4e8">
@@ -330,9 +354,9 @@ window.ctcFlush = function(){
 
   <div class="wrap">
     <section class="how" aria-label="How the course works">
-      <div><b>Read</b>Each day has one idea from a respected parenting book, explained in plain English.</div>
+      <div><b>Read</b>Each day has one idea from a respected parenting book.</div>
       <div><b>Play</b>Try it at the card table, where kids are relaxed and talking happens naturally.</div>
-      <div><b>Practise</b>Do the 10-minute challenge, tick the day off and move on tomorrow.</div>
+      <div><b>Practise</b>Do the 10-minute challenge. Day 1 is on this page; Days 2 to 7 come by email, one a day.</div>
     </section>
   </div>
 
@@ -350,69 +374,54 @@ window.ctcFlush = function(){
         <button type="button" data-day="7">I shout, feel awful, and we never talk about it</button>
       </div>
       <div class="check-result" id="check-result" hidden aria-live="polite">
-        <p class="r-head">Start with <b id="cr-day">Day 1</b>: <span id="cr-title"></span></p>
+        <p class="r-head">That's <b id="cr-day">Day 1</b>: <span id="cr-title"></span></p>
         <p id="cr-why"></p>
         <div class="r-btns">
-          <a class="btn primary" id="cr-go" href="#day1">Go to Day <span id="cr-num">1</span></a>
-          <a class="btn ghost" href="#signup">Get all seven by email</a>
+          <a class="btn primary" href="#day1">Start with Day 1</a>
+          <a class="btn ghost" href="#signup">How Days 2 to 7 arrive</a>
         </div>
       </div>
     </section>
   </div>
 
   <div class="wrap">
-    <section class="signup" id="signup" aria-label="Get each day by email">
-      <h2>Get each day by email</h2>
-      <p>Day 1 lands in your inbox within a minute, so you can try it tonight. Then one short lesson each morning, and the odd tip and event invite after that. Unsubscribe any time.</p>
-      <p class="gift">🎁 <b>Free with sign-up:</b> the printable Same Side pack, with all seven days on fridge-sized sheets plus a family house rules template.</p>
+    <section class="signup" id="signup" aria-label="Days 2 to 7 by email">
+      <h2>Days 2 to 7 come by email</h2>
+      <p>Day 1 is free on this page, so you can try it tonight. Days 2 to 7 are sent by email, one short lesson a day for six days.</p>
       <div class="sender-slot" data-list="super-dad">
-      <!-- SENDER FORM: paste the embed code for the "Same Side course" form below this line -->
-
+      <!-- SENDER FORM: paste the embed code for the "Same Side course" form below this line.
+           Course consent only, e.g. "Email me Days 2 to 7 of the Same Side course." Required.
+           Marketing (tips, offers, event news) must be a SEPARATE, optional, unticked checkbox,
+           or a separate form, and must not be needed to get the course. -->
+      <!-- Sender form "Same Side course: Days 2 to 7" (id aQWog0), adds sign-ups to the "Same Side course" group.
+           It only appears once the form is PUBLISHED in Sender; until then the "not open yet" notice stays. -->
+      <div style="text-align: left" class="sender-form-field" data-sender-form-id="aQWog0"></div>
       <!-- end of SENDER FORM -->
       </div>
-      <form class="ctc-form" data-list="super-dad" novalidate>
-        <div class="fields">
-          <label>First name<input type="text" name="name" autocomplete="given-name" placeholder="Your first name"></label>
-          <label>Email<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
-        </div>
-        <label class="consent"><input type="checkbox" name="consent" required><span>Yes, email me the 7-day course, plus tips and event news from Level Up Together and Real Rune Cards. See our <a href="privacy.html" target="_blank">privacy policy</a>.</span></label>
-        <button class="btn primary" type="submit">Send me Day 1 now</button>
-        <p class="form-msg" role="status" aria-live="polite"></p>
-      </form>
+      <div class="signup-pending" data-list="super-dad">
+        <p class="form-msg" role="status"><b>Email sign-up isn't open yet.</b> We're still setting up the course emails, so there's no form here yet and we're not collecting any email addresses. Check back soon, or follow us on <a href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener" style="color:var(--gold)">Discord</a> or <a href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener" style="color:var(--gold)">Facebook</a> to hear when it opens.</p>
+      </div>
     </section>
 
-    <section class="remind" aria-label="Daily reminders">
+    <section class="remind" aria-label="Day 1 reminder">
       <div>
-        <h2>Or add calendar reminders</h2>
-        <p>Prefer not to give your email? Add seven daily reminders to your phone's calendar, each with a link straight to that day.</p>
+        <h2>Or add a Day 1 reminder</h2>
+        <p>Not ready tonight? Add a reminder to your phone's calendar with a link straight back to Day 1.</p>
       </div>
       <div class="remind-form">
         <label>Start<select id="ctc-start"><option value="1">Tomorrow</option><option value="0">Today</option></select></label>
         <label>Time<select id="ctc-time"><option value="07:30">7:30am</option><option value="12:30">12:30pm</option><option value="18:00">6:00pm</option><option value="19:30" selected>7:30pm</option></select></label>
-        <button class="btn primary" id="ctc-cal" type="button">📅 Add reminders</button>
+        <button class="btn primary" id="ctc-cal" type="button">📅 Add reminder</button>
       </div>
     </section>
   </div>
 
-  <nav class="bar" aria-label="Choose a day">
-    <div class="wrap">
-      <div class="progress-row"><span id="ctc-count">0 of 7 days done</span><div class="track" aria-hidden="true"><div class="fill" id="ctc-fill"></div></div></div>
-      <div class="days" role="tablist">
-        <button class="day-btn" role="tab" aria-controls="day1" aria-selected="true"><small>Day</small>1</button>
-        <button class="day-btn" role="tab" aria-controls="day2" aria-selected="false"><small>Day</small>2</button>
-        <button class="day-btn" role="tab" aria-controls="day3" aria-selected="false"><small>Day</small>3</button>
-        <button class="day-btn" role="tab" aria-controls="day4" aria-selected="false"><small>Day</small>4</button>
-        <button class="day-btn" role="tab" aria-controls="day5" aria-selected="false"><small>Day</small>5</button>
-        <button class="day-btn" role="tab" aria-controls="day6" aria-selected="false"><small>Day</small>6</button>
-        <button class="day-btn" role="tab" aria-controls="day7" aria-selected="false"><small>Day</small>7</button>
-      </div>
-    </div>
-  </nav>
-
   <main class="wrap">
 
-    <!-- ============ DAY 1 ============ -->
-    <section class="day" id="day1" role="tabpanel">
+    <p class="email-note" id="email-note" hidden>That lesson comes by email. Days 2 to 7 aren't on this page any more. They'll arrive one a day once email sign-up opens. Day 1 is below.</p>
+
+    <!-- ============ DAY 1 (the only day on the public page; Days 2 to 7 are sent by email) ============ -->
+    <section class="day" id="day1">
       <div class="stage">Day 1 · Start with you</div>
       <h2>Regulate yourself first</h2>
       <p class="lede">Your child can't borrow calm you don't have. Before any technique works on them, it has to work on you.</p>
@@ -460,326 +469,6 @@ window.ctcFlush = function(){
       <a class="deeper" href="skill-tree.html#curriculum" data-track="Go deeper click" data-track-item="Day 1"><span>Want to go deeper?</span> In The Skill Tree, <b>Module 2: Emotional Regulation</b> teaches your child the same skill, so a lost game doesn't turn into a meltdown. →</a>
     </section>
 
-    <!-- ============ DAY 2 ============ -->
-    <section class="day" id="day2" role="tabpanel" hidden>
-      <div class="stage">Day 2 · Start with you</div>
-      <h2>Become the dad you needed</h2>
-      <p class="lede">Most of us parent the way we were parented — until we decide on purpose to do something different.</p>
-      <div class="quick">
-        <div class="q-label">The 30-second version</div>
-        <p><b>The moment:</b> When you want to be the dad they'll remember</p>
-        <p><b>The one thing:</b> Let your child see you enjoy them: catch one clever play and say so.</p>
-        <p><b>Tonight:</b> Picture your ideal dad, and give your child one of his qualities today.</p>
-      </div>
-
-      <article class="block">
-        <h3><span class="ico">💡</span>The idea</h3>
-        <p>The Ideal Parent Protocol was developed by psychologists Daniel P. Brown and David S. Elliott. It's a guided imagery method: you picture parent figures who give you exactly what a child needs. They describe five qualities that help a child feel secure:</p>
-        <ol>
-          <li><b>Safety</b> — "You're protected. I've got you."</li>
-          <li><b>Attunement</b> — really seeing what's going on inside your child.</li>
-          <li><b>Soothing</b> — comfort and reassurance when things go wrong.</li>
-          <li><b>Delight</b> — your child can see you enjoy them, just as they are.</li>
-          <li><b>Encouragement</b> — backing them to be their best self.</li>
-        </ol>
-        <p>Today isn't therapy. It's simpler: use those five qualities as a picture of the dad you want to be.</p>
-        <p class="source">From <i>Attachment Disturbances in Adults</i> by Daniel P. Brown and David S. Elliott. The full protocol is usually done with a trained therapist — if today brings up something heavy about your own childhood, that's a good reason to talk to one.</p>
-      </article>
-
-      <article class="block">
-        <h3><span class="ico">💬</span>Try saying</h3>
-        <div class="say">
-          <q>I love watching you play. You get so into it.</q>
-          <q>Whatever happens in this game, I'm on your side.</q>
-        </div>
-      </article>
-
-      <article class="block table">
-        <h3><span class="ico">🃏</span>At the card table</h3>
-        <p>Delight is the quality dads most often forget to show. During your next game, catch your child doing something clever and say so — <b>"Ooh, nice play, I didn't see that coming."</b> Let your face show you're enjoying <i>them</i>, not just the game.</p>
-      </article>
-
-      <article class="block challenge">
-        <span class="timer">10-minute challenge</span>
-        <h3>Picture your ideal dad</h3>
-        <p>Sit somewhere quiet. Close your eyes and imagine a dad who gives a child all five qualities above. How does he speak? What does his face do when his child walks in? Then pick the <b>one quality</b> that came least naturally to you growing up, and look for one chance to give it to your child today.</p>
-      </article>
-
-      <article class="block"><h3><span class="ico">👧</span>By age</h3><div class="ages">
-        <div><b>Under 7</b>Delight is mostly physical at this age: a big smile when they walk in, a hug, a happy voice. They feel it before they understand it.</div>
-        <div><b>7 to 12</b>Older children notice when you remember what matters to them. Ask about their favourite card or character and listen to the answer.</div>
-      </div></article>
-
-      <article class="block reflect"><p>Which of the five qualities did you get plenty of as a child, and which did you miss?</p></article>
-
-      <div class="brick"><h4>🧱 Take it off the table</h4><p><b>Check it:</b> “Which kind of parent did I need just then?”</p><p><b>Name it:</b> My child needs to feel safe, seen, soothed and delighted in.</p><p><b>Find it:</b> the same skill shows up in how you react to mistakes, at bedtime, after school.</p><p><b>This week:</b> Give one of the five qualities at a moment that has nothing to do with cards.</p></div>
-      <a class="deeper" href="skill-tree.html#curriculum" data-track="Go deeper click" data-track-item="Day 2"><span>Want to go deeper?</span> In The Skill Tree, <b>Bonus module: Connection</b> shows why playing together matters more than what you're playing. →</a>
-    </section>
-
-    <!-- ============ DAY 3 ============ -->
-    <section class="day" id="day3" role="tabpanel" hidden>
-      <div class="stage">Day 3 · Build the bond</div>
-      <h2>Play and connection</h2>
-      <p class="lede">Play is a child's first language. When you play their way, they start telling you things.</p>
-      <div class="quick">
-        <div class="q-label">The 30-second version</div>
-        <p><b>The moment:</b> When they ask you to play</p>
-        <p><b>The one thing:</b> Say yes, put your phone in another room, and let them make the rules.</p>
-        <p><b>Tonight:</b> Ten minutes, their game, their rules, no correcting.</p>
-      </div>
-
-      <article class="block">
-        <h3><span class="ico">💡</span>The idea</h3>
-        <p>Psychologist Lawrence J. Cohen argues that play is how children build closeness, work through worries and regain confidence. The magic ingredients are simple: <b>follow their lead</b>, be a bit silly, and let them win at things they usually lose at.</p>
-        <p>Even ten minutes of undivided attention — phone in another room, no multitasking — counts for more than an hour of half-there time.</p>
-        <p class="source">From <i>Playful Parenting</i> by Lawrence J. Cohen.</p>
-      </article>
-
-      <article class="block">
-        <h3><span class="ico">💬</span>Try saying</h3>
-        <div class="say">
-          <q>You choose — what do you want to play?</q>
-          <q>Will you teach me how this card works? I haven't figured it out.</q>
-        </div>
-      </article>
-
-      <article class="block table">
-        <h3><span class="ico">🃏</span>At the card table</h3>
-        <p>Let your child be the expert. Ask them to teach you their favourite card game, or explain their deck to you. Being the one who knows more than Dad is a huge confidence boost — and kids talk most freely when their hands are busy. New to card games yourself? <a href="start-playing.html">Our beginner's guide</a> gets you going.</p>
-      </article>
-
-      <article class="block challenge">
-        <span class="timer">10-minute challenge</span>
-        <h3>Ten minutes, their rules</h3>
-        <p>Set a timer for ten minutes. Phone out of the room. Your child picks the game and makes the rules — you just join in with enthusiasm. No correcting, no teaching, no checking the time. When the timer goes, thank them for letting you play.</p>
-      </article>
-
-      <article class="block"><h3><span class="ico">👧</span>By age</h3><div class="ages">
-        <div><b>Under 7</b>Real rules don't matter yet. Let them sort cards by colour, invent rules or tell stories about the characters — that all counts as play.</div>
-        <div><b>7 to 12</b>Let them teach you a real game, choose your deck and explain their strategy. Being the expert is the best part for them.</div>
-      </div></article>
-
-      <div class="kit">
-        <p><b>Need a game to play together?</b> Our family starter kits have everything two people need to start playing — no experience required.</p>
-        <a class="btn primary" href="contact.html" data-track="Starter kit click">Ask us about starter kits</a>
-      </div>
-
-      <article class="block reflect"><p>What did you notice about your child when you let them lead?</p></article>
-
-      <div class="brick"><h4>🧱 Take it off the table</h4><p><b>Check it:</b> “Which kind of time does my child want: talking, doing or just being near?”</p><p><b>Name it:</b> Ten minutes of their lead, full attention, builds the bond.</p><p><b>Find it:</b> the same skill shows up in a walk, cooking together, a car journey with the radio off.</p><p><b>This week:</b> Do your ten minutes once without any cards at all.</p></div>
-      <a class="deeper" href="skill-tree.html#curriculum" data-track="Go deeper click" data-track-item="Day 3"><span>Want to go deeper?</span> In The Skill Tree, <b>Module 5: Social Skills, Turn-Taking &amp; Cooperation</b> takes the same skills from your table to games with their friends. →</a>
-    </section>
-
-    <!-- ============ DAY 4 ============ -->
-    <section class="day" id="day4" role="tabpanel" hidden>
-      <div class="stage">Day 4 · Talk so they listen</div>
-      <h2>Nonviolent Communication</h2>
-      <p class="lede">How you say it decides whether your child hears a request or an attack.</p>
-      <div class="quick">
-        <div class="q-label">The 30-second version</div>
-        <p><b>The moment:</b> When there's a row over the rules</p>
-        <p><b>The one thing:</b> Swap "you're doing it wrong" for what you saw, how you feel, and a clear ask.</p>
-        <p><b>Tonight:</b> Rewrite the thing you nag about most, using the four steps.</p>
-      </div>
-
-      <article class="block">
-        <h3><span class="ico">💡</span>The idea</h3>
-        <p>Marshall Rosenberg's Nonviolent Communication swaps blame for four simple steps:</p>
-        <ol>
-          <li><b>Observation</b> — what you actually saw, without judgement. "Your cards are all over the floor", not "you're so messy".</li>
-          <li><b>Feeling</b> — how you feel about it. "I feel frustrated…"</li>
-          <li><b>Need</b> — what matters to you underneath. "…because I need the room clear so nobody treads on them."</li>
-          <li><b>Request</b> — a clear, doable ask. "Would you put them back in the box before tea?"</li>
-        </ol>
-        <p>It works the other way too: when your child is upset, try to guess the feeling and need behind their words.</p>
-        <p class="source">From <i>Nonviolent Communication: A Language of Life</i> by Marshall B. Rosenberg.</p>
-      </article>
-
-      <article class="block">
-        <h3><span class="ico">💬</span>Try saying</h3>
-        <div class="say">
-          <q>When the game ended with cards thrown, I felt sad, because I want this to be fun for both of us. Can we try again and shake hands at the end?</q>
-          <q>Are you feeling frustrated because you really wanted to win that one?</q>
-        </div>
-      </article>
-
-      <article class="block table">
-        <h3><span class="ico">🃏</span>At the card table</h3>
-        <p>Disagreements over rules are perfect practice. Instead of <b>"No, you're doing it wrong"</b>, try an observation and a request: <b>"I read that card differently. Shall we look up the rule together?"</b> You stay on the same team, even when you disagree.</p>
-      </article>
-
-      <article class="block challenge">
-        <span class="timer">10-minute challenge</span>
-        <h3>Rewrite one nag</h3>
-        <p>Think of something you say to your child most days — the shoes, the screens, the bedtime. Rewrite it using the four steps: observation, feeling, need, request. Say the new version today, and notice whether the response is different.</p>
-      </article>
-
-      <article class="block"><h3><span class="ico">👧</span>By age</h3><div class="ages">
-        <div><b>Under 7</b>Keep it to a feeling and a request: "I feel worried when you climb on that. Please come down." Four steps is too many for little ones.</div>
-        <div><b>7 to 12</b>Use all four steps, then teach them the pattern and let them try it on you. You may hear a lot more about what they need.</div>
-      </div></article>
-
-      <article class="block reflect"><p>What's the need underneath the thing you nag about most?</p></article>
-
-      <div class="brick"><h4>🧱 Take it off the table</h4><p><b>Check it:</b> “Which kind of request is this: one they can say no to, or a demand?”</p><p><b>Name it:</b> Say what you saw, how you feel, what you need, then ask clearly.</p><p><b>Find it:</b> the same skill shows up in homework, bedtime, a request to a partner or a colleague.</p><p><b>This week:</b> Use the four steps once away from the table, with anyone.</p></div>
-      <a class="deeper" href="skill-tree.html#curriculum" data-track="Go deeper click" data-track-item="Day 4"><span>Want to go deeper?</span> In The Skill Tree, <b>Module 7: Communication &amp; Self-Advocacy</b> helps your child speak up for themselves, calmly, at the game store. →</a>
-    </section>
-
-    <!-- ============ DAY 5 ============ -->
-    <section class="day" id="day5" role="tabpanel" hidden>
-      <div class="stage">Day 5 · Big feelings</div>
-      <h2>Emotion coaching</h2>
-      <p class="lede">Big feelings aren't a problem to shut down. They're your best chance to get closer.</p>
-      <div class="quick">
-        <div class="q-label">The 30-second version</div>
-        <p><b>The moment:</b> When they lose</p>
-        <p><b>The one thing:</b> Validate first ("that really stung"), and solve the problem later.</p>
-        <p><b>Tonight:</b> Play one game and name every feeling together.</p>
-      </div>
-
-      <article class="block">
-        <h3><span class="ico">💡</span>The idea</h3>
-        <p>Psychologist John Gottman studied how parents respond to children's emotions. The parents whose kids did best followed five steps he calls emotion coaching:</p>
-        <ol>
-          <li><b>Notice</b> the emotion, ideally while it's still small.</li>
-          <li><b>See it as a chance</b> to connect and teach, not an inconvenience.</li>
-          <li><b>Listen and validate</b> — let them know the feeling makes sense.</li>
-          <li><b>Help them name it</b> — frustrated, disappointed, embarrassed.</li>
-          <li><b>Set limits and solve problems together</b> — all feelings are OK, not all behaviour is.</li>
-        </ol>
-        <p class="source">From <i>Raising An Emotionally Intelligent Child</i> by John Gottman.</p>
-      </article>
-
-      <article class="block">
-        <h3><span class="ico">💬</span>Try saying</h3>
-        <div class="say">
-          <q>That loss really stung, didn't it? It makes sense to feel gutted.</q>
-          <q>It's OK to be angry. It's not OK to throw cards. What could you do instead next time?</q>
-        </div>
-      </article>
-
-      <article class="block table">
-        <h3><span class="ico">🃏</span>At the card table</h3>
-        <p>Losing a game is a safe, low-stakes rehearsal for disappointment. When your child loses, resist <b>"It's only a game"</b>. Validate first — <b>"You were so close, that's frustrating"</b> — and only once they've calmed down, ask what they might try differently next game.</p>
-      </article>
-
-      <article class="block challenge">
-        <span class="timer">10-minute challenge</span>
-        <h3>Feelings detective</h3>
-        <p>Play one game together. Each time something exciting or annoying happens, both of you name the feeling — the more precise the better ("gutted", "smug", "nervous"). It sounds silly, but you're building your child's emotional vocabulary, and it gives them words to use when things get hard.</p>
-      </article>
-
-      <article class="block"><h3><span class="ico">👧</span>By age</h3><div class="ages">
-        <div><b>Under 7</b>Offer simple words — happy, sad, cross, scared — and point to faces in a book or on a card to help them match the feeling.</div>
-        <div><b>7 to 12</b>Go for richer words like disappointed, embarrassed or jealous, and solve the problem together once they're calm.</div>
-      </div></article>
-
-      <article class="block reflect"><p>Which emotion in your child do you find hardest to sit with — and why might that be?</p></article>
-
-      <div class="brick"><h4>🧱 Take it off the table</h4><p><b>Check it:</b> “Which kind of feeling is this, exactly?”</p><p><b>Name it:</b> Big feelings are a chance to get closer, not a problem to shut down.</p><p><b>Find it:</b> the same skill shows up in a friendship fall-out, nerves before school, a pet being poorly.</p><p><b>This week:</b> Name one feeling together that came from outside the game.</p></div>
-      <a class="deeper" href="skill-tree.html#curriculum" data-track="Go deeper click" data-track-item="Day 5"><span>Want to go deeper?</span> In The Skill Tree, <b>Module 4: Resilience and Module 6: Sportsmanship</b> take losing well from the kitchen table to their first tournament. →</a>
-    </section>
-
-    <!-- ============ DAY 6 ============ -->
-    <section class="day" id="day6" role="tabpanel" hidden>
-      <div class="stage">Day 6 · Hold the line</div>
-      <h2>Boundaries without punishment</h2>
-      <p class="lede">Being kind and being firm aren't opposites. Great dads do both at the same time.</p>
-      <div class="quick">
-        <div class="q-label">The 30-second version</div>
-        <p><b>The moment:</b> When they want more cards</p>
-        <p><b>The one thing:</b> Be kind and firm at the same time: warm voice, same answer.</p>
-        <p><b>Tonight:</b> Agree three house rules for spending, trading and packing away.</p>
-      </div>
-
-      <article class="block">
-        <h3><span class="ico">💡</span>The idea</h3>
-        <p>After Day 4 and Day 5, some dads wonder whether they're still allowed to say no. You are. Jane Nelsen's Positive Discipline is built on being <b>kind and firm at the same time</b>: warm in how you say it, consistent in sticking to it.</p>
-        <p>Instead of punishments that come out of nowhere, agree the rules in advance and use consequences that are related to the problem, respectful and reasonable. Kids follow rules they helped make far more readily than rules handed down.</p>
-        <p class="source">From <i>Positive Discipline</i> by Jane Nelsen.</p>
-      </article>
-
-      <article class="block">
-        <h3><span class="ico">💬</span>Try saying</h3>
-        <div class="say">
-          <q>I love playing with you, and the answer is still no. We'll play again tomorrow.</q>
-          <q>The rule we agreed was no trading without asking first. So this one goes back until we've talked about it.</q>
-        </div>
-      </article>
-
-      <article class="block table">
-        <h3><span class="ico">🃏</span>At the card table</h3>
-        <p>Card games come with natural boundaries: how much to spend, who you trade with, when game time ends. Set them together before they become a fight. A simple house rule like <b>"no trading without a parent's OK"</b> protects your child from bad trades and keeps you in the loop without being the bad guy.</p>
-      </article>
-
-      <article class="block challenge">
-        <span class="timer">10-minute challenge</span>
-        <h3>Make three house rules together</h3>
-        <p>Sit down with your child and agree three rules for card games at home — for example, spending, trading and when to pack away. Agree what happens if a rule is broken, write them down and stick them on the fridge. Your child gets a say; you get the final word.</p>
-      </article>
-
-      <article class="block"><h3><span class="ico">👧</span>By age</h3><div class="ages">
-        <div><b>Under 7</b>One or two simple rules is plenty, with a consequence that happens straight away, like the game being put away for now.</div>
-        <div><b>7 to 12</b>Let them help write the rules and the consequences, and agree to review them together in a month.</div>
-      </div></article>
-
-      <article class="block reflect"><p>Do you tend to lean too soft or too strict — and what would "kind and firm" look like for you?</p></article>
-
-      <div class="brick"><h4>🧱 Take it off the table</h4><p><b>Check it:</b> “Which kind of no is this: a firm one, or one that&#x27;s open to discussion?”</p><p><b>Name it:</b> Kind and firm at the same time.</p><p><b>Find it:</b> the same skill shows up in screen time, sweets, bedtime, spending.</p><p><b>This week:</b> Hold one warm, firm no about something other than cards.</p></div>
-      <a class="deeper" href="skill-tree.html#curriculum" data-track="Go deeper click" data-track-item="Day 6"><span>Want to go deeper?</span> In The Skill Tree, <b>Module 13: Financial Literacy &amp; Budgeting</b> turns "can I have more cards?" into a real lesson about money. →</a>
-    </section>
-
-    <!-- ============ DAY 7 ============ -->
-    <section class="day" id="day7" role="tabpanel" hidden>
-      <div class="stage">Day 7 · When it goes wrong</div>
-      <h2>Repair after rupture</h2>
-      <p class="lede">You will get it wrong. Super dads aren't the ones who never slip — they're the ones who come back and fix it.</p>
-      <div class="quick">
-        <div class="q-label">The 30-second version</div>
-        <p><b>The moment:</b> When a game night goes wrong</p>
-        <p><b>The one thing:</b> Come back, own your part, say sorry, then play.</p>
-        <p><b>Tonight:</b> Make one repair, then spend ten minutes on something they love.</p>
-      </div>
-
-      <article class="block">
-        <h3><span class="ico">💡</span>The idea</h3>
-        <p>Daniel Siegel and Mary Hartzell describe moments where the connection between parent and child breaks — shouting, dismissing, losing it — as <b>ruptures</b>. They're inevitable. What matters is the <b>repair</b>: coming back, owning your part, and reconnecting.</p>
-        <p>A good repair teaches your child that relationships survive mistakes, that grown-ups take responsibility, and that they weren't to blame for your temper.</p>
-        <p class="source">From <i>Parenting from the Inside Out</i> by Daniel J. Siegel and Mary Hartzell.</p>
-      </article>
-
-      <article class="block">
-        <h3><span class="ico">💬</span>Try saying</h3>
-        <div class="say">
-          <q>Earlier I shouted at you. That wasn't OK, and it wasn't your fault. I'm sorry.</q>
-          <q>I was stressed and I took it out on you. Next time I'm going to take a breath first. Can we start again?</q>
-        </div>
-      </article>
-
-      <article class="block table">
-        <h3><span class="ico">🃏</span>At the card table</h3>
-        <p>A game is a brilliant way to reconnect after a rough moment, because it gives you something to do side by side. After you've apologised, try <b>"Fancy a game?"</b> You don't need to talk it all through — playing together is the repair.</p>
-      </article>
-
-      <article class="block challenge">
-        <span class="timer">10-minute challenge</span>
-        <h3>Make one repair</h3>
-        <p>Think of a moment this week — or longer ago — when you got it wrong with your child. Go back to it. Name what happened, own your part without "but", say sorry, and say what you'll do differently. Then spend ten minutes doing something they love.</p>
-      </article>
-
-      <article class="block"><h3><span class="ico">👧</span>By age</h3><div class="ages">
-        <div><b>Under 7</b>Keep it short and simple — "I shouted, and I'm sorry. I love you" — followed by a cuddle.</div>
-        <div><b>7 to 12</b>Say more about what happened, ask how it felt for them, and listen without defending yourself.</div>
-      </div></article>
-
-      <article class="block reflect"><p>Did anyone ever repair with you as a child? How might it have changed things if they had?</p></article>
-
-      <a class="next-teaser" href="#next-step" data-track="The Skill Tree teaser click">That's the seven days. <b>See what comes next →</b></a>
-
-      <div class="brick"><h4>🧱 Take it off the table</h4><p><b>Check it:</b> “Which kind of sorry does this need: just words, or words and a repair?”</p><p><b>Name it:</b> Coming back after a rupture teaches that relationships survive mistakes.</p><p><b>Find it:</b> the same skill shows up in with a partner, a sibling, a friend or a colleague.</p><p><b>This week:</b> Make one repair this week with someone other than your child, and let your child see it.</p></div>
-      <a class="deeper" href="skill-tree.html#curriculum" data-track="Go deeper click" data-track-item="Day 7"><span>Want to go deeper?</span> In The Skill Tree, <b>Bonus module: Trust</b> covers earning trust through the hobby: money, honesty and boundaries. →</a>
-    </section>
-
     <div class="rate" id="ctc-rate">
       <p class="rate-q">Was <span id="ctc-rate-day">Day 1</span> helpful?</p>
       <div class="rate-btns">
@@ -792,32 +481,18 @@ window.ctcFlush = function(){
     <div class="print-row"><button class="link-btn" id="ctc-print" type="button">🖨 Print this day for the fridge</button></div>
 
     <div class="actions">
-      <button class="btn" id="ctc-prev" type="button">← Previous day</button>
-      <button class="btn primary" id="ctc-done" type="button">Mark day as done</button>
-      <button class="btn" id="ctc-next" type="button">Next day →</button>
+      <a class="btn primary" href="#signup">Days 2 to 7 come by email: see how →</a>
     </div>
 
     <section class="finish" id="finish">
-      <h2>Seven days. Now keep going.</h2>
-      <p>The skills only stick if you use them. Keep your ten minutes of play going each week, and come back to the day you found hardest. If you'd like more, join our free community — chat with other dads, find people to play with and hear about events first.</p>
+      <h2>Day 1 done. Now keep going.</h2>
+      <p>The skills only stick if you use them. Try today's challenge, and come back to it whenever a game, or a day, winds you up. If you'd like more, join our free community — chat with other dads, find people to play with and hear about events first.</p>
       <div class="btns">
         <a class="btn primary" href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener">Join our Discord</a>
         <a class="btn primary" href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener">Find us on Facebook</a>
       </div>
       <p style="margin:18px auto 0"><a href="start-playing.html" style="color:var(--gold)">New to card games? Learn to play →</a> &nbsp;·&nbsp; <a href="contact.html" data-track="Starter kit click" style="color:var(--gold)">Ask us about a family starter kit →</a></p>
-      <p style="margin:14px auto 0; font-size:.95rem">Finished the seven days? Tell us how it went on Discord or Facebook. Your answers shape what we make next.</p>
-
-      <div class="cert" id="ctc-cert">
-        <h3>🏅 Your Same Side certificate</h3>
-        <p class="cert-locked">Tick off all seven days to unlock your certificate. <span id="ctc-cert-left"></span></p>
-        <div class="cert-ready" hidden>
-          <p>You did it. Add your name and download your certificate to keep or share.</p>
-          <div class="cert-form">
-            <input type="text" id="ctc-cert-name" maxlength="40" placeholder="Your name, e.g. Dad of Ellie" aria-label="Name for the certificate">
-            <button class="btn primary" type="button" id="ctc-cert-btn">Download certificate</button>
-          </div>
-        </div>
-      </div>
+      <p style="margin:14px auto 0; font-size:.95rem">Tried Day 1? Tell us how it went on Discord or Facebook. Your answers shape what we make next.</p>
 
       <div class="share">
         <h3>Know a dad who'd like this?</h3>
@@ -832,7 +507,7 @@ window.ctcFlush = function(){
       <div class="ns-head">
         <span class="stage">The next step</span>
         <h2>The Skill Tree</h2>
-        <p class="lede">Seven days gave you the skills. The Skill Tree shows you how to use them as your child grows into the hobby, from the kitchen table all the way to their first tournament.</p>
+        <p class="lede">The seven days give you the skills. The Skill Tree shows you how to use them as your child grows into the hobby, from the kitchen table all the way to their first tournament.</p>
       </div>
 
       <ol class="phases">
@@ -872,86 +547,22 @@ window.ctcFlush = function(){
 
 <script>
 (function(){
-  var root = document.getElementById('ctc-dad');
-  var btns = root.querySelectorAll('.day-btn');
-  var KEY = 'ctc-superdad-done';
-  var done = [];
-  try { done = JSON.parse(localStorage.getItem(KEY) || '[]') || []; } catch(e){ done = []; }
+  // Only Day 1 is on this page. Days 2 to 7 are sent by email, so there is no day picker,
+  // progress bar or certificate here.
   var current = 1;
 
-  function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch(e){} }
-
   function render(){
-    btns.forEach(function(b, i){
-      var n = i + 1;
-      b.setAttribute('aria-selected', n === current ? 'true' : 'false');
-      b.tabIndex = n === current ? 0 : -1;
-      b.classList.toggle('done', done.indexOf(n) !== -1);
-      document.getElementById('day' + n).hidden = (n !== current);
-    });
-    var isDone = done.indexOf(current) !== -1;
-    var doneBtn = document.getElementById('ctc-done');
-    doneBtn.textContent = isDone ? '✓ Day ' + current + ' done' : 'Mark day ' + current + ' as done';
-    doneBtn.classList.toggle('is-done', isDone);
-    document.getElementById('ctc-prev').style.visibility = current === 1 ? 'hidden' : 'visible';
-    document.getElementById('ctc-next').style.visibility = current === 7 ? 'hidden' : 'visible';
-    document.getElementById('ctc-count').textContent = done.length + ' of 7 days done';
-    document.getElementById('ctc-fill').style.width = (done.length / 7 * 100) + '%';
-    // Day rating box: one rating per day per device
+    // Day rating box: one rating per device
     var rateBox = document.getElementById('ctc-rate');
-    document.getElementById('ctc-rate-day').textContent = 'Day ' + current;
     rateBox.classList.toggle('done', !!rated[current]);
     rateBox.querySelector('.rate-thanks').hidden = !rated[current];
-    // Certificate unlocks once all seven days are ticked
-    var all = done.length === 7;
-    document.querySelector('#ctc-cert .cert-locked').hidden = all;
-    document.querySelector('#ctc-cert .cert-ready').hidden = !all;
-    var left = 7 - done.length;
-    document.getElementById('ctc-cert-left').textContent = left === 7 ? '' : left + (left === 1 ? ' day' : ' days') + ' to go.';
   }
 
   // Share buttons (WhatsApp, works on phone and desktop)
   var pageUrl = /^https?:/.test(location.protocol) ? location.href.split('#')[0].split('?')[0] : 'https://realrunecards.com/same-side.html';
   var wa = function(msg){ return 'https://wa.me/?text=' + encodeURIComponent(msg + ' ' + pageUrl); };
-  document.getElementById('ctc-share-friend').href = wa("I've been doing this free 7-day course for dads: ten minutes a day, using card games to connect with your kids. Thought you might like it:");
-  document.getElementById('ctc-share-partner').href = wa("I've been trying this free 7-day course on connecting with the kids through card games. Fancy doing it with me so we're on the same page?");
-
-  // Completion certificate, drawn in the browser and downloaded as an image
-  document.getElementById('ctc-cert-btn').addEventListener('click', function(){
-    var name = (document.getElementById('ctc-cert-name').value || '').trim() || 'Super Dad';
-    var draw = function(){
-      var W = 1600, H = 1131, c = document.createElement('canvas'); c.width = W; c.height = H;
-      var x = c.getContext('2d');
-      x.fillStyle = '#fff4e8'; x.fillRect(0, 0, W, H);
-      x.strokeStyle = '#111111'; x.lineWidth = 28; x.strokeRect(14, 14, W - 28, H - 28);
-      x.strokeStyle = '#ff9c3d'; x.lineWidth = 6; x.strokeRect(54, 54, W - 108, H - 108);
-      x.textAlign = 'center'; x.fillStyle = '#ff7a00';
-      x.font = '800 30px Nunito, Arial, sans-serif'; x.fillText('LEVEL UP TOGETHER', W / 2, 170);
-      x.fillStyle = '#111111'; x.font = '700 92px Fraunces, Georgia, serif'; x.fillText('Certificate of Completion', W / 2, 290);
-      x.fillStyle = '#6b5848'; x.font = '600 34px Nunito, Arial, sans-serif'; x.fillText('This certifies that', W / 2, 390);
-      var size = 104; x.font = '700 ' + size + 'px Fraunces, Georgia, serif';
-      while (x.measureText(name).width > W - 300 && size > 50) { size -= 4; x.font = '700 ' + size + 'px Fraunces, Georgia, serif'; }
-      x.fillStyle = '#111111'; x.fillText(name, W / 2, 520);
-      x.strokeStyle = '#ff9c3d'; x.lineWidth = 3; x.beginPath(); x.moveTo(W / 2 - 360, 560); x.lineTo(W / 2 + 360, 560); x.stroke();
-      x.fillStyle = '#1a1a1a'; x.font = '600 38px Nunito, Arial, sans-serif';
-      x.fillText('has completed all seven days of', W / 2, 640);
-      x.fillStyle = '#ff7a00'; x.font = '700 64px Fraunces, Georgia, serif'; x.fillText('7 Days on the Same Side', W / 2, 730);
-      x.fillStyle = '#6b5848'; x.font = '600 28px Nunito, Arial, sans-serif';
-      x.fillText('Calm · Connection · Play · Listening · Big feelings · Boundaries · Repair', W / 2, 810);
-      var d = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-      x.fillStyle = '#111111'; x.font = '700 30px Nunito, Arial, sans-serif'; x.fillText(d, W / 2, 920);
-      x.fillStyle = '#6b5848'; x.font = '600 26px Nunito, Arial, sans-serif'; x.fillText('Real Rune Cards · Blackpool · realrunecards.com', W / 2, 1000);
-      c.toBlob(function(blob){
-        var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-        a.download = 'same-side-certificate.png'; document.body.appendChild(a); a.click(); a.remove();
-        setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
-      }, 'image/png');
-      window.ctcTrack('Certificate downloaded');
-    };
-    if (document.fonts && document.fonts.load) {
-      Promise.all([document.fonts.load('700 40px Fraunces'), document.fonts.load('800 20px Nunito')]).then(draw, draw);
-    } else draw();
-  });
+  document.getElementById('ctc-share-friend').href = wa("I found this free course for dads: ten minutes a day, using card games to connect with your kids. Day 1 is free to read now. Thought you might like it:");
+  document.getElementById('ctc-share-partner').href = wa("I've been trying this free course on connecting with the kids through card games. Fancy reading Day 1 with me so we're on the same page?");
 
   var RATE_KEY = 'ctc-superdad-rated';
   var rated = {};
@@ -966,52 +577,18 @@ window.ctcFlush = function(){
     });
   });
 
-  function go(n, scroll){
-    current = Math.min(7, Math.max(1, n));
-    render();
-    try { history.replaceState(null, '', '#day' + current); } catch(e){}
-    if (scroll) document.getElementById('day' + current).scrollIntoView({behavior:'smooth'});
-  }
-
-  btns.forEach(function(b, i){
-    b.addEventListener('click', function(){ go(i + 1, false); });
-    b.addEventListener('keydown', function(e){
-      if (e.key === 'ArrowRight') { go(current + 1); btns[current - 1].focus(); }
-      if (e.key === 'ArrowLeft') { go(current - 1); btns[current - 1].focus(); }
-    });
-  });
-  document.getElementById('ctc-prev').addEventListener('click', function(){ go(current - 1, true); });
-  document.getElementById('ctc-next').addEventListener('click', function(){ go(current + 1, true); });
-  document.getElementById('ctc-done').addEventListener('click', function(){
-    var i = done.indexOf(current);
-    if (i === -1) {
-      done.push(current); save();
-      window.ctcTrack('Day completed', { day: 'Day ' + current });
-      if (done.length === 7) window.ctcTrack('Course finished');
-      if (current < 7) { go(current + 1, true); return; }
-      render();
-      document.getElementById('next-step').scrollIntoView({behavior:'smooth'});
-      return;
-    }
-    else { done.splice(i, 1); save(); }
-    render();
-  });
-
-  // Print just the current day
+  // Print Day 1
   document.getElementById('ctc-print').addEventListener('click', function(){
     window.ctcTrack('Day printed', { day: 'Day ' + current });
     window.print();
   });
 
-  // Daily reminders as a calendar file (.ics) — works with no server or sign-up
-  var TITLES = [];
-  for (var d = 1; d <= 7; d++) {
-    var sec = document.getElementById('day' + d);
-    TITLES.push({
-      title: sec.querySelector('h2').textContent.trim(),
-      challenge: sec.querySelector('.challenge h3').textContent.trim()
-    });
-  }
+  // Day 1 reminder as a calendar file (.ics) — works with no server or sign-up
+  var day1 = document.getElementById('day1');
+  var TITLES = [{
+    title: day1.querySelector('h2').textContent.trim(),
+    challenge: day1.querySelector('.challenge h3').textContent.trim()
+  }];
   function pad(n){ return (n < 10 ? '0' : '') + n; }
   function stamp(dt){ return dt.getFullYear() + pad(dt.getMonth()+1) + pad(dt.getDate()) + 'T' + pad(dt.getHours()) + pad(dt.getMinutes()) + '00'; }
   function esc(s){ return s.replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n'); }
@@ -1039,64 +616,60 @@ window.ctcFlush = function(){
     var blob = new Blob([lines.join('\r\n')], {type:'text/calendar'});
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'same-side-reminders.ics';
-    window.ctcTrack('Calendar reminders added', { time: document.getElementById('ctc-time').value });
+    a.download = 'same-side-day1-reminder.ics';
+    window.ctcTrack('Calendar reminder added', { time: document.getElementById('ctc-time').value });
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
   });
 
-  window.addEventListener('hashchange', function(){
-    var h = (location.hash || '').match(/^#day([1-7])$/);
-    if (h) { go(parseInt(h[1], 10), false); document.getElementById('day' + h[1]).scrollIntoView({behavior:'smooth'}); }
-  });
+  // Old links and calendar reminders can still point at #day2 to #day7. Those days are now sent
+  // by email, so show a short note and Day 1 instead of a blank page.
+  function checkHash(scroll){
+    var h = (location.hash || '').match(/^#day([2-7])$/);
+    document.getElementById('email-note').hidden = !h;
+    if (h && scroll !== false) document.getElementById('email-note').scrollIntoView({behavior:'smooth'});
+  }
+  window.addEventListener('hashchange', function(){ checkHash(true); });
 
-  // Quick check: point each dad to the day that fits his biggest moment
-  var WHY = {
-    1:'Calm comes first. Every other skill works better once you can stay level when a game, or a day, goes wrong.',
-    2:'Knowing the dad you want to be makes every other day easier. This one is about choosing it on purpose.',
-    3:'Ten minutes of their game, their rules, does more than an hour half-there. This is the quickest win of the week.',
-    4:'Four simple steps turn a nag into a request they actually hear, and rules rows into a team effort.',
-    5:'Losing is one of the hardest moments in any card game. Day 5 shows you what to say instead of "it\u2019s only a game".',
-    6:'You can be warm and still say no. Day 6 helps you agree rules together, so you stop being the bad guy.',
-    7:'Every dad slips. Day 7 shows you how to come back from it, and why a good repair makes you closer than before.'
-  };
+  // Quick check: Day 1 is on this page; the topic of every other answer arrives by email
+  var TOPICS = { 1:'Regulate yourself first', 2:'Become the dad you needed', 3:'Play and connection', 4:'Nonviolent Communication', 5:'Emotion coaching', 6:'Boundaries without punishment', 7:'Repair after rupture' };
   document.querySelectorAll('.check-opts button').forEach(function(b){
     b.addEventListener('click', function(){
       var d = parseInt(b.getAttribute('data-day'), 10);
       document.querySelectorAll('.check-opts button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
       document.getElementById('cr-day').textContent = 'Day ' + d;
-      document.getElementById('cr-title').textContent = document.querySelector('#day' + d + ' h2').textContent;
-      document.getElementById('cr-why').textContent = WHY[d];
-      document.getElementById('cr-num').textContent = d;
-      document.getElementById('cr-go').setAttribute('href', '#day' + d);
+      document.getElementById('cr-title').textContent = TOPICS[d];
+      document.getElementById('cr-why').textContent = d === 1
+        ? 'Calm comes first. Every other skill works better once you can stay level when a game, or a day, goes wrong. Day 1 is just below.'
+        : 'Day ' + d + ' comes by email, as part of Days 2 to 7. Start with Day 1 tonight: calm comes first, and every other day builds on it.';
       document.getElementById('check-result').hidden = false;
       window.ctcTrack('Quick check', { answer: 'Day ' + d });
     });
   });
 
-  // Link straight to a day: yoursite.com/super-dad#day4
-  var m = (location.hash || '').match(/^#day([1-7])$/);
-  go(m ? parseInt(m[1], 10) : 1, false);
+  render();
+  checkHash(true);
 })();
 </script>
 
 <script>
 /* ===== Email sign-up forms (Sender) ===== */
 (function(){
-  // Once Sender's embed code is pasted into a SENDER FORM box, hide our placeholder form
+  // The "not open yet" notice shows until Sender actually draws a form inside the SENDER FORM box.
+  // The box holds Sender's empty placeholder div, which Sender only fills once the form is published,
+  // so an unpublished form leaves the notice in place instead of a blank gap. Nothing is collected by this page.
   document.querySelectorAll('.sender-slot').forEach(function(slot){
-    var form = slot.parentNode.querySelector('form[data-list="' + slot.getAttribute('data-list') + '"]');
-    if (slot.children.length && form) { form.hidden = true; form.style.display = 'none'; }
-    slot.addEventListener('submit', function(){ window.ctcTrack('Email signup', { list: slot.getAttribute('data-list') }); }, true);
-  });
-  // Placeholder form, shown only until Sender is connected
-  document.querySelectorAll('form[data-list]').forEach(function(form){
-    var msg = form.querySelector('.form-msg');
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      msg.textContent = 'Sign-up opens very soon. In the meantime, say hello on our Discord or Facebook group.';
-      msg.className = 'form-msg err';
-    });
+    var pending = slot.parentNode.querySelector('.signup-pending[data-list="' + slot.getAttribute('data-list') + '"]');
+    function check(){
+      if (pending && slot.querySelector('form, input[type=email], iframe')) { pending.hidden = true; pending.style.display = 'none'; return true; }
+      return false;
+    }
+    if (!check() && window.MutationObserver) {
+      var obs = new MutationObserver(function(){ if (check()) obs.disconnect(); });
+      obs.observe(slot, { childList: true, subtree: true });
+    }
+    // A submit is only an attempt: success is confirmed by Sender's double opt-in, not by this page. No form contents are sent.
+    slot.addEventListener('submit', function(){ window.ctcTrack('Course signup submit attempt', { list: slot.getAttribute('data-list') }); }, true);
   });
 })();
 </script>

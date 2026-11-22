@@ -22,19 +22,29 @@
 --orange-light: #ff9c3d;
 --pale-orange: rgba(255, 236, 208, 0.8);
 --highlight: #ffd86b;
+--bg: #0b0b0b;
+--panel: #14110d;
+--panel-2: #211b15;
+--line: #3a2e22;
+--text: #f5efe8;
+--muted: #c4b6a4;
 --radius: 14px;
-font-family: Arial, Helvetica, sans-serif;
+font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
 }
 body {
 margin: 0;
 padding: 0;
 min-height: 100vh;
-background: linear-gradient(180deg, var(--orange), var(--orange-light));
+/* Same dark site palette as the other pages, with a bold orange glow at the top */
+background:
+radial-gradient(1100px 520px at 50% -140px, rgba(255, 122, 0, 0.55), transparent 70%),
+linear-gradient(180deg, #1a0f05 0, var(--bg) 640px);
+background-color: var(--bg);
 display: flex;
 align-items: center;
 justify-content: center;
 text-align: center;
-color: #fff;
+color: var(--text);
 }
 .wrap {
 width: 100%;
@@ -49,15 +59,18 @@ display: block;
 margin: 0 auto 16px;
 }
 h1 {
-margin: 0 0 6px;
-font-size: 2.2rem;
+margin: 0 0 8px;
+font-family: Cinzel, Georgia, serif;
+font-size: clamp(2rem, 7vw, 2.8rem);
 letter-spacing: 0.05em;
 text-transform: uppercase;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+color: #fff;
+text-shadow: 0 2px 18px rgba(255, 122, 0, 0.55);
 }
 .tagline {
-margin: 0 0 28px;
-color: #2b1500;
+margin: 0 auto 30px;
+max-width: 560px;
+color: var(--text);
 font-weight: 600;
 }
 .buttons {
@@ -75,15 +88,25 @@ text-align: center;
 .button-sub {
 display: block;
 margin-top: 6px;
-color: #6b3a00;
+color: var(--muted);
 font-size: 0.9rem;
 font-weight: normal;
 }
 .event-title {
-margin-top: 40px;
-font-size: 1.8rem;
-color: white;
-text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+margin-top: 44px;
+font-family: Cinzel, Georgia, serif;
+font-size: 1.9rem;
+letter-spacing: 0.03em;
+color: #fff;
+}
+.event-title::after {
+content: "";
+display: block;
+width: 72px;
+height: 4px;
+margin: 10px auto 0;
+border-radius: 2px;
+background: var(--orange);
 }
 .calendar-image {
 max-width: 95%;
@@ -95,8 +118,9 @@ box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 .event-link {
 display: inline-block;
 margin-top: 16px;
-color: #2b1500;
+color: var(--orange-light);
 font-weight: bold;
+text-underline-offset: 3px;
 }
 .game-button {
 display: inline-flex;
@@ -105,41 +129,40 @@ align-items: center;
 justify-content: center;
 width: 210px;
 height: 140px;
-background: white;
+background: var(--panel);
 border-radius: var(--radius);
-border: 2px solid var(--highlight);
+border: 2px solid var(--orange);
 text-decoration: none;
-backdrop-filter: blur(6px);
-box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 padding: 10px;
 box-sizing: border-box;
 }
 .game-button:hover {
 transform: translateY(-4px);
-box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
-border-color: #ffffff;
-}
-/* MAXIMUM SIZE LOGOS */
-.game-button img {
-width: 100%;
-height: 100%;
-object-fit: contain; /* ensures max possible size */
-padding: 4px; /* prevents touching edges */
-display: block;
-box-sizing: border-box;
+background: var(--panel-2);
+box-shadow: 0 12px 26px rgba(255, 122, 0, 0.3);
+border-color: var(--highlight);
 }
 footer {
-margin-top: 28px;
+margin-top: 32px;
+padding-top: 16px;
+border-top: 1px solid var(--line);
 font-size: 0.8rem;
-color: #3b1b00;
+color: var(--muted);
 }
 footer a {
-color: #3b1b00;
+color: var(--orange-light);
 }
+/* Player News on the dark homepage (news.css defaults are for light backgrounds) */
+.news-home .news-intro { color: var(--text); }
+.news-home .news-count { color: var(--muted); }
+.news-home .news-all { color: var(--orange-light); }
+.news-home .news-all:focus-visible, .news-filter button:focus-visible { outline-color: var(--highlight); }
+.news-filter button[aria-pressed="true"] { background: var(--orange); color: #140a00; border-color: var(--orange); }
 /* Visible keyboard focus + reduced motion */
 .game-button:focus-visible, .event-link:focus-visible, footer a:focus-visible {
-outline: 3px solid #2b1500;
+outline: 3px solid var(--highlight);
 outline-offset: 3px;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -147,9 +170,14 @@ outline-offset: 3px;
 .game-button:hover { transform: none; }
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="news/news.css">
+<link rel="stylesheet" href="calendar/calendar.css">
 <!-- SETTINGS: Umami tracking. Paste your Website ID below and remove the comment markers before and after the script line. -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160"></script>
+<script defer src="site-analytics.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -159,6 +187,7 @@ alt="Real Rune Cards Logo"
 class="logo-main" />
 <h1>Real Rune Cards</h1>
 <p class="tagline">Card games, events and friendly faces on Coronation Street, Blackpool. New players always welcome.</p>
+<p><a class="event-link" href="#event-calendar">See this month’s calendar ↓</a></p>
 <div class="buttons">
 <!-- Learn to Play -->
 <a class="game-button"
@@ -185,10 +214,10 @@ target="_blank" rel="noopener">
 <span class="button-text">Sealed &amp; Accessories</span>
 </a>
 <!-- Vinted -->
-<a class="game-button"
+<a class="game-button" id="vinted-logo"
 href="https://www.vinted.co.uk/member/151357207-cccollects/"
 target="_blank" rel="noopener">
-<img src="vinted-logo.png" alt="Vinted">
+<span class="button-text">Vinted</span>
 </a>
 <!-- Contact Us -->
 <a class="game-button"
@@ -203,16 +232,23 @@ href="news/index.html">
 </a>
 </div>
 <!-- Event Days Section -->
-<h2 class="event-title">Event Days</h2>
-<img src="calendar.png" class="calendar-image" alt="November 2026 event calendar: Lorcana every Monday, Magic every Tuesday, Riftbound every Thursday, Craft Night every Friday evening, and Board Game Night every other Sunday (dates to be confirmed).">
-<br>
-<a class="event-link" href="calendar/november-2026.html">Text version of the November calendar</a>
+<h2 class="event-title" id="event-calendar">Event Days</h2>
+<!-- Shared calendar (calendar/calendar.js) shows this month in London time and switches month at midnight. The text below is the no-JavaScript version. -->
+<div class="rrc-cal" data-rrc-calendar data-base="calendar/">
+<div class="rrc-cal-fallback">
+<p><b>Usual weekly schedule:</b> Disney Lorcana on Mondays, Magic: The Gathering on Tuesdays, Riftbound on Thursdays and Craft Night on Friday evenings.</p>
+<p><b>Board Game Night</b> runs every other Sunday: 8 and 22 November 2026, 6 and 20 December 2026, then every two weeks.</p>
+<p>Dates can change, so check with us before you come. Month by month: <a href="calendar/november-2026.html">November 2026</a> · <a href="calendar/december-2026.html">December 2026</a></p>
+</div>
+</div>
+<script src="calendar/calendar-data.js" defer></script>
+<script src="calendar/calendar.js" defer></script>
 <br>
 <a class="event-link" href="events.html">First time coming to an event? Here's what to expect →</a>
 <!-- ===== Player News (shared feed: news/news-feed.js) ===== -->
 <section class="news-home" id="news" aria-labelledby="news-heading">
 <h2 class="event-title" id="news-heading">Player News</h2>
-<p class="news-intro">The latest from Magic, Disney Lorcana, Riftbound and Pokémon TCG, explained in plain English for new and returning players.</p>
+<p class="news-intro">The latest from Magic, Disney Lorcana, Riftbound and Pokémon TCG, for new and returning players.</p>
 <div class="news-filter" data-news-filter role="group" aria-label="Filter news by game" hidden>
 <button type="button" data-game="all" aria-pressed="true">All games</button>
 <button type="button" data-game="magic" aria-pressed="false">Magic</button>

@@ -210,6 +210,7 @@
      Our placeholder form hides itself once Sender's form is in place.
 ========================================================================================== -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160" onload="ctcFlush()"></script>
+<script defer src="site-analytics.js"></script>
 <script>
 // Umami click tracking: events wait in a queue until the Umami script has loaded
 window.ctcQueue = [];
@@ -743,7 +744,8 @@ window.ctcFlush = function(){
   document.querySelectorAll('.sender-slot').forEach(function(slot){
     var form = slot.parentNode.querySelector('form[data-list="' + slot.getAttribute('data-list') + '"]');
     if (slot.children.length && form) { form.hidden = true; form.style.display = 'none'; }
-    slot.addEventListener('submit', function(){ window.ctcTrack('Email signup', { list: slot.getAttribute('data-list') }); }, true);
+    // A submit is only an attempt: success is confirmed by Sender, not by this page. No form contents are sent.
+    slot.addEventListener('submit', function(){ window.ctcTrack('Email signup submit attempt', { list: slot.getAttribute('data-list') }); }, true);
   });
   // Placeholder form, shown only until Sender is connected
   document.querySelectorAll('form[data-list]').forEach(function(form){
