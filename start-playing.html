@@ -672,19 +672,11 @@ window.ctcFlush = function(){
       <h3 class="community-head">Get beginner tips by email</h3>
       <p class="community-sub">New-player nights, set releases and the odd money-saving tip. No spam, unsubscribe any time.</p>
       <div class="sender-slot" data-list="new-players">
-      <!-- SENDER FORM: paste the embed code for the "New players" form below this line -->
+      <!-- SENDER FORM: the "New players" form's placeholder div goes below this line -->
 
       <!-- end of SENDER FORM -->
       </div>
-      <form class="rrc-form" data-list="new-players" novalidate>
-        <div class="fields">
-          <input type="text" name="name" autocomplete="given-name" placeholder="First name" aria-label="First name">
-          <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
-          <button class="btn primary" type="submit">Sign me up</button>
-        </div>
-        <label class="consent"><input type="checkbox" name="consent" required><span>Yes, email me tips and event news from Real Rune Cards. See our <a href="privacy.html" target="_blank">privacy policy</a>.</span></label>
-        <p class="form-msg" role="status" aria-live="polite"></p>
-      </form>
+      <p class="form-msg signup-pending" data-list="new-players" role="status">Email sign-up opens soon. Until then, join us on Discord or Facebook to hear about new-player nights.</p>
     </section>
     <p class="small">Real Rune Cards isn't affiliated with Cardmarket or with any of the fan-made sites linked above.</p>
 
@@ -738,21 +730,20 @@ window.ctcFlush = function(){
 <script>
 /* ===== Email sign-up forms (Sender) ===== */
 (function(){
-  // Once Sender's embed code is pasted into a SENDER FORM box, hide our placeholder form
+  // The "opens soon" notice shows until Sender actually draws a form inside the SENDER FORM box,
+  // so an unpublished or missing form never leaves a blank gap or a form that does nothing.
   document.querySelectorAll('.sender-slot').forEach(function(slot){
-    var form = slot.parentNode.querySelector('form[data-list="' + slot.getAttribute('data-list') + '"]');
-    if (slot.children.length && form) { form.hidden = true; form.style.display = 'none'; }
+    var pending = slot.parentNode.querySelector('.signup-pending[data-list="' + slot.getAttribute('data-list') + '"]');
+    function check(){
+      if (pending && slot.querySelector('form, input[type=email], iframe')) { pending.hidden = true; pending.style.display = 'none'; return true; }
+      return false;
+    }
+    if (!check() && window.MutationObserver) {
+      var obs = new MutationObserver(function(){ if (check()) obs.disconnect(); });
+      obs.observe(slot, { childList: true, subtree: true });
+    }
     // A submit is only an attempt: success is confirmed by Sender, not by this page. No form contents are sent.
     slot.addEventListener('submit', function(){ window.ctcTrack('Email signup submit attempt', { list: slot.getAttribute('data-list') }); }, true);
-  });
-  // Placeholder form, shown only until Sender is connected
-  document.querySelectorAll('form[data-list]').forEach(function(form){
-    var msg = form.querySelector('.form-msg');
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      msg.textContent = 'Sign-up opens very soon. In the meantime, say hello on our Discord or Facebook group.';
-      msg.className = 'form-msg err';
-    });
   });
 })();
 </script>

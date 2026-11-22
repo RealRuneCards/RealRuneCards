@@ -171,7 +171,7 @@ window.ctcFlush = function(){
         <h1>The Skill <em>Tree</em></h1>
         <p class="lede">Your child loves card games. The Skill Tree shows you how to turn that into real time together and real life skills, from the kitchen table to their first tournament.</p>
         <div class="btns">
-          <a class="btn primary" href="contact.html" data-track="Skill Tree join click" data-track-item="Hero">Register your interest</a>
+          <a class="btn primary" href="#signup" data-track="Skill Tree join click" data-track-item="Hero">Get notified when it opens</a>
         </div>
         <p class="note">No card game experience needed. Hosted on Skool, on your phone or computer.</p>
       </div>
@@ -226,6 +226,32 @@ window.ctcFlush = function(){
         <div class="step"><div class="n">1</div><h3>Learn it</h3><p>A short guide explains the idea in plain English, built on research from respected parenting and psychology books. Video lessons are being added module by module.</p></div>
         <div class="step"><div class="n">2</div><h3>Try it</h3><p>Real conversations you can copy word for word, plus what to look for in your child and in yourself.</p></div>
         <div class="step"><div class="n">3</div><h3>Keep it</h3><p>A printable card for each module goes on the fridge, so the lesson is there when the moment comes.</p></div>
+      </div>
+    </section>
+
+    <!-- ================= HOW TO JOIN: two audiences, two separate actions ================= -->
+    <section id="signup">
+      <div class="sec-head">
+        <span class="eyebrow">How to join</span>
+        <h2>Hear first when The Skill Tree opens</h2>
+        <p>Leave your email and we'll tell you when the course opens, with the founding price. One email list, course news only.</p>
+      </div>
+      <div class="two">
+        <div class="box">
+          <h3>For parents</h3>
+          <div class="sender-slot" data-list="skill-tree">
+          <!-- SENDER FORM: the "Skill Tree" form's placeholder div goes below this line -->
+
+          <!-- end of SENDER FORM -->
+          </div>
+          <p class="note signup-pending" data-list="skill-tree" role="status">Email sign-up opens soon. Until then, message us on Discord or Facebook and we'll let you know.</p>
+        </div>
+        <div class="box">
+          <h3>For schools and youth groups</h3>
+          <p>Running a club, a class or a youth group? We can talk about using The Skill Tree with your group.</p>
+          <p><a class="btn" href="mailto:RealRuneCards@outlook.com?subject=School%20or%20youth%20group%20enquiry%3A%20The%20Skill%20Tree" data-track="Group enquiry click" data-track-item="Skill Tree">Enquire for a school or youth group</a></p>
+          <p class="tiny">Opens your email app. Tell us about your group and roughly how many children.</p>
+        </div>
       </div>
     </section>
 
@@ -308,7 +334,7 @@ window.ctcFlush = function(){
           <h3>Join The Skill Tree</h3>
           <p class="price">£59</p>
           <p class="price-note">One-off payment, no subscription.<br>Founding price for the first 25 families, then £97.</p>
-          <a class="btn" href="contact.html" data-track="Skill Tree join click" data-track-item="Offer">Register your interest</a>
+          <a class="btn" href="#signup" data-track="Skill Tree join click" data-track-item="Offer">Get notified when it opens</a>
           <ul class="assure">
             <li>✓ Try Module 1 free first</li>
             <li>✓ Secure payment through Skool</li>
@@ -348,7 +374,7 @@ window.ctcFlush = function(){
       <h2>The hobby's already in your house. Make it count.</h2>
       <p>Start with the free module, see how your family gets on, and join when you're ready.</p>
       <div class="btns">
-        <a class="btn primary" href="contact.html" data-track="Skill Tree join click" data-track-item="Closing">Register your interest</a>
+        <a class="btn primary" href="#signup" data-track="Skill Tree join click" data-track-item="Closing">Get notified when it opens</a>
         <a class="btn" href="same-side.html">Start with the free 7-day course</a>
       </div>
     </section>
@@ -358,6 +384,20 @@ window.ctcFlush = function(){
 
 <script>
 // Link clicks (including data-track links) are tracked by site-analytics.js
+// Email sign-up: the "opens soon" notice shows until Sender actually draws a form in the slot.
+document.querySelectorAll('.sender-slot').forEach(function(slot){
+  var pending = slot.parentNode.querySelector('.signup-pending[data-list="' + slot.getAttribute('data-list') + '"]');
+  function check(){
+    if (pending && slot.querySelector('form, input[type=email], iframe')) { pending.hidden = true; pending.style.display = 'none'; return true; }
+    return false;
+  }
+  if (!check() && window.MutationObserver) {
+    var obs = new MutationObserver(function(){ if (check()) obs.disconnect(); });
+    obs.observe(slot, { childList: true, subtree: true });
+  }
+  // A submit is only an attempt: success is confirmed by Sender, not by this page. No form contents are sent.
+  slot.addEventListener('submit', function(){ window.ctcTrack('Email signup submit attempt', { list: slot.getAttribute('data-list') }); }, true);
+});
 document.querySelectorAll('.phase').forEach(function(d){
   d.addEventListener('toggle', function(){ if (d.open) window.ctcTrack('Skill Tree stage opened', { stage: d.querySelector('.pt b').textContent }); });
 });
