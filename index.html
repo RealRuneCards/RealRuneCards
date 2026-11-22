@@ -14,9 +14,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="realrunecards-logo.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Store", "name": "Real Rune Cards", "legalName": "Real Rune Cards Ltd", "url": "https://realrunecards.com/", "image": "https://realrunecards.com/og-home.png", "description": "Trading card shop and play space in Blackpool for Disney Lorcana, Magic: The Gathering, Riftbound, Pokémon and Yu-Gi-Oh!, with monthly events for new and experienced players.", "address": {"@type": "PostalAddress", "streetAddress": "74 Coronation Street", "postalCode": "FY1 4PD", "addressLocality": "Blackpool", "addressCountry": "GB"}, "sameAs": ["https://discord.gg/Q7mbwSXSdW", "https://www.facebook.com/share/g/1YcmRjop4f/"]}</script>
-<title>Real Rune Cards | Card Games & Events in Blackpool</title>
+<title>Real Rune Cards | Card Game Shop &amp; Events in Blackpool</title>
 <link rel="canonical" href="https://realrunecards.com/">
-<meta name="description" content="Card games, events and friendly faces on Coronation Street, Blackpool. New players always welcome.">
+<meta name="description" content="Card game shop and play space on Coronation Street, Blackpool: Disney Lorcana, Magic, Riftbound, Pokémon and Yu-Gi-Oh! events, sealed products, accessories and singles. New players always welcome.">
 <style>
 :root {
 --orange: #ff7a00;
@@ -146,6 +146,36 @@ background: var(--panel-2);
 box-shadow: 0 12px 26px rgba(255, 122, 0, 0.3);
 border-color: var(--highlight);
 }
+/* Main actions at the top of the homepage */
+.primary-actions {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 14px;
+margin: 0 auto 8px;
+}
+.cta {
+display: flex;
+flex-direction: column;
+justify-content: center;
+min-height: 96px;
+padding: 14px 16px;
+border-radius: var(--radius);
+background: var(--orange);
+color: #140a00;
+font-size: 1.25rem;
+font-weight: 800;
+text-decoration: none;
+box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
+.cta > span {
+display: block;
+margin-top: 4px;
+font-size: 0.9rem;
+font-weight: 600;
+color: #2b1500;
+}
+.cta:hover { background: var(--orange-light); }
+.cta:focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px; }
 footer {
 margin-top: 32px;
 padding-top: 16px;
@@ -190,8 +220,16 @@ outline-offset: 3px;
 alt="Real Rune Cards Logo"
 class="logo-main" />
 <h1 id="main" tabindex="-1">Real Rune Cards</h1>
-<p class="tagline">Card games, events and friendly faces on Coronation Street, Blackpool. New players always welcome.</p>
+<p class="tagline">Card game shop and play space on Coronation Street, Blackpool. New players always welcome.</p>
+<!-- Main reasons people visit: kept at the top -->
+<div class="primary-actions">
+<a class="cta" href="#visit" data-track="Homepage action" data-track-item="Visit the shop">Visit the shop<span>Address, opening times and directions</span></a>
+<a class="cta" href="events.html" data-track="Homepage action" data-track-item="See upcoming events">See upcoming events<span>Weekly game nights and major events</span></a>
+<a class="cta" href="https://realrunecards.square.site" target="_blank" rel="noopener" data-track="Shop click" data-track-item="Homepage top">Shop cards and accessories<span>Sealed products and accessories online<span class="sr-only"> (opens in a new tab)</span></span></a>
+</div>
+<!-- SITE-CHROME:VISIT --><section class="rrc-visitbox" id="visit" aria-labelledby="rrc-visit-h"><h2 id="rrc-visit-h">Visit the shop</h2><address>Real Rune Cards<br>74 Coronation Street<br>Blackpool FY1 4PD</address><p class="rrc-hours-note"><b>Opening hours:</b> we're still confirming our regular hours. Please message us on Discord or Facebook before you visit, so we can make sure we're open.</p><ul class="rrc-exceptions"><li>Christmas and New Year week (24 to 31 December): not confirmed yet, so check with us before you come.</li></ul><p class="rrc-visit-btns"><a class="rrc-cbtn" href="https://www.google.com/maps/search/?api=1&query=Real%20Rune%20Cards%2C%2074%20Coronation%20Street%2C%20Blackpool%20FY1%204PD" target="_blank" rel="noopener" data-track="Directions click" data-track-item="Visit box">Get directions<span class="sr-only"> (Google Maps, opens in a new tab)</span></a><a class="rrc-cbtn rrc-cbtn-alt" href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener" data-track="Visit check click" data-track-item="Discord">Check we're open on Discord<span class="sr-only"> (opens in a new tab)</span></a><a class="rrc-cbtn rrc-cbtn-alt" href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener" data-track="Visit check click" data-track-item="Facebook">Check we're open on Facebook<span class="sr-only"> (opens in a new tab)</span></a></p></section><!-- /SITE-CHROME:VISIT -->
 <p><a class="event-link" href="#event-calendar">See this month’s calendar ↓</a></p>
+<h2 class="event-title">More from Real Rune Cards</h2>
 <div class="buttons">
 <!-- Learn to Play -->
 <a class="game-button"
@@ -211,17 +249,24 @@ href="same-side.html">
 <span class="button-text">7 Days on the Same Side</span>
 <span class="button-sub">Free parenting course</span>
 </a>
-<!-- Accessories -->
+<!-- Shops: each label says where the link goes -->
 <a class="game-button"
 href="https://realrunecards.square.site"
-target="_blank" rel="noopener">
-<span class="button-text">Sealed &amp; Accessories</span>
+target="_blank" rel="noopener" data-track="Shop click" data-track-item="Homepage grid">
+<span class="button-text">Shop sealed products &amp; accessories</span>
+<span class="button-sub">Our online shop<span class="sr-only"> (opens in a new tab)</span></span>
 </a>
-<!-- Vinted -->
+<a class="game-button"
+href="https://www.cardmarket.com/en/Magic/Users/CallinV"
+target="_blank" rel="noopener" data-track="Shop click" data-track-item="Cardmarket">
+<span class="button-text">Shop singles on Cardmarket</span>
+<span class="button-sub">Single cards from our Cardmarket shop<span class="sr-only"> (opens in a new tab)</span></span>
+</a>
 <a class="game-button" id="vinted-logo"
 href="https://www.vinted.co.uk/member/151357207-cccollects/"
-target="_blank" rel="noopener">
-<span class="button-text">Vinted</span>
+target="_blank" rel="noopener" data-track="Shop click" data-track-item="Vinted">
+<span class="button-text">Pre-loved cards on Vinted</span>
+<span class="button-sub">Our Vinted shop<span class="sr-only"> (opens in a new tab)</span></span>
 </a>
 <!-- Contact Us -->
 <a class="game-button"

@@ -31,5 +31,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .rrc-community-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .rrc-cbtn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;background:#ff7a00;color:#140a00!important;font-weight:700;text-decoration:none}
 .rrc-cbtn:hover{background:#ff9433}
+.rrc-cbtn-alt{background:transparent;color:#ffd8b0!important;border:2px solid #ff7a00}
+.rrc-cbtn-alt:hover{background:#2a2117}
+
+/* "Visit the shop" block (homepage and Contact) */
+.rrc-visitbox{max-width:640px;margin:24px auto;padding:22px 20px;background:#14110d;border:2px solid #ff7a00;border-radius:14px;color:#f5efe8;text-align:center;font-family:Inter,Arial,Helvetica,sans-serif}
+.rrc-visitbox h2{font:700 1.5rem/1.2 Cinzel,Georgia,serif;margin:0 0 10px;color:#fff}
+.rrc-visitbox address{font-style:normal;font-size:1.1rem;line-height:1.5;margin:0 0 12px}
+.rrc-hours-note{margin:0 0 10px;color:#e2d6c6}
+.rrc-hours{display:grid;grid-template-columns:auto auto;justify-content:center;gap:2px 16px;margin:0 0 10px}
+.rrc-hours dt{font-weight:700;text-align:right}.rrc-hours dd{margin:0;text-align:left}
+.rrc-exceptions{list-style:none;padding:0;margin:0 0 14px;color:#ffd8b0;font-size:.95rem}
+.rrc-visit-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0}
 .rrc-visit{font-size:.95rem}
 .rrc-visit a{color:#ffa94d;text-underline-offset:3px}

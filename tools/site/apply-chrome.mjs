@@ -5,7 +5,7 @@
 import { readFile, writeFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { skipLink, nav, community, stylesheet } from "./chrome.mjs";
+import { skipLink, nav, community, stylesheet, visit } from "./chrome.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const CHECK = process.argv.includes("--check");
@@ -51,7 +51,9 @@ export function applyChrome(html, rel) {
     if (/<main\b/i.test(html)) html = html.replace(/<main\b([^>]*)>/i, (m, a) => /\bid=/.test(a) ? m : `<main id="main" tabindex="-1"${a}>`);
     else html = html.replace(/<h1\b([^>]*)>/i, (m, a) => /\bid=/.test(a) ? `<span id="main" tabindex="-1"></span>${m}` : `<h1 id="main" tabindex="-1"${a}>`);
   }
-  // 4. "Message us to book" block before the legal footer
+  // 4. "Visit the shop" block, only where a page has asked for it with SITE-CHROME:VISIT markers
+  if (markerRe("VISIT").test(html)) html = html.replace(markerRe("VISIT"), block("VISIT", visit(base)));
+  // 5. "Message us to book" block before the legal footer
   const book = block("BOOK", community(base));
   if (markerRe("BOOK").test(html)) html = html.replace(markerRe("BOOK"), book);
   else if (/<style>@media print\{\.legal-foot/.test(html)) html = html.replace(/<style>@media print\{\.legal-foot/, `${book}\n<style>@media print{.legal-foot`);

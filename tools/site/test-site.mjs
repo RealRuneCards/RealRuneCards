@@ -27,6 +27,11 @@ for (const rel of pages) {
   for (const need of [LINKS.discord, LINKS.facebook, "Message us to book", "how many places", "74 Coronation Street", LINKS.directions.replace(/&/g, "&amp;").slice(0, 40)])
     if (!book.includes(need) && !book.includes(need.replace(/&amp;/g, "&"))) fail(rel, `booking block missing "${need.slice(0, 40)}"`);
   if (applyChrome(html, rel) !== html) fail(rel, "chrome out of date (run node tools/site/apply-chrome.mjs)");
+  if (rel === "index.html" || rel === "contact.html") {
+    const v = (html.match(/<section class="rrc-visitbox"[\s\S]*?<\/section>/) || [""])[0];
+    for (const need of ["Visit the shop", "74 Coronation Street", "Opening hours", "Get directions"])
+      if (!v.includes(need) && !(need === "Opening hours" && /class="rrc-hours"/.test(v))) fail(rel, `visit box missing "${need}"`);
+  }
   if (!/<link rel="canonical" href="https:\/\/realrunecards\.com\/[^"]*">/.test(html)) fail(rel, "no canonical link");
   const t = (html.match(/<title>([^<]+)<\/title>/) || [])[1], d = (html.match(/<meta name="description" content="([^"]+)"/) || [])[1];
   if (!t) fail(rel, "no <title>"); else { if (titles.has(t)) fail(rel, `title duplicates ${titles.get(t)}`); titles.set(t, rel); }

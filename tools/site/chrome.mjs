@@ -9,6 +9,37 @@ export const LINKS = {
   directions: "https://www.google.com/maps/search/?api=1&query=Real%20Rune%20Cards%2C%2074%20Coronation%20Street%2C%20Blackpool%20FY1%204PD"
 };
 export const ADDRESS = { street: "74 Coronation Street", town: "Blackpool", postcode: "FY1 4PD" };
+// Cardmarket seller account (Cal's notes: Cardmarket shop, user CallinV)
+export const CARDMARKET = "https://www.cardmarket.com/en/Magic/Users/CallinV";
+export const VINTED = "https://www.vinted.co.uk/member/151357207-cccollects/";
+
+// Opening hours: ONLY confirmed hours go here, one entry per line, e.g. ["Monday", "12pm to 11pm"].
+// While this is empty the site says hours aren't confirmed yet and asks people to message first.
+// The 12pm-11pm, 7-days pattern in the shop notes is a target, not current hours, so it is not listed.
+export const HOURS = [];
+// Holiday and one-off exceptions, shown with the hours. Remove each line once it has passed.
+export const HOURS_EXCEPTIONS = [
+  "Christmas and New Year week (24 to 31 December): not confirmed yet, so check with us before you come."
+];
+
+// "Visit the shop" block: address, hours, holiday exceptions and directions together.
+// Placed on any page that contains the SITE-CHROME:VISIT markers (homepage and Contact).
+export function visit(base) {
+  const hours = HOURS.length
+    ? `<dl class="rrc-hours">${HOURS.map(([d, t]) => `<dt>${d}</dt><dd>${t}</dd>`).join("")}</dl>`
+    : `<p class="rrc-hours-note"><b>Opening hours:</b> we're still confirming our regular hours. Please message us on Discord or Facebook before you visit, so we can make sure we're open.</p>`;
+  const exceptions = HOURS_EXCEPTIONS.length
+    ? `<ul class="rrc-exceptions">${HOURS_EXCEPTIONS.map(x => `<li>${x}</li>`).join("")}</ul>` : "";
+  return `<section class="rrc-visitbox" id="visit" aria-labelledby="rrc-visit-h">` +
+    `<h2 id="rrc-visit-h">Visit the shop</h2>` +
+    `<address>Real Rune Cards<br>${ADDRESS.street}<br>${ADDRESS.town} ${ADDRESS.postcode}</address>` +
+    hours + exceptions +
+    `<p class="rrc-visit-btns">` +
+    `<a class="rrc-cbtn" href="${LINKS.directions}" target="_blank" rel="noopener" data-track="Directions click" data-track-item="Visit box">Get directions<span class="sr-only"> (Google Maps, opens in a new tab)</span></a>` +
+    `<a class="rrc-cbtn rrc-cbtn-alt" href="${LINKS.discord}" target="_blank" rel="noopener" data-track="Visit check click" data-track-item="Discord">Check we're open on Discord<span class="sr-only"> (opens in a new tab)</span></a>` +
+    `<a class="rrc-cbtn rrc-cbtn-alt" href="${LINKS.facebook}" target="_blank" rel="noopener" data-track="Visit check click" data-track-item="Facebook">Check we're open on Facebook<span class="sr-only"> (opens in a new tab)</span></a>` +
+    `</p></section>`;
+}
 
 const NAV = [
   { key: "events", href: "events.html", text: "Events" },
