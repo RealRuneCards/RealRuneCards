@@ -1,0 +1,36 @@
+name: Live site health check
+
+# Checks realrunecards.com every morning and after each Pages deployment:
+# key pages load and contain their key parts (menu, booking block, visit box, sign-up forms,
+# analytics), supporting files load, and automatic Player News updates have reached the live site.
+# A failure shows as a red X in the Actions tab and GitHub emails the repo owner.
+# Read-only: no secrets, no commits.
+on:
+  schedule:
+    - cron: "17 7 * * *"   # daily, 07:17 UTC
+  workflow_dispatch: {}
+  page_build: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Static checks on every page
+        run: node tools/site/test-site.mjs
+
+      - name: Wait for the CDN to serve the latest deployment
+        if: github.event_name == 'page_build'
+        run: sleep 90
+
+      - name: Check the live site
+        run: node tools/site/check-live.mjs

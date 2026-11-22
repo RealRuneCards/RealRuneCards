@@ -4,7 +4,7 @@
 .rrc .mj-major .mj-intro{color:var(--muted,#c4b6a4);margin:0 0 16px}
 .rrc .mj-major .mj-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
 .rrc .mj-major .mj-tabs button{font:600 .95rem Inter,system-ui,sans-serif;background:var(--panel,#161412);color:var(--text,#f5efe8);border:1px solid var(--line,#3a2e22);border-radius:999px;padding:9px 18px;cursor:pointer;min-height:44px}
-.rrc .mj-major .mj-tabs button[aria-selected=true]{background:var(--gold,#ff7a00);border-color:var(--gold,#ff7a00);color:#fff}
+.rrc .mj-major .mj-tabs button[aria-selected=true]{background:var(--gold,#ff7a00);border-color:var(--gold,#ff7a00);color:#140a00;font-weight:700}
 .rrc .mj-major .mj-tabs button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .rrc .mj-major h3{font-size:1.15rem;margin:0 0 12px}
 .rrc .mj-major .mj-next3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 24px;padding:0;list-style:none}
