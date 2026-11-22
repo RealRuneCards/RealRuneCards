@@ -213,7 +213,7 @@ function isoStamp(s) {
 }
 
 /* ---------------- Original summary writer (leads with verified facts; null = skip) ---------------- */
-const ACTION_LABEL = { banned: "Now banned", unbanned: "No longer banned", restricted: "Now restricted", unrestricted: "No longer restricted", suspended: "Now suspended" };
+const ACTION_LABEL = { banned: "Now banned", "banned-only": "Now banned only", "restricted-only": "Now restricted only", unbanned: "No longer banned", restricted: "Now restricted", unrestricted: "No longer restricted", suspended: "Now suspended" };
 function nameList(names, max = 6) {
   const shown = names.slice(0, max).join("; ");
   return names.length > max ? `${shown} and ${names.length - max} more` : shown;
@@ -251,13 +251,13 @@ function buildItem(game, type, a) {
     const effective = statedEffectiveDate(`${a.title}. ${bodyText}`);
     const groups = groupChanges(changes);
     const lead = groups.map(gr => `${ACTION_LABEL[gr.action]}${gr.scope ? ` ${gr.scope}` : ""}: ${nameList(gr.names)}.`).join(" ");
-    const unscoped = changes.some(c => !c.scope);
+    const unscoped = changes.some(c => !c.format);
     const summary = `${effective ? `From ${fmtLong(effective)}. ` : ""}${lead}${unscoped ? " The official post lists which format each card applies to." : ""}`;
     const top = groups[0];
     const title = groups.length === 1
       ? `${g.label}: ${top.names.length === 1 ? top.names[0] : `${top.names[0]} and ${top.names.length - 1} more`} ${ACTION_LABEL[top.action].replace(/^Now /, "").toLowerCase()}${top.scope ? ` ${top.scope}` : ""}${effective ? ` from ${fmtLong(effective)}` : ""}`
       : `${g.label} ban list: ${changes.length} changes${effective ? ` from ${fmtLong(effective)}` : ""}`;
-    const scopes = [...new Set(changes.map(c => c.scope.replace(/^in /, "").replace(/^as an? commander$/i, "Commander")).filter(Boolean))];
+    const scopes = [...new Set(changes.map(c => c.format).filter(Boolean))];
     const format = unscoped ? "See the official list for each card's format" : (scopes.join("; ") || "See the official list");
     return { item: { ...baseItem(game, type, slug, a, headline), title: title.slice(0, 150), summary, format, ...(effective ? { effective } : {}),
       details: groups.map(gr => ({ heading: `${ACTION_LABEL[gr.action]}${gr.scope ? ` ${gr.scope}` : ""}`, items: gr.names })) } };
@@ -545,4 +545,6 @@ async function main() {
   if (report.every(r => r.status === "error" || r.status === "access-restricted")) process.exitCode = 1;
 }
 
-main().catch(e => { console.error(e); process.exitCode = 1; });
+// Shared with tools/news-updater/add-editorial.mjs (hand-checked posts use the same template and checks).
+export { readArticle, buildItem, validItem, articleHtml, loadFeed, loadState, updateArchive, updateSitemap, normalizeUrl, onOfficialHost, FEED_PATH, STATE_PATH, ROOT };
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch(e => { console.error(e); process.exitCode = 1; });

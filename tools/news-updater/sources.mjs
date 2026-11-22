@@ -115,7 +115,7 @@ export const CATEGORY_RULES = [
 
 // Formats we can name from the headline/description without guessing.
 export const FORMATS = {
-  magic: ["Standard", "Pioneer", "Modern", "Legacy", "Vintage", "Pauper", "Commander", "Alchemy", "Historic", "Timeless", "Brawl", "Explorer"],
+  magic: ["Competitive Brawl", "Standard", "Pioneer", "Modern", "Legacy", "Vintage", "Pauper", "Commander", "Alchemy", "Historic", "Timeless", "Brawl", "Explorer"],
   lorcana: ["Core Constructed", "Infinity Constructed", "Core", "Infinity"],
   riftbound: ["Standard", "2v2 Constructed", "2v2"],
   yugioh: ["Advanced Format", "Traditional Format", "Genesys", "Speed Duel"],

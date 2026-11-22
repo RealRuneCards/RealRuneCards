@@ -43,7 +43,7 @@
     },
     "https://magic.wizards.com/en/news/announcements/everything-new-for-competitive-play-in-2027/": {
       "on": "2026-11-22",
-      "result": "skipped:not-in-scope"
+      "result": "posted:editorial"
     },
     "https://magic.wizards.com/en/news/announcements/netflix-reveals-magic-the-gathering-animated-series-planeswalker/": {
       "on": "2026-11-22",
@@ -83,7 +83,7 @@
     },
     "https://magic.wizards.com/en/news/announcements/star-trek-update-bulletin/": {
       "on": "2026-11-22",
-      "result": "skipped:rules-change-not-extractable"
+      "result": "posted:editorial"
     },
     "https://magic.wizards.com/en/news/announcements/update-2017-07-17/": {
       "on": "2026-11-22",
@@ -268,6 +268,18 @@
     "https://www.yugioh-card.com/en/news/news_tcg-op_update_22-0106/": {
       "on": "2026-11-22",
       "result": "skipped:not-in-scope"
+    },
+    "https://www.pokemon.com/us/news/new-prizes-are-coming-to-play-pokemon-stores-in-december-2026/": {
+      "on": "2026-11-22",
+      "result": "posted:editorial"
+    },
+    "https://magic.wizards.com/en/news/announcements/banned-and-restricted-october-12-2026/": {
+      "on": "2026-11-22",
+      "result": "posted:editorial"
+    },
+    "https://www.yugioh-card.com/en/limited/list_2026-10-19/": {
+      "on": "2026-11-22",
+      "result": "posted:editorial"
     }
   },
   "yugioh_fl_list": "https://www.yugioh-card.com/en/limited/list_2026-10-19/"

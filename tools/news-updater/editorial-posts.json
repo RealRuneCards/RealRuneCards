@@ -1,0 +1,74 @@
+[
+  {
+    "kind": "manual",
+    "item": {
+      "game": "pokemon", "type": "event", "slug": "play-pokemon-store-prizes-december-2026",
+      "title": "Pokémon: new League Cup and League Challenge prizes from 1 December 2026",
+      "summary": "From Tuesday 1 December 2026, Pokémon TCG League Cup top finishers in each age division get a Mega Evolution—Delta Reign playmat, and Pokémon VGC and Pokémon GO top finishers get an acrylic standee of the Sky High Pokémon. At select Play! Pokémon Stores, players in Friendly Tournaments, League Challenges and League Cups can also get Play! Pokémon-stamped Cinderace, Lunatone and Mega Signal promo cards.",
+      "announced": "2026-11-16", "effective": "2026-12-01",
+      "details": [
+        { "heading": "League Cup prizes", "items": ["Pokémon TCG: Mega Evolution—Delta Reign playmat, one per top finisher in each age division", "Pokémon VGC: acrylic standee of the Sky High Pokémon for the top finishers in each age division", "Pokémon GO: the same standee for the overall top finisher"] },
+        { "heading": "Stamped promo cards (select Play! Pokémon Stores)", "items": ["Friendly Tournaments: Cinderace", "League Challenges: Lunatone", "League Cups: Mega Signal"] }
+      ],
+      "source": { "url": "https://www.pokemon.com/us/news/new-prizes-are-coming-to-play-pokemon-stores-in-december-2026", "headline": "New Prizes Are Coming to Play! Pokémon Stores in December 2026" }
+    }
+  },
+  {
+    "kind": "manual",
+    "item": {
+      "game": "magic", "type": "event", "slug": "everything-new-for-competitive-play-in-2027",
+      "title": "Magic: Pioneer returns to Regional Championships, and 14 Spotlight Series events in 2027",
+      "summary": "The third round of the 2026–27 Regional Championship season (10 April to 23 May 2027) will be Pioneer. From 2027 each Regional Championship season has four rounds instead of three, and there are 14 Magic Spotlight Series events (up from 12), each with a CommandFest alongside. From 2028 a fourth, all-Limited Pro Tour replaces the Limited Championship.",
+      "announced": "2026-11-14",
+      "details": [
+        { "heading": "Regional Championship qualifier rounds", "items": ["2026–27 round 3: Pioneer, 10 April to 23 May 2027", "2027–28 round 1: Modern, 10 April to 27 June 2027", "2027–28 round 2: Pioneer, 3 July to 26 September 2027"] },
+        { "heading": "Magic Spotlight Series 2027", "items": [
+          "Star Trek (Limited): Minneapolis, US, 9–10 January · Lille, France, 9–10 January",
+          "Nauctis (Limited): Zagreb, Croatia, 13–14 March · Toronto, Canada, 20–21 March",
+          "Marvel Darkhold Destiny (Modern): Seattle, US, 24–25 April · Beijing, China, 22–23 May",
+          "Kamigawa Titanbreach (Limited): Hartford, US, 12–13 June · Shizuoka, Japan, 24–25 July · Montreal, Canada, 24–25 July",
+          "Set TBC (Team Limited): Washington, DC, 14–15 August · Utrecht, Netherlands, 4–5 September · Sydney, Australia, 4–5 September",
+          "Zhalfir (Pioneer): Valencia, Spain, 16–17 October · Dallas-Fort Worth, US, 23–24 October"
+        ] },
+        { "heading": "Prizes", "items": ["$50,000 prize pool at each Spotlight event (Team Limited events: $60,000)", "Top 8 players earn Pro Tour invitations (Team Limited: top 4 teams)"] }
+      ],
+      "source": { "url": "https://magic.wizards.com/en/news/announcements/everything-new-for-competitive-play-in-2027", "headline": "Everything New for Competitive Play in 2027" }
+    }
+  },
+  {
+    "kind": "manual",
+    "item": {
+      "game": "magic", "type": "rules", "slug": "star-trek-update-bulletin",
+      "title": "Magic: Werewolf Pack Leader Oracle change and new rules with Star Trek",
+      "summary": "With Magic: The Gathering | Star Trek, released 13 November 2026, Werewolf Pack Leader's last ability now makes it a Werewolf until end of turn, instead of making it stop being a Human. New rules 700.17, 701.72 and 702.196 cover face a dilemma, assimilate and beam me up, and new rule 508.4e supports Kira Nerys, Firebrand letting creatures enter tapped and attacking.",
+      "announced": "2026-11-06", "effective": "2026-11-13",
+      "details": [
+        { "heading": "Oracle change", "items": ["Werewolf Pack Leader: its {3}{G} ability now ends with \"and is a Werewolf\" instead of \"and isn't a Human\""] },
+        { "heading": "Comprehensive Rules", "items": ["700.17: face a dilemma", "701.72: assimilate", "702.196: beam me up", "508.4e (new): creatures entering tapped and attacking through a replacement effect, for Kira Nerys, Firebrand", "208.3 (updated): power and toughness of noncreature objects that aren't on the battlefield"] }
+      ],
+      "source": { "url": "https://magic.wizards.com/en/news/announcements/star-trek-update-bulletin", "headline": "Magic: The Gathering | Star Trek Update Bulletin" }
+    }
+  },
+  {
+    "kind": "manual",
+    "item": {
+      "game": "magic", "type": "banlist", "slug": "banned-and-restricted-october-12-2026",
+      "title": "Magic: three commanders banned in Competitive Brawl, no other format changes",
+      "summary": "From 12 October 2026, in Competitive Brawl: Yuriko, the Tiger's Shadow; Spider-Man 2099; and Light-Paws, Emperor's Voice are banned as commanders, nine cards are now banned only as a commander, and Nashi, Illusion Gadgeteer is rebalanced. No other format changed. The next announcement is due on 30 November 2026.",
+      "format": "Competitive Brawl", "announced": "2026-10-12", "effective": "2026-10-12",
+      "details": [
+        { "heading": "Banned as a commander", "items": ["Yuriko, the Tiger's Shadow", "Spider-Man 2099", "Light-Paws, Emperor's Voice"] },
+        { "heading": "Now banned only as a commander", "items": ["Ajani, Nacatl Pariah", "Nadu, Winged Wisdom", "Oko, Thief of Crowns", "Old Stickfingers", "Ragavan, Nimble Pilferer", "Rusko, Clockmaker", "Tamiyo, Inquisitive Student", "Wrenn and Six", "Tajic, Legion's Valor"] },
+        { "heading": "Rebalanced", "items": ["Nashi, Illusion Gadgeteer"] },
+        { "heading": "No changes", "items": ["Standard, Pioneer, Modern, Legacy, Vintage, Pauper, Alchemy, Historic, Timeless and Brawl"] }
+      ],
+      "source": { "url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-october-12-2026", "headline": "Banned and Restricted Announcement – October 12, 2026" }
+    }
+  },
+  {
+    "kind": "ygo-fl",
+    "url": "https://www.yugioh-card.com/en/limited/list_2026-10-19/",
+    "effective": "2026-10-19", "announced": "2026-10-19",
+    "note": "The change to Perfectron Hydradrive Dragon applies from the release of Magnificent Maestros on 11 November 2026."
+  }
+]

@@ -62,31 +62,36 @@ const ACTION = { banned: "banned", unbanned: "unbanned", "no longer banned": "un
 export function banChanges(html, formatNames) {
   const bl = blocks(html);
   const found = [];
-  const add = (name, action, scope) => {
+  // format: the format the change applies to (from a heading or the sentence); scope: display text, e.g. "in Competitive Brawl, as a commander"
+  const add = (name, action, scope, format) => {
     const n = cleanName(name); if (!n) return;
-    if (!found.some(f => f.name.toLowerCase() === n.toLowerCase() && f.action === action)) found.push({ name: n, action, scope: scope || "" });
+    if (!found.some(f => f.name.toLowerCase() === n.toLowerCase() && f.action === action)) found.push({ name: n, action, scope: scope || "", format: format || "" });
   };
-  const fmtRe = formatNames.length ? new RegExp(`\\b(${formatNames.map(f => f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`, "i") : null;
+  const fmtRe = formatNames.length ? new RegExp(`\\b(${formatNames.map(f => f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`) : null; // case-sensitive: "as a commander" is not the Commander format
   let heading = "";
   for (let i = 0; i < bl.length; i++) {
     const { tag, text } = bl[i];
-    if (/^h[1-6]$/.test(tag)) { const f = fmtRe && text.match(fmtRe); heading = f && text.length < 60 ? f[1] : (text.length < 60 ? "" : heading); continue; }
+    // Format headings: real headings, or a short paragraph that is just a format name (Wizards' B&R layout).
+    const exactFormat = fmtRe && text.length < 40 && text.match(fmtRe) && text.match(fmtRe)[1].length >= text.replace(/[:\s]+$/, "").length - 1;
+    if (/^h[1-6]$/.test(tag) || exactFormat) { const f = fmtRe && text.match(fmtRe); heading = f && text.length < 60 ? f[1] : (text.length < 60 ? "" : heading); continue; }
     for (const sentence of text.split(/(?<=[.!])\s+/)) {
       // "<Card> is banned." / "<Card> is now only banned as a commander." / "<A> and <B> are unbanned in Modern."
-      const m = sentence.match(/^(.{2,160}?)\s+(?:is|are|has been|have been)\s+(?:now\s+)?(?:only\s+)?(no longer banned|unbanned|banned|unrestricted|restricted|suspended)\b\s*(.*)$/i);
+      const m = sentence.match(/^(.{2,160}?)\s+(?:is|are|has been|have been)\s+(?:now\s+)?(only\s+)?(no longer banned|unbanned|banned|unrestricted|restricted|suspended)\b\s*(.*)$/i);
       if (m) {
         const plural = /\s(are|have been)\s/i.test(sentence.slice(0, m[1].length + 12));
-        const tail = m[3].replace(/[.]+$/, "");
-        const scopeM = tail.match(/^(as an? [a-z]+|in [A-Z][\w' ]{2,40})/);
-        const scope = scopeM ? scopeM[1] : ((fmtRe && sentence.match(fmtRe)) ? `in ${sentence.match(fmtRe)[1]}` : (heading ? `in ${heading}` : ""));
+        const tail = m[4].replace(/[.]+$/, "");
+        const inFmt = (fmtRe && sentence.match(fmtRe)) ? sentence.match(fmtRe)[1] : heading;
+        const qual = (tail.match(/^as an? [a-z]+/) || [""])[0];
+        const scope = [inFmt ? `in ${inFmt}` : "", qual].filter(Boolean).join(", ");
+        const action = ACTION[m[3].toLowerCase()] + (m[2] && ACTION[m[3].toLowerCase()] === "banned" ? "-only" : "");
         const names = plural ? m[1].split(/\s*;\s*|\s+and\s+/) : [m[1]];
-        names.forEach(n => add(n, ACTION[m[2].toLowerCase()], scope));
+        names.forEach(n => add(n, action, scope, inFmt));
         continue;
       }
       // "... chose to ban <Card> from the set ..." / "... banned <Card> in Core Constructed"
       for (const b of sentence.matchAll(/\b(?:to ban|has banned|have banned|we(?:'re| are)? banning|banning)\s+([A-Z][^.;:]{1,60}?)\s+(?:from|in|for)\b/g)) {
         const f = fmtRe && sentence.match(fmtRe);
-        add(b[1], "banned", f ? `in ${f[1]}` : (heading ? `in ${heading}` : ""));
+        add(b[1], "banned", f ? `in ${f[1]}` : (heading ? `in ${heading}` : ""), f ? f[1] : heading);
       }
     }
     // "These eight cards are banned:" / "... are being added to the Standard ban list:" followed by list(s).
@@ -100,7 +105,7 @@ export function banChanges(html, formatNames) {
       const scope = fmts ? `in ${fmts}` : (heading ? `in ${heading}` : "");
       // Collect list items, allowing short sub-headings (e.g. "Cards", "Battlefields") in between.
       for (let j = i + 1; j < bl.length; j++) {
-        if (bl[j].tag === "li") { add(bl[j].text, introAction, scope); continue; }
+        if (bl[j].tag === "li") { add(bl[j].text, introAction, scope, fmts || heading); continue; }
         if (/^h[1-6]$/.test(bl[j].tag) && bl[j].text.length < 40) continue;
         break;
       }
