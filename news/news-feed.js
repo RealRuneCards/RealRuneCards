@@ -1,14 +1,16 @@
 /* ===== REAL RUNE CARDS SHARED NEWS FEED =====
  One file feeds the homepage section and news/index.html.
  It is a .js file (not .json) so the pages also work when opened straight from disk.
- A future generator only needs to rewrite this file after a person has reviewed each post.
+ Hand-written items (no "auto" flag) are never changed by the generator.
+ Items with "auto": true are added by tools/news-updater (GitHub Actions, every 6 hours):
+ fact-only original summaries of official ban list, rules and event announcements.
 
  Item fields:
   id, game (magic | lorcana | riftbound | pokemon), type (rules | banlist | release | event | teaser),
   status (teased | confirmed | announced | effective | released),
   title, summary (original plain-English wording, never copied from the publisher),
   url (on-site article: news/<game>/<slug>/index.html),
-  format, region, announced, effective, updated (YYYY-MM-DD),
+  format, region, location?, announced, effective, updated (YYYY-MM-DD), auto?,
   source { kind: "article" | "social", name, url (exact official page), platform?, account? },
   media? { type: "image", src: "news-media/...", alt, rights: "store-owned" | "permission", credit?, permissionRef? }
          | { type: "youtube", id, channel, title }

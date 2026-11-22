@@ -8,7 +8,7 @@
  All feed text is inserted as plain text, never as HTML.
 */
 (function () {
-  var GAMES = { magic: "Magic", lorcana: "Disney Lorcana", riftbound: "Riftbound", pokemon: "Pokémon TCG" };
+  var GAMES = { magic: "Magic", lorcana: "Disney Lorcana", riftbound: "Riftbound", pokemon: "Pokémon TCG", yugioh: "Yu-Gi-Oh!" };
   var TYPES = { rules: "Rules update", banlist: "Ban list", release: "Release date", event: "Special event", teaser: "Teaser" };
   var STATUS = { teased: "Teased", confirmed: "Confirmed", announced: "Announced", effective: "Now in effect", released: "Released" };
   var EFFECTIVE_LABEL = { rules: "Takes effect", banlist: "Takes effect", release: "Release date", event: "Event date", teaser: "Expected" };
@@ -18,14 +18,16 @@
     magic: ["magic.wizards.com", "wizards.com"],
     lorcana: ["disneylorcana.com", "ravensburgerplay.com"],
     riftbound: ["playriftbound.com", "riftbound.leagueoflegends.com", "riotgames.com"],
-    pokemon: ["pokemon.com"]
+    pokemon: ["pokemon.com"],
+    yugioh: ["yugioh-card.com"]
   };
   /* Verified official social accounts (lowercase, no @). Empty until checked. */
   var OFFICIAL_ACCOUNTS = {
     magic: { instagram: [], facebook: [], x: [], tiktok: [], youtube: [] },
     lorcana: { instagram: [], facebook: [], x: [], tiktok: [], youtube: [] },
     riftbound: { instagram: [], facebook: [], x: [], tiktok: [], youtube: [] },
-    pokemon: { instagram: [], facebook: [], x: [], tiktok: [], youtube: [] }
+    pokemon: { instagram: [], facebook: [], x: [], tiktok: [], youtube: [] },
+    yugioh: { instagram: [], facebook: [], x: [], tiktok: [], youtube: [] }
   };
   var PLATFORM_HOSTS = { instagram: ["instagram.com"], facebook: ["facebook.com"], x: ["x.com", "twitter.com"], tiktok: ["tiktok.com"], youtube: ["youtube.com", "youtu.be"] };
   var PLATFORM_NAMES = { instagram: "Instagram", facebook: "Facebook", x: "X", tiktok: "TikTok", youtube: "YouTube" };
@@ -58,7 +60,7 @@
     var m = n.media;
     if (!m) return true;
     if (m.type === "image") {
-      if (!/^news-media\/[\w-]+\.(webp|jpe?g|png)$/i.test(m.src || "") || !(m.alt || "").trim()) return false;
+      if (!/^news-media\/[\w-]+\.(webp|jpe?g|png|svg)$/i.test(m.src || "") || !(m.alt || "").trim()) return false;
       return m.rights === "store-owned" || (m.rights === "permission" && !!m.credit && !!m.permissionRef);
     }
     if (m.type === "youtube") return /^[\w-]{11}$/.test(m.id || "") && !!m.title && accountOk(n.game, "youtube", m.channel);
@@ -123,6 +125,7 @@
     addRow(dl, "Format", n.format);
     addRow(dl, "Announced", n.announced, true);
     addRow(dl, EFFECTIVE_LABEL[n.type], n.effective, true);
+    addRow(dl, "Where", n.location);
     if (dl.children.length) body.appendChild(dl);
 
     var more = el("p", "news-read"), ra = el("a", null, "Read the full update");

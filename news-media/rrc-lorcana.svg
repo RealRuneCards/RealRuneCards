@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Real Rune Cards Disney Lorcana news">
+<defs><radialGradient id="g" cx="50%" cy="0%" r="90%"><stop offset="0" stop-color="#ffb366" stop-opacity=".35"/><stop offset="1" stop-color="#0b0b0b" stop-opacity="0"/></radialGradient></defs>
+<rect width="640" height="360" fill="#0b0b0b"/><rect width="640" height="360" fill="url(#g)"/>
+<g fill="none" stroke="#ffb366" stroke-opacity=".55" stroke-width="3"><rect x="452" y="70" width="120" height="170" rx="12" transform="rotate(10 512 155)"/><rect x="430" y="80" width="120" height="170" rx="12" transform="rotate(-6 490 165)" fill="#161412"/></g>
+<path d="M490 135l14 26 29 4-21 20 5 29-27-14-27 14 5-29-21-20 29-4z" fill="#ffb366" opacity=".85"/>
+<rect x="0" y="352" width="640" height="8" fill="#ffb366"/>
+<text x="48" y="92" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" letter-spacing="3" fill="#ffb366">REAL RUNE CARDS</text>
+<text x="48" y="160" font-family="Georgia,serif" font-size="46" font-weight="700" fill="#f5efe8">Player News</text>
+<text x="48" y="212" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" fill="#f5efe8">Disney Lorcana</text>
+<text x="48" y="300" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#c4b6a4">Official announcement summary</text>
+</svg>
