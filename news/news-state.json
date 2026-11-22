@@ -1,0 +1,274 @@
+{
+  "version": 1,
+  "seen": {
+    "https://magic.wizards.com/en/news/announcements/secret-lair-my-arrakis-my-superdrop/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/magic-rules-blog-mana-abilities/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/magic-rules-blog-introducing-the-blog/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/collecting-nauctis-the-sunken-realm/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/collecting-star-trek/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/chaos-vault-the-zeta-set-puts-the-playtest-in-your-hands/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/updating-our-boosters-in-2027/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/secret-lair-set-phasers-to-superdrop/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/announcements-november-16-2026/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/secret-lair-countdown-kit-marvels-history-of-heroes/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/everything-new-for-competitive-play-in-2027/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/netflix-reveals-magic-the-gathering-animated-series-planeswalker/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/artist-credit-update/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/where-to-play-star-trek/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/reality-fracture-event-schedule/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/star-trek-event-schedule/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/arena-direct/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/arena-direct-terms-and-conditions/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/announcements-november-9-2026/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/star-trek-product-delays-in-select-regions/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/star-trek-update-bulletin/": {
+      "on": "2026-11-22",
+      "result": "skipped:rules-change-not-extractable"
+    },
+    "https://magic.wizards.com/en/news/announcements/update-2017-07-17/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/store-play-evolves-2017-07-16/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/star-trek-release-notes/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/idic-infinite-diversity-in-infinite-combinations/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/star-trek-prerelease-guide/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/magic-levels-up-with-extra-life-for-2026/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/ad-astra-per-aspera/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/announcements-november-2-2026/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/all-the-scene-cards-from-star-trek/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/unused-star-trek-art/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/feature/trekking-through-design/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/announcements-october-19-2026/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/announcements-october-26-2026/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/ranked-season/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/where-to-find-star-trek-previews/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/announcements/star-trek-commander-decklists/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://magic.wizards.com/en/news/mtg-arena/qualifier-play-ins-and-qualifier-weekend-information/": {
+      "on": "2026-11-22",
+      "result": "skipped:too-old"
+    },
+    "https://magic.wizards.com/en/news/announcements/magic-presents-black-history-month-celebration/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://playriftbound.com/en-us/news/announcements/celebrate-convergence-fest-at-american-game-stores/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/best-ofs-for-the-european-championship/": {
+      "on": "2026-11-22",
+      "result": "skipped:no-structured-event-details"
+    },
+    "https://playriftbound.com/en-us/news/announcements/product-drawing-faq/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/riftbound-world-showcase/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-rc-europe/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/radiance-rules-faq-and-clarifications/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/riftbound-2027-local-play/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/riftbound-2027-premier-play/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://disneylorcana.com/en/news/2026/11/disney-lorcana-digital-game-dev-blog-1/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://disneylorcana.com/en/news/2026/11/princess-power-cards/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://disneylorcana.com/en/news/2026/11/the-disney-lorcana-tcg-returns-to-the-epcot-international-festival-of-the-arts-in-2027/": {
+      "on": "2026-11-22",
+      "result": "skipped:no-structured-event-details"
+    },
+    "https://disneylorcana.com/en/news/2026/11/london-challenge-recap/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://disneylorcana.com/en/news/2026/11/cats-of-hyperia-city/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://disneylorcana.com/en/news/2026/11/disney-lorcana-tcg-hunny-rescue-playmat-coming-soon/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://disneylorcana.com/en/news/2026/11/update-to-core-constructed-format-and-format-coconut/": {
+      "on": "2026-11-22",
+      "result": "posted"
+    },
+    "https://disneylorcana.com/en/news/2026/10/disney-lorcana-tcg-products-from-d23-the-ultimate-disney-fan-event-now-available-online-2/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/in-memory-of-mr-kazuki-takahashi/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/cori-card-replacement/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/ygo-wcs-2024/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/quarter-century-celebration-livestream/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/2023-ygo-national-championships/": {
+      "on": "2026-11-22",
+      "result": "skipped:no-publish-date"
+    },
+    "https://www.yugioh-card.com/en/news/announcing-the-dragon-duel-championship/": {
+      "on": "2026-11-22",
+      "result": "skipped:no-publish-date"
+    },
+    "https://www.yugioh-card.com/en/news/world-championship-2023/": {
+      "on": "2026-11-22",
+      "result": "skipped:no-publish-date"
+    },
+    "https://www.yugioh-card.com/en/news/250th_ycs/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/territorial-championships/": {
+      "on": "2026-11-22",
+      "result": "skipped:no-publish-date"
+    },
+    "https://www.yugioh-card.com/en/news/news_tcg-op_update_22-0210/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/news_tcg-op_update_22-0114/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    },
+    "https://www.yugioh-card.com/en/news/news_tcg-op_update_22-0106/": {
+      "on": "2026-11-22",
+      "result": "skipped:not-in-scope"
+    }
+  },
+  "yugioh_fl_list": "https://www.yugioh-card.com/en/limited/list_2026-10-19/"
+}
