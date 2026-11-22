@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import { USER_AGENT, MAX_AGE_DAYS, MAX_FETCHES_PER_SOURCE, GAMES, SOURCES, EXCLUDE, CATEGORY_RULES, FORMATS } from "./sources.mjs";
 import { blocks, banChanges, statedEffectiveDate, ygoListChanges, eventFacts } from "./facts.mjs";
 import { newsOrder } from "./order.mjs";
+import { applyChrome } from "../site/apply-chrome.mjs";
 const RUN_STAMP = new Date().toISOString();
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -532,7 +533,7 @@ async function main() {
     const file = path.join(ROOT, ...n.url.split("/"));
     if (await exists(file)) continue; // never overwrite an existing page
     await mkdir(path.dirname(file), { recursive: true });
-    await writeFile(file, articleHtml(n), "utf8");
+    await writeFile(file, applyChrome(articleHtml(n), n.url), "utf8"); // same menu and booking block as every page
   }
   if (changed) await writeFile(FEED_PATH, `${header}window.RRC_NEWS_FEED = ${JSON.stringify(feed, null, 2)};\n`, "utf8");
   await writeIfChanged(STATE_PATH, JSON.stringify(state, null, 2) + "\n");

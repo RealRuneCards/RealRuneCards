@@ -42,8 +42,9 @@ radial-gradient(1100px 520px at 50% -140px, rgba(255, 122, 0, 0.55), transparent
 linear-gradient(180deg, #1a0f05 0, var(--bg) 640px);
 background-color: var(--bg);
 display: flex;
+flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
 text-align: center;
 color: var(--text);
 }
@@ -179,14 +180,16 @@ outline-offset: 3px;
 <!-- SETTINGS: Umami tracking. Paste your Website ID below and remove the comment markers before and after the script line. -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4f5087fd-3226-4798-8948-4bc9dc9b6160"></script>
 <script defer src="site-analytics.js"></script>
+<!-- SITE-CHROME:CSS --><link rel="stylesheet" href="site-chrome.css"><!-- /SITE-CHROME:CSS -->
 </head>
 <body>
+<!-- SITE-CHROME:TOP --><a class="rrc-skip" href="#main">Skip to main content</a><nav class="rrc-nav" aria-label="Main menu"><div class="rrc-nav-in"><a class="rrc-brand" href="./" aria-current="page"><img src="realrunecards-logo-64.png" alt="" width="32" height="32">Real Rune Cards</a><ul><li><a href="events.html">Events</a></li><li><a href="start-playing.html">Learn to Play</a></li><li><a href="skill-tree.html">The Skill Tree</a></li><li><a href="news/">News</a></li><li><a href="https://realrunecards.square.site" target="_blank" rel="noopener" data-track="Shop click" data-track-item="Menu">Shop<span class="sr-only"> (online shop, opens in a new tab)</span></a></li><li><a href="contact.html">Contact</a></li></ul></div></nav><!-- /SITE-CHROME:TOP -->
 <div class="wrap">
 <!-- Top Logo -->
 <img src="realrunecards-logo.png"
 alt="Real Rune Cards Logo"
 class="logo-main" />
-<h1>Real Rune Cards</h1>
+<h1 id="main" tabindex="-1">Real Rune Cards</h1>
 <p class="tagline">Card games, events and friendly faces on Coronation Street, Blackpool. New players always welcome.</p>
 <p><a class="event-link" href="#event-calendar">See this month’s calendar ↓</a></p>
 <div class="buttons">
@@ -267,6 +270,7 @@ href="news/index.html">
 <noscript><p class="news-intro"><a href="news/riftbound/radiance-ban-list/index.html">Riftbound: 8 cards and 2 battlefields banned from 23 November</a></p></noscript>
 <a class="news-all" href="news/index.html">See all player news →</a>
 </section>
+<!-- SITE-CHROME:BOOK --><section class="rrc-community" aria-labelledby="rrc-community-h"><div class="rrc-community-in"><h2 id="rrc-community-h">Message us to book</h2><p>Send us the event and how many places you'd like.</p><p class="rrc-community-btns"><a class="rrc-cbtn" href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener" data-track="Booking message click" data-track-item="Discord">Message us on Discord<span class="sr-only"> (opens in a new tab)</span></a><a class="rrc-cbtn" href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener" data-track="Booking message click" data-track-item="Facebook">Message us on Facebook<span class="sr-only"> (opens in a new tab)</span></a></p><p class="rrc-visit">Real Rune Cards, 74 Coronation Street, Blackpool FY1 4PD · <a href="https://www.google.com/maps/search/?api=1&query=Real%20Rune%20Cards%2C%2074%20Coronation%20Street%2C%20Blackpool%20FY1%204PD" target="_blank" rel="noopener" data-track="Directions click" data-track-item="Footer">Get directions<span class="sr-only"> (Google Maps, opens in a new tab)</span></a></p></div></section><!-- /SITE-CHROME:BOOK -->
 <footer>
 © <span id="year"></span> Real Rune Cards Ltd · <a href="privacy.html">Privacy policy</a><br>Registered in England and Wales, company number 16969346 · Registered office: 74 Coronation Street, Blackpool FY1 4PD
 </footer>

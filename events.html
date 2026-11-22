@@ -96,12 +96,10 @@ window.ctcFlush = function(){
 @media (max-width:520px){ .site-nav .in{justify-content:center} .site-nav a.lnk{font-size:.85rem; padding:6px 8px} }
 @media (max-width:420px){ .site-nav ul{gap:0} .site-nav a.lnk{font-size:.78rem; padding:5px 6px} }
 </style>
+<!-- SITE-CHROME:CSS --><link rel="stylesheet" href="site-chrome.css"><!-- /SITE-CHROME:CSS -->
 </head>
 <body style="margin:0;background:#0b0b0b">
-<nav class="site-nav" aria-label="Site menu"><div class="in">
-  <a class="brand" href="index.html"><img src="realrunecards-logo.png" alt="" onerror="this.remove()">Real Rune Cards</a>
-  <ul><li><a class="lnk" href="index.html">Home</a></li><li><a class="lnk" href="start-playing.html">Learn to Play</a></li><li><a class="lnk" href="events.html" aria-current="page">Events</a></li><li><a class="lnk" href="same-side.html">Same Side</a></li><li><a class="lnk" href="skill-tree.html">Skill Tree</a></li><li><a class="lnk" href="news/index.html">News</a></li></ul>
-</div></nav>
+<!-- SITE-CHROME:TOP --><a class="rrc-skip" href="#main">Skip to main content</a><nav class="rrc-nav" aria-label="Main menu"><div class="rrc-nav-in"><a class="rrc-brand" href="./"><img src="realrunecards-logo-64.png" alt="" width="32" height="32">Real Rune Cards</a><ul><li><a href="events.html" aria-current="page">Events</a></li><li><a href="start-playing.html">Learn to Play</a></li><li><a href="skill-tree.html">The Skill Tree</a></li><li><a href="news/">News</a></li><li><a href="https://realrunecards.square.site" target="_blank" rel="noopener" data-track="Shop click" data-track-item="Menu">Shop<span class="sr-only"> (online shop, opens in a new tab)</span></a></li><li><a href="contact.html">Contact</a></li></ul></div></nav><!-- /SITE-CHROME:TOP -->
 <div class="rrc">
 
   <header class="hero">
@@ -113,7 +111,7 @@ window.ctcFlush = function(){
     </div>
   </header>
 
-  <main class="wrap">
+  <main id="main" tabindex="-1" class="wrap">
     <!-- Same shared calendar as the homepage (calendar/calendar.js): shows this month in London time and switches month at midnight.
          The text below is the no-JavaScript version. -->
     <div class="rrc-cal" data-rrc-calendar data-base="calendar/" style="margin:0 0 28px">
@@ -171,19 +169,11 @@ window.ctcFlush = function(){
       </section>
     </div>
 
-    <section class="cta">
-      <h2>Book your place</h2>
-      <p>Message us to book, and to hear first about new sets, special nights and any changes to the calendar.</p>
-      <div class="btns">
-        <a class="btn primary" href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener">Join our Discord</a>
-        <a class="btn" href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener">Find us on Facebook</a>
-        <a class="btn" href="start-playing.html">New? Learn to play first</a>
-      </div>
-    </section>
   </main>
 </div>
 
 <!-- Link clicks (Discord, Facebook, calendar, Square, data-track) are tracked by site-analytics.js -->
+<!-- SITE-CHROME:BOOK --><section class="rrc-community" aria-labelledby="rrc-community-h"><div class="rrc-community-in"><h2 id="rrc-community-h">Message us to book</h2><p>Send us the event and how many places you'd like.</p><p class="rrc-community-btns"><a class="rrc-cbtn" href="https://discord.gg/Q7mbwSXSdW" target="_blank" rel="noopener" data-track="Booking message click" data-track-item="Discord">Message us on Discord<span class="sr-only"> (opens in a new tab)</span></a><a class="rrc-cbtn" href="https://www.facebook.com/share/g/1YcmRjop4f/" target="_blank" rel="noopener" data-track="Booking message click" data-track-item="Facebook">Message us on Facebook<span class="sr-only"> (opens in a new tab)</span></a></p><p class="rrc-visit">Real Rune Cards, 74 Coronation Street, Blackpool FY1 4PD · <a href="https://www.google.com/maps/search/?api=1&query=Real%20Rune%20Cards%2C%2074%20Coronation%20Street%2C%20Blackpool%20FY1%204PD" target="_blank" rel="noopener" data-track="Directions click" data-track-item="Footer">Get directions<span class="sr-only"> (Google Maps, opens in a new tab)</span></a></p></div></section><!-- /SITE-CHROME:BOOK -->
 <style>@media print{.legal-foot{display:none!important}}</style><p class="legal-foot" style="max-width:980px;margin:0 auto;padding:18px 16px 28px;font:12px/1.5 Arial,Helvetica,sans-serif;color:#9a8f82;text-align:center;background:#0b0b0b">Real Rune Cards Ltd · Registered in England and Wales, company number 16969346 · Registered office: 74 Coronation Street, Blackpool FY1 4PD · <a href="privacy.html" style="color:#ff7a00">Privacy policy</a></p>
 </body>
 </html>

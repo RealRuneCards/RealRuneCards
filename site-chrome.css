@@ -1,0 +1,35 @@
+/* Shared chrome for every page: skip link, main menu, "Message us to book" block, focus styles.
+   Generated markup lives between SITE-CHROME markers (tools/site/apply-chrome.mjs). */
+.rrc-skip{position:absolute;left:8px;top:-60px;z-index:1000;background:#ffbf47;color:#0b0b0b;font:700 16px/1.2 Arial,Helvetica,sans-serif;padding:12px 16px;border-radius:6px;text-decoration:none}
+.rrc-skip:focus{top:8px}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+
+/* Visible keyboard focus everywhere: yellow ring with a dark edge works on light and dark backgrounds */
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid #ffbf47!important;outline-offset:2px!important;box-shadow:0 0 0 5px #0b0b0b!important}
+#main:focus{outline:none}
+
+.rrc-nav,.rrc-community{align-self:stretch;width:100%;box-sizing:border-box;text-align:left}
+.rrc-nav{background:#14110d;border-bottom:3px solid #ff7a00;font-family:Arial,Helvetica,sans-serif}
+.rrc-nav-in{max-width:1080px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex-wrap:wrap}
+.rrc-brand{display:flex;align-items:center;gap:8px;min-height:44px;color:#fff;text-decoration:none;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.95rem}
+.rrc-brand img{width:32px;height:32px;object-fit:contain}
+.rrc-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
+.rrc-nav ul a{display:flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;color:#f3e7d6;text-decoration:none;font-size:.95rem}
+.rrc-nav ul a:hover{background:#2a2117;color:#fff}
+.rrc-nav ul a[aria-current=page]{background:#ff7a00;color:#140a00;font-weight:700}
+@media (max-width:640px){
+  .rrc-nav-in{justify-content:center;padding:6px 8px}
+  .rrc-nav ul{justify-content:center;gap:2px}
+  .rrc-nav ul a{padding:0 10px;font-size:.9rem}
+}
+@media print{.rrc-nav,.rrc-skip,.rrc-community{display:none!important}}
+
+.rrc-community{background:#14110d;border-top:3px solid #ff7a00;color:#f5efe8;font-family:Inter,Arial,Helvetica,sans-serif}
+.rrc-community-in{max-width:980px;margin:0 auto;padding:28px 16px 22px;text-align:center}
+.rrc-community h2{font:700 1.45rem/1.2 Cinzel,Georgia,serif;letter-spacing:.02em;margin:0 0 6px;color:#fff}
+.rrc-community p{margin:0 0 14px;color:#e2d6c6}
+.rrc-community-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.rrc-cbtn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;background:#ff7a00;color:#140a00!important;font-weight:700;text-decoration:none}
+.rrc-cbtn:hover{background:#ff9433}
+.rrc-visit{font-size:.95rem}
+.rrc-visit a{color:#ffa94d;text-underline-offset:3px}
