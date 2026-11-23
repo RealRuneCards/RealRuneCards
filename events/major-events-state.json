@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "events": [
     {
       "name": "CommandFest São Paulo",
@@ -152,7 +152,7 @@
       "evidence": "November 22, 2026",
       "game": "lorcana",
       "key": "lorcana|qualifier|bern|2026",
-      "status": "confirmed",
+      "status": "past",
       "note": "",
       "firstSeen": "2026-11-22"
     },
