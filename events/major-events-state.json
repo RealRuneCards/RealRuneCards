@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-25",
   "events": [
     {
       "name": "CommandFest São Paulo",
@@ -328,6 +328,23 @@
       "firstSeen": "2026-11-22"
     },
     {
+      "name": "Magic Spotlight Series",
+      "tier": "Spotlight",
+      "start": "2027-01-09",
+      "end": "2027-01-10",
+      "city": "Lille, France",
+      "venue": "",
+      "link": "https://magic.gg/events",
+      "linkLabel": "Official schedule",
+      "source": "https://magic.gg/events",
+      "evidence": "January 9–10, 2027",
+      "game": "magic",
+      "key": "magic|spotlight|lille|2027",
+      "status": "confirmed",
+      "note": "",
+      "firstSeen": "2026-11-25"
+    },
+    {
       "name": "Challenge Championship Qualifier Wakefield",
       "tier": "Qualifier",
       "start": "2027-01-16",
@@ -414,6 +431,7 @@
       "firstSeen": "2026-11-22"
     },
     {
+      "game": "magic",
       "name": "MagicCon: Detroit with Pro Tour Nauctis",
       "tier": "MagicCon + Pro Tour",
       "start": "2027-02-26",
@@ -424,9 +442,8 @@
       "linkLabel": "Official announcement (badges via mtgfestivals.com)",
       "source": "https://magic.gg/news/magiccon-detroit-2027-dive-into-the-gathering",
       "evidence": "Huntington Place, Detroit, Michigan",
-      "game": "magic",
-      "key": "magic|flagship|detroit|2027",
       "curated": true,
+      "key": "magic|flagship|detroit|2027",
       "status": "confirmed",
       "note": "",
       "firstSeen": "2026-11-22"
